@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://fechengxiaocheng.github.io">
-  <title>Archives: 2018 | 前端程小程</title>
+  <title>Dockfile | 前端程小程</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="程序员">
-<meta name="keywords" content="javascript,js,css,html,node,react,eslint,jest,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="前端程小程">
-<meta property="og:url" content="https://fechengxiaocheng.github.io/archives/2018/index.html">
+  <meta name="description" content="说说前端项目中的Dockfile文件是什么东西？是一个脚本。是创建了一个新镜像的脚本。是基于基础镜像创建一个新镜像的脚本。 干啥用的？创建新的镜像。在公司内部环境，需要基于公司内部的node镜像，指定公司内部的sass源和npm源，在指定的生产环境中运行项目。 为啥要用？一定要用吗？不用的话，无法在公司内部的测试机中运行项目。本地环境就不需要。 怎么用？// 一个产品中心的Dockfile文件示例">
+<meta name="keywords" content="tech">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dockfile">
+<meta property="og:url" content="https://fechengxiaocheng.github.io/2018/07/18/docker/index.html">
 <meta property="og:site_name" content="前端程小程">
-<meta property="og:description" content="程序员">
+<meta property="og:description" content="说说前端项目中的Dockfile文件是什么东西？是一个脚本。是创建了一个新镜像的脚本。是基于基础镜像创建一个新镜像的脚本。 干啥用的？创建新的镜像。在公司内部环境，需要基于公司内部的node镜像，指定公司内部的sass源和npm源，在指定的生产环境中运行项目。 为啥要用？一定要用吗？不用的话，无法在公司内部的测试机中运行项目。本地环境就不需要。 怎么用？// 一个产品中心的Dockfile文件示例">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-18T10:25:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端程小程">
-<meta name="twitter:description" content="程序员">
+<meta name="twitter:title" content="Dockfile">
+<meta name="twitter:description" content="说说前端项目中的Dockfile文件是什么东西？是一个脚本。是创建了一个新镜像的脚本。是基于基础镜像创建一个新镜像的脚本。 干啥用的？创建新的镜像。在公司内部环境，需要基于公司内部的node镜像，指定公司内部的sass源和npm源，在指定的生产环境中运行项目。 为啥要用？一定要用吗？不用的话，无法在公司内部的测试机中运行项目。本地环境就不需要。 怎么用？// 一个产品中心的Dockfile文件示例">
   
     <link rel="alternative" href="/atom.xml" title="前端程小程" type="application/atom+xml">
   
@@ -152,36 +153,95 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-docker" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/18/docker/" class="archive-article-date">
-  	<time datetime="2018-07-18T10:23:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-18</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/18/docker/">Dockfile</a>
+    <h1 class="article-title" itemprop="name">
+      Dockfile
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/07/18/docker/" class="archive-article-date">
+  	<time datetime="2018-07-18T10:23:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="说说前端项目中的Dockfile文件"><a href="#说说前端项目中的Dockfile文件" class="headerlink" title="说说前端项目中的Dockfile文件"></a>说说前端项目中的Dockfile文件</h1><h2 id="是什么东西？"><a href="#是什么东西？" class="headerlink" title="是什么东西？"></a>是什么东西？</h2><p>是一个脚本。<br>是创建了一个新镜像的脚本。<br>是基于基础镜像创建一个新镜像的脚本。</p>
+<h2 id="干啥用的？"><a href="#干啥用的？" class="headerlink" title="干啥用的？"></a>干啥用的？</h2><p>创建新的镜像。在公司内部环境，需要基于公司内部的node镜像，指定公司内部的sass源和npm源，在指定的生产环境中运行项目。</p>
+<h2 id="为啥要用？一定要用吗？"><a href="#为啥要用？一定要用吗？" class="headerlink" title="为啥要用？一定要用吗？"></a>为啥要用？一定要用吗？</h2><p>不用的话，无法在公司内部的测试机中运行项目。本地环境就不需要。</p>
+<h2 id="怎么用？"><a href="#怎么用？" class="headerlink" title="怎么用？"></a>怎么用？</h2><pre><code>// 一个产品中心的Dockfile文件示例
+FROM registry.zhonganinfo.com/env/node:6.10.1-nginx
+
+COPY package.json /app/package.json
+WORKDIR /app
+
+RUN npm uninstall
+ENV SASS_BINARY_SITE http://npm.zhonganonline.com/node-mirrors/node-sass/
+ENV NODE_ENV production
+RUN npm --registry http://npm.zhonganonline.com install
+
+COPY ./ /app/
+
+RUN npm run product
+
+EXPOSE 8080
+
+CMD [&quot;node&quot;, &quot;server.js&quot;]
+</code></pre><h3 id="FROM"><a href="#FROM" class="headerlink" title="FROM"></a>FROM</h3><pre><code>FROM registry.zhonganinfo.com/env/node:6.10.1-nginx
+</code></pre><ul>
+<li>FROM 指定创建新镜像的基础镜像；如果没有，则去Docker的公共库拉取下来。</li>
+<li>FROM 要在文件的第一行。</li>
+<li>一个文件可以有多个From，如果要创建多个镜像的话。</li>
+</ul>
+<h3 id="COPY"><a href="#COPY" class="headerlink" title="COPY"></a>COPY</h3><pre><code>COPY package.json /app/package.json
+</code></pre><ul>
+<li>COPY 复制package.json到制定的文件中去/app/package.json</li>
+</ul>
+<h3 id="ADD"><a href="#ADD" class="headerlink" title="ADD"></a>ADD</h3><pre><code>ADD package.json /app/package.json
+</code></pre><ul>
+<li>ADD 复制package.json到制定的文件中去/app/package.json</li>
+<li>用法与COPY相同，但是可以复制url作为源到指定的文件中。比COPY强大。</li>
+</ul>
+<h3 id="WORKDIR"><a href="#WORKDIR" class="headerlink" title="WORKDIR"></a>WORKDIR</h3><pre><code>WORKDIR /app
+</code></pre><ul>
+<li>切换目录到app,，相当于cd。</li>
+</ul>
+<h3 id="RUN"><a href="#RUN" class="headerlink" title="RUN"></a>RUN</h3><pre><code>RUN npm uninstall
+RUN npm --registry http://npm.zhonganonline.com install
+RUN npm run product
+</code></pre><ul>
+<li>在当前镜像的基础上执行指定命令，并提交为新的镜像。</li>
+<li>后续RUN的命令在上一个RUN之后的镜像作为基础。</li>
+</ul>
+<h3 id="ENV"><a href="#ENV" class="headerlink" title="ENV"></a>ENV</h3><pre><code>ENV SASS_BINARY_SITE http://npm.zhonganonline.com/node-mirrors/node-sass/
+ENV NODE_ENV production
+</code></pre><ul>
+<li>ENV key value 指定一个环境变量，为后续的RUN指令使用。</li>
+</ul>
+<h3 id="EXPOSE"><a href="#EXPOSE" class="headerlink" title="EXPOSE"></a>EXPOSE</h3><pre><code>EXPOSE 8080
+</code></pre><ul>
+<li>指定要暴露哪个接口</li>
+</ul>
+<h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3><p>CMD [“node”, “server.js”]</p>
+<ul>
+<li>启动容器的时候执行。构建的时候不执行</li>
+<li>一个容器只有一个CMD。如果有多个，只有最后一个生效。</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -193,19 +253,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://fechengxiaocheng.github.io/2018/07/18/docker/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
+
   
 
-    
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+  <div id="SOHUCS" sid="docker" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytIKGtGB",
+        conf: "572289bd5879a3ce6789799febab0e5c"
+    });
+</script>
+</script>
+  
+
+  
+
+  
 
 
           </div>
@@ -228,8 +375,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
