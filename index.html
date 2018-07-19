@@ -213,24 +213,27 @@ download(url, target, (err) =&gt; {
 const glob = require(&apos;glob&apos;);
 const list = glob.sync(&apos;lib/*.js&apos;); // 遍历匹配lib/*.js lib下所有的js文件
 console.log(list);
-</code></pre><h3 id="nodejs-path"><a href="#nodejs-path" class="headerlink" title="nodejs-path"></a>nodejs-path</h3><ul>
-<li><p>path.basename(path[, ext])返回路径最后的一部分</p>
-<p>  path.basename(‘/foo/bar/baz/asdf/quux.html’);<br>  // 返回: ‘quux.html’</p>
-<p>  path.basename(‘/foo/bar/baz/asdf/quux.html’, ‘.html’);<br>  // 返回: ‘quux’</p>
-</li>
-<li><p>path.resolve([…paths])把一个路径或路径片段的序列解析为一个绝对路径。</p>
-<p>  path.resolve(‘/foo/bar’, ‘./baz’);<br>  // 返回: ‘/foo/bar/baz’</p>
-<p>  path.resolve(‘/foo/bar’, ‘/tmp/file/‘);<br>  // 返回: ‘/tmp/file’</p>
-<p>  path.resolve(‘wwwroot’, ‘static_files/png/‘, ‘../gif/image.gif’);<br>  // 如果当前工作目录为 /home/myself/node，<br>  // 则返回 ‘/home/myself/node/wwwroot/static_files/gif/image.gif’</p>
-</li>
-<li><p>fs.stat(filepath, (err, stats) =&gt; {stats.isDerectory()})</p>
-<p>  fs.stat是异步的,不能保证已执行完再去执行后面的，所以要放在回调中。</p>
-</li>
-<li><p>fs.statSync(filepath).isDerectory()     </p>
-<p>  fs.statSync是同步的，可以直接进行后面的操作</p>
-</li>
-</ul>
-<h3 id="inquirer"><a href="#inquirer" class="headerlink" title="inquirer"></a>inquirer</h3><p>用来在终端与用户交互答案</p>
+</code></pre><h3 id="nodejs-path"><a href="#nodejs-path" class="headerlink" title="nodejs-path"></a>nodejs-path</h3><p>path.basename(path[, ext])返回路径最后的一部分</p>
+<pre><code>path.basename(&apos;/foo/bar/baz/asdf/quux.html&apos;);
+// 返回: &apos;quux.html&apos;
+
+path.basename(&apos;/foo/bar/baz/asdf/quux.html&apos;, &apos;.html&apos;);
+// 返回: &apos;quux&apos;
+</code></pre><p>path.resolve([…paths])把一个路径或路径片段的序列解析为一个绝对路径。</p>
+<pre><code>path.resolve(&apos;/foo/bar&apos;, &apos;./baz&apos;);
+// 返回: &apos;/foo/bar/baz&apos;
+
+path.resolve(&apos;/foo/bar&apos;, &apos;/tmp/file/&apos;);
+// 返回: &apos;/tmp/file&apos;
+
+path.resolve(&apos;wwwroot&apos;, &apos;static_files/png/&apos;, &apos;../gif/image.gif&apos;);
+// 如果当前工作目录为 /home/myself/node，
+// 则返回 &apos;/home/myself/node/wwwroot/static_files/gif/image.gif&apos;
+</code></pre><p>fs.stat(filepath, (err, stats) =&gt; {stats.isDerectory()})</p>
+<pre><code>* fs.stat是异步的,不能保证已执行完再去执行后面的，所以要放在回调中。
+</code></pre><p>fs.statSync(filepath).isDerectory()     </p>
+<pre><code>* fs.statSync是同步的，可以直接进行后面的操作
+</code></pre><h3 id="inquirer"><a href="#inquirer" class="headerlink" title="inquirer"></a>inquirer</h3><p>用来在终端与用户交互答案</p>
 <pre><code>const inquirer  = require(&apos;inquirer&apos;);
 
 inquirer.prompt([
