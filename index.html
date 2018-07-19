@@ -215,23 +215,14 @@ const list = glob.sync(&apos;lib/*.js&apos;); // 遍历匹配lib/*.js lib下所�
 console.log(list);
 </code></pre><h3 id="nodejs-path"><a href="#nodejs-path" class="headerlink" title="nodejs-path"></a>nodejs-path</h3><ul>
 <li><p>path.basename(path[, ext])返回路径最后的一部分</p>
-<pre><code>path.basename(&apos;/foo/bar/baz/asdf/quux.html&apos;);
-// 返回: &apos;quux.html&apos;
-
-path.basename(&apos;/foo/bar/baz/asdf/quux.html&apos;, &apos;.html&apos;);
-// 返回: &apos;quux&apos;
-</code></pre></li>
+<p>  path.basename(‘/foo/bar/baz/asdf/quux.html’);<br>  // 返回: ‘quux.html’</p>
+<p>  path.basename(‘/foo/bar/baz/asdf/quux.html’, ‘.html’);<br>  // 返回: ‘quux’</p>
+</li>
 <li><p>path.resolve([…paths])把一个路径或路径片段的序列解析为一个绝对路径。</p>
-<pre><code>path.resolve(&apos;/foo/bar&apos;, &apos;./baz&apos;);
-// 返回: &apos;/foo/bar/baz&apos;
-
-path.resolve(&apos;/foo/bar&apos;, &apos;/tmp/file/&apos;);
-// 返回: &apos;/tmp/file&apos;
-
-path.resolve(&apos;wwwroot&apos;, &apos;static_files/png/&apos;, &apos;../gif/image.gif&apos;);
-// 如果当前工作目录为 /home/myself/node，
-// 则返回 &apos;/home/myself/node/wwwroot/static_files/gif/image.gif&apos;
-</code></pre></li>
+<p>  path.resolve(‘/foo/bar’, ‘./baz’);<br>  // 返回: ‘/foo/bar/baz’</p>
+<p>  path.resolve(‘/foo/bar’, ‘/tmp/file/‘);<br>  // 返回: ‘/tmp/file’</p>
+<p>  path.resolve(‘wwwroot’, ‘static_files/png/‘, ‘../gif/image.gif’);<br>  // 如果当前工作目录为 /home/myself/node，<br>  // 则返回 ‘/home/myself/node/wwwroot/static_files/gif/image.gif’</p>
+</li>
 <li><p>fs.stat(filepath, (err, stats) =&gt; {stats.isDerectory()})</p>
 <p>  fs.stat是异步的,不能保证已执行完再去执行后面的，所以要放在回调中。</p>
 </li>
