@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="说说前端项目中的Dockfile文件是什么东西？是一个脚本。是创建了一个新镜像的脚本。是基于基础镜像创建一个新镜像的脚本。 干啥用的？创建新的镜像。在公司内部环境，需要基于公司内部的node镜像，指定公司内部的sass源和npm源，在指定的生产环境中运行项目。 为啥要用？一定要用吗？不用的话，无法在公司内部的测试机中运行项目。本地环境就不需要。 怎么用？// 一个产品中心的Dockfile文件示例">
+  <meta name="description" content="是什么东西？是一个脚本。是创建了一个新镜像的脚本。是基于基础镜像创建一个新镜像的脚本。 干啥用的？创建新的镜像。在公司内部环境，需要基于公司内部的node镜像，指定公司内部的sass源和npm源，在指定的生产环境中运行项目。 为啥要用？一定要用吗？不用的话，无法在公司内部的测试机中运行项目。本地环境就不需要。 怎么用？以下是某项目的的Dockfile文件示例(http://npm.xxx.com是">
 <meta name="keywords" content="javascript,js,css,html,node,react,eslint,jest,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Dockfile">
+<meta property="og:title" content="Dockfile学习笔记">
 <meta property="og:url" content="https://fechengxiaocheng.github.io/2018/07/18/docker/index.html">
 <meta property="og:site_name" content="前端程小程">
-<meta property="og:description" content="说说前端项目中的Dockfile文件是什么东西？是一个脚本。是创建了一个新镜像的脚本。是基于基础镜像创建一个新镜像的脚本。 干啥用的？创建新的镜像。在公司内部环境，需要基于公司内部的node镜像，指定公司内部的sass源和npm源，在指定的生产环境中运行项目。 为啥要用？一定要用吗？不用的话，无法在公司内部的测试机中运行项目。本地环境就不需要。 怎么用？// 一个产品中心的Dockfile文件示例">
+<meta property="og:description" content="是什么东西？是一个脚本。是创建了一个新镜像的脚本。是基于基础镜像创建一个新镜像的脚本。 干啥用的？创建新的镜像。在公司内部环境，需要基于公司内部的node镜像，指定公司内部的sass源和npm源，在指定的生产环境中运行项目。 为啥要用？一定要用吗？不用的话，无法在公司内部的测试机中运行项目。本地环境就不需要。 怎么用？以下是某项目的的Dockfile文件示例(http://npm.xxx.com是">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-26T07:03:17.000Z">
+<meta property="og:updated_time" content="2018-08-20T09:29:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Dockfile">
-<meta name="twitter:description" content="说说前端项目中的Dockfile文件是什么东西？是一个脚本。是创建了一个新镜像的脚本。是基于基础镜像创建一个新镜像的脚本。 干啥用的？创建新的镜像。在公司内部环境，需要基于公司内部的node镜像，指定公司内部的sass源和npm源，在指定的生产环境中运行项目。 为啥要用？一定要用吗？不用的话，无法在公司内部的测试机中运行项目。本地环境就不需要。 怎么用？// 一个产品中心的Dockfile文件示例">
+<meta name="twitter:title" content="Dockfile学习笔记">
+<meta name="twitter:description" content="是什么东西？是一个脚本。是创建了一个新镜像的脚本。是基于基础镜像创建一个新镜像的脚本。 干啥用的？创建新的镜像。在公司内部环境，需要基于公司内部的node镜像，指定公司内部的sass源和npm源，在指定的生产环境中运行项目。 为啥要用？一定要用吗？不用的话，无法在公司内部的测试机中运行项目。本地环境就不需要。 怎么用？以下是某项目的的Dockfile文件示例(http://npm.xxx.com是">
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>Dockfile | 前端程小程</title>
+  <title>Dockfile学习笔记 | 前端程小程</title>
   
 
 
@@ -298,7 +298,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Dockfile
+          <h1 class="post-title" itemprop="name headline">Dockfile学习笔记
               
             
           </h1>
@@ -340,7 +340,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-07-26 15:03:17" itemprop="dateModified" datetime="2018-07-26T15:03:17+08:00">2018-07-26</time>
+                <time title="Modified: 2018-08-20 17:29:28" itemprop="dateModified" datetime="2018-08-20T17:29:28+08:00">2018-08-20</time>
               
             
           </span>
@@ -401,63 +401,39 @@
       
 
       
-        <h1 id="说说前端项目中的Dockfile文件"><a href="#说说前端项目中的Dockfile文件" class="headerlink" title="说说前端项目中的Dockfile文件"></a>说说前端项目中的Dockfile文件</h1><h2 id="是什么东西？"><a href="#是什么东西？" class="headerlink" title="是什么东西？"></a>是什么东西？</h2><p>是一个脚本。<br>是创建了一个新镜像的脚本。<br>是基于基础镜像创建一个新镜像的脚本。</p>
+        <h2 id="是什么东西？"><a href="#是什么东西？" class="headerlink" title="是什么东西？"></a>是什么东西？</h2><p>是一个脚本。<br>是创建了一个新镜像的脚本。<br>是基于基础镜像创建一个新镜像的脚本。</p>
 <h2 id="干啥用的？"><a href="#干啥用的？" class="headerlink" title="干啥用的？"></a>干啥用的？</h2><p>创建新的镜像。在公司内部环境，需要基于公司内部的node镜像，指定公司内部的sass源和npm源，在指定的生产环境中运行项目。</p>
 <h2 id="为啥要用？一定要用吗？"><a href="#为啥要用？一定要用吗？" class="headerlink" title="为啥要用？一定要用吗？"></a>为啥要用？一定要用吗？</h2><p>不用的话，无法在公司内部的测试机中运行项目。本地环境就不需要。</p>
-<h2 id="怎么用？"><a href="#怎么用？" class="headerlink" title="怎么用？"></a>怎么用？</h2><pre><code>// 一个产品中心的Dockfile文件示例
-FROM registry.zhonganinfo.com/env/node:6.10.1-nginx
-
-COPY package.json /app/package.json
-WORKDIR /app
-
-RUN npm uninstall
-ENV SASS_BINARY_SITE http://npm.zhonganonline.com/node-mirrors/node-sass/
-ENV NODE_ENV production
-RUN npm --registry http://npm.zhonganonline.com install
-
-COPY ./ /app/
-
-RUN npm run product
-
-EXPOSE 8080
-
-CMD [&quot;node&quot;, &quot;server.js&quot;]
-</code></pre><h3 id="FROM"><a href="#FROM" class="headerlink" title="FROM"></a>FROM</h3><pre><code>FROM registry.zhonganinfo.com/env/node:6.10.1-nginx
-</code></pre><ul>
-<li>FROM 指定创建新镜像的基础镜像；如果没有，则去Docker的公共库拉取下来。</li>
-<li>FROM 要在文件的第一行。</li>
-<li>一个文件可以有多个From，如果要创建多个镜像的话。</li>
-</ul>
-<h3 id="COPY"><a href="#COPY" class="headerlink" title="COPY"></a>COPY</h3><pre><code>COPY package.json /app/package.json
-</code></pre><ul>
+<h2 id="怎么用？"><a href="#怎么用？" class="headerlink" title="怎么用？"></a>怎么用？</h2><p>以下是某项目的的Dockfile文件示例(<a href="http://npm.xxx.com是公司内部源" target="_blank" rel="noopener">http://npm.xxx.com是公司内部源</a>)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">FROM registry.xxx.com/env/node:<span class="number">6.10</span><span class="number">.1</span>-nginx</span><br><span class="line"></span><br><span class="line">COPY package.json /app/package.json</span><br><span class="line">WORKDIR /app</span><br><span class="line"></span><br><span class="line">RUN npm uninstall</span><br><span class="line">ENV SASS_BINARY_SITE http:<span class="comment">//npm.xxx.com/node-mirrors/node-sass/</span></span><br><span class="line">ENV NODE_ENV production</span><br><span class="line">RUN npm --registry http:<span class="comment">//npm.xxx.com install</span></span><br><span class="line"></span><br><span class="line">COPY ./ <span class="regexp">/app/</span></span><br><span class="line"></span><br><span class="line">RUN npm run product</span><br><span class="line"></span><br><span class="line">EXPOSE <span class="number">8080</span></span><br><span class="line"></span><br><span class="line">CMD [<span class="string">"node"</span>, <span class="string">"server.js"</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="FROM"><a href="#FROM" class="headerlink" title="FROM"></a>FROM</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FROM registry.xxx.com/env/node:<span class="number">6.10</span><span class="number">.1</span>-nginx</span><br><span class="line"></span><br><span class="line">* FROM 指定创建新镜像的基础镜像；如果没有，则去Docker的公共库拉取下来。</span><br><span class="line">* FROM 要在文件的第一行。</span><br><span class="line">* 一个文件可以有多个From，如果要创建多个镜像的话。</span><br></pre></td></tr></table></figure>
+<h3 id="COPY"><a href="#COPY" class="headerlink" title="COPY"></a>COPY</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">COPY package.json /app/package.json</span><br></pre></td></tr></table></figure>
+<ul>
 <li>COPY 复制package.json到制定的文件中去/app/package.json</li>
 </ul>
-<h3 id="ADD"><a href="#ADD" class="headerlink" title="ADD"></a>ADD</h3><pre><code>ADD package.json /app/package.json
-</code></pre><ul>
+<h3 id="ADD"><a href="#ADD" class="headerlink" title="ADD"></a>ADD</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ADD package.json /app/package.json</span><br></pre></td></tr></table></figure>
+<ul>
 <li>ADD 复制package.json到制定的文件中去/app/package.json</li>
 <li>用法与COPY相同，但是可以复制url作为源到指定的文件中。比COPY强大。</li>
 </ul>
-<h3 id="WORKDIR"><a href="#WORKDIR" class="headerlink" title="WORKDIR"></a>WORKDIR</h3><pre><code>WORKDIR /app
-</code></pre><ul>
+<h3 id="WORKDIR"><a href="#WORKDIR" class="headerlink" title="WORKDIR"></a>WORKDIR</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WORKDIR /app</span><br></pre></td></tr></table></figure>
+<ul>
 <li>切换目录到app,，相当于cd。</li>
 </ul>
-<h3 id="RUN"><a href="#RUN" class="headerlink" title="RUN"></a>RUN</h3><pre><code>RUN npm uninstall
-RUN npm --registry http://npm.zhonganonline.com install
-RUN npm run product
-</code></pre><ul>
+<h3 id="RUN"><a href="#RUN" class="headerlink" title="RUN"></a>RUN</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RUN npm uninstall</span><br><span class="line">RUN npm --registry http:<span class="comment">//npm.xxx.com install</span></span><br><span class="line">RUN npm run product</span><br></pre></td></tr></table></figure>
+<ul>
 <li>在当前镜像的基础上执行指定命令，并提交为新的镜像。</li>
 <li>后续RUN的命令在上一个RUN之后的镜像作为基础。</li>
 </ul>
-<h3 id="ENV"><a href="#ENV" class="headerlink" title="ENV"></a>ENV</h3><pre><code>ENV SASS_BINARY_SITE http://npm.zhonganonline.com/node-mirrors/node-sass/
-ENV NODE_ENV production
-</code></pre><ul>
+<h3 id="ENV"><a href="#ENV" class="headerlink" title="ENV"></a>ENV</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ENV SASS_BINARY_SITE http:<span class="comment">//npm.xxx.com/node-mirrors/node-sass/</span></span><br><span class="line">ENV NODE_ENV production</span><br></pre></td></tr></table></figure>
+<ul>
 <li>ENV key value 指定一个环境变量，为后续的RUN指令使用。</li>
 </ul>
-<h3 id="EXPOSE"><a href="#EXPOSE" class="headerlink" title="EXPOSE"></a>EXPOSE</h3><pre><code>EXPOSE 8080
-</code></pre><ul>
+<h3 id="EXPOSE"><a href="#EXPOSE" class="headerlink" title="EXPOSE"></a>EXPOSE</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPOSE <span class="number">8080</span></span><br></pre></td></tr></table></figure>
+<ul>
 <li>指定要暴露哪个接口</li>
 </ul>
-<h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3><p>CMD [“node”, “server.js”]</p>
+<h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CMD [<span class="string">"node"</span>, <span class="string">"server.js"</span>]</span><br></pre></td></tr></table></figure>
 <ul>
 <li>启动容器的时候执行。构建的时候不执行</li>
 <li>一个容器只有一个CMD。如果有多个，只有最后一个生效。</li>
@@ -654,7 +630,7 @@ ENV NODE_ENV production
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#说说前端项目中的Dockfile文件"><span class="nav-number">1.</span> <span class="nav-text">说说前端项目中的Dockfile文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#是什么东西？"><span class="nav-number">1.1.</span> <span class="nav-text">是什么东西？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#干啥用的？"><span class="nav-number">1.2.</span> <span class="nav-text">干啥用的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为啥要用？一定要用吗？"><span class="nav-number">1.3.</span> <span class="nav-text">为啥要用？一定要用吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么用？"><span class="nav-number">1.4.</span> <span class="nav-text">怎么用？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FROM"><span class="nav-number">1.4.1.</span> <span class="nav-text">FROM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#COPY"><span class="nav-number">1.4.2.</span> <span class="nav-text">COPY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ADD"><span class="nav-number">1.4.3.</span> <span class="nav-text">ADD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WORKDIR"><span class="nav-number">1.4.4.</span> <span class="nav-text">WORKDIR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RUN"><span class="nav-number">1.4.5.</span> <span class="nav-text">RUN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ENV"><span class="nav-number">1.4.6.</span> <span class="nav-text">ENV</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXPOSE"><span class="nav-number">1.4.7.</span> <span class="nav-text">EXPOSE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD"><span class="nav-number">1.4.8.</span> <span class="nav-text">CMD</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#是什么东西？"><span class="nav-number">1.</span> <span class="nav-text">是什么东西？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#干啥用的？"><span class="nav-number">2.</span> <span class="nav-text">干啥用的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为啥要用？一定要用吗？"><span class="nav-number">3.</span> <span class="nav-text">为啥要用？一定要用吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么用？"><span class="nav-number">4.</span> <span class="nav-text">怎么用？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FROM"><span class="nav-number">4.1.</span> <span class="nav-text">FROM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#COPY"><span class="nav-number">4.2.</span> <span class="nav-text">COPY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ADD"><span class="nav-number">4.3.</span> <span class="nav-text">ADD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WORKDIR"><span class="nav-number">4.4.</span> <span class="nav-text">WORKDIR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RUN"><span class="nav-number">4.5.</span> <span class="nav-text">RUN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ENV"><span class="nav-number">4.6.</span> <span class="nav-text">ENV</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXPOSE"><span class="nav-number">4.7.</span> <span class="nav-text">EXPOSE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD"><span class="nav-number">4.8.</span> <span class="nav-text">CMD</span></a></li></ol></li></ol></div>
             
 
           </div>
