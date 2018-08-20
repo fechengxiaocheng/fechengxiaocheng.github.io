@@ -668,7 +668,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-07-26 15:03:32" itemprop="dateModified" datetime="2018-07-26T15:03:32+08:00">2018-07-26</time>
+                <time title="Modified: 2018-08-20 17:49:40" itemprop="dateModified" datetime="2018-08-20T17:49:40+08:00">2018-08-20</time>
               
             
           </span>
@@ -720,63 +720,14 @@
 
       
         
-          
-            <h2 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h2><img src="/2018/07/19/react-cli/1.jpg" title="This is an example image">
-<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="download-git-repo"><a href="#download-git-repo" class="headerlink" title="download-git-repo"></a>download-git-repo</h3><p>用于在node中下载git仓库。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 基本用法</span></span><br><span class="line"><span class="keyword">const</span> download = <span class="built_in">require</span>(<span class="string">'download-git-repo'</span>);</span><br><span class="line"><span class="keyword">const</span> url = <span class="string">'github:fechengxiaocheng/react-koa-app'</span>;</span><br><span class="line">download(url, target, (err) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="comment">// 处理下载错误的逻辑</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 处理下载完之后的逻辑</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p><code>url</code>为要下载的地址</p>
-<ul>
-<li>GitHub - github:owner/name or simply owner/name</li>
-<li>GitLab - gitlab:owner/name</li>
-<li><p>Bitbucket - bitbucket:owner/name</p>
-<p>项目中的<code>url</code>是github的<code>github:fechengxiaocheng/react-koa-app</code>，也可以简写<code>fechengxiaocheng/react-koa-app</code></p>
-</li>
-</ul>
-</li>
-<li><p><code>target</code>要下载到的目标文件</p>
-<p>  项目中的<code>target</code>为<code>my-app/.download-temp</code>临时目录</p>
-</li>
-</ul>
-<h3 id="ora"><a href="#ora" class="headerlink" title="ora"></a>ora</h3><p>用于在终端打印某节点的对应信息。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 基本用法</span></span><br><span class="line"><span class="keyword">const</span> ora = <span class="built_in">require</span>(<span class="string">'ora'</span>)</span><br><span class="line"><span class="keyword">const</span> spinner = ora(<span class="string">'loading......'</span>).start();</span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    spinner.color = <span class="string">'red'</span></span><br><span class="line">    spinner.text = <span class="string">'loading hello chengxiaocheng'</span></span><br><span class="line">&#125;,<span class="number">1000</span>)</span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    spinner.succeed([<span class="string">'succuss loading...'</span>]);</span><br><span class="line">&#125;,<span class="number">2000</span>)</span><br></pre></td></tr></table></figure>
-<p>项目中ora中来打印git下载进行、成功的信息  </p>
-<h3 id="glob"><a href="#glob" class="headerlink" title="glob"></a>glob</h3><p>使用patterns来匹配对应的文件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 基本用法</span></span><br><span class="line"><span class="keyword">const</span> glob = <span class="built_in">require</span>(<span class="string">'glob'</span>);</span><br><span class="line"><span class="keyword">const</span> list = glob.sync(<span class="string">'lib/*.js'</span>); <span class="comment">// 遍历匹配lib/*.js lib下所有的js文件</span></span><br><span class="line"><span class="built_in">console</span>.log(list);</span><br></pre></td></tr></table></figure>
-<h3 id="nodejs-path"><a href="#nodejs-path" class="headerlink" title="nodejs-path"></a>nodejs-path</h3><p>path.basename(path[, ext])返回路径最后的一部分</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">path.basename(<span class="string">'/foo/bar/baz/asdf/quux.html'</span>);</span><br><span class="line"><span class="comment">// 返回: 'quux.html'</span></span><br><span class="line"></span><br><span class="line">path.basename(<span class="string">'/foo/bar/baz/asdf/quux.html'</span>, <span class="string">'.html'</span>);</span><br><span class="line"><span class="comment">// 返回: 'quux'</span></span><br></pre></td></tr></table></figure>
-<p>path.resolve([…paths])把一个路径或路径片段的序列解析为一个绝对路径。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">path.resolve(<span class="string">'/foo/bar'</span>, <span class="string">'./baz'</span>);</span><br><span class="line"><span class="comment">// 返回: '/foo/bar/baz'</span></span><br><span class="line"></span><br><span class="line">path.resolve(<span class="string">'/foo/bar'</span>, <span class="string">'/tmp/file/'</span>);</span><br><span class="line"><span class="comment">// 返回: '/tmp/file'</span></span><br><span class="line"></span><br><span class="line">path.resolve(<span class="string">'wwwroot'</span>, <span class="string">'static_files/png/'</span>, <span class="string">'../gif/image.gif'</span>);</span><br><span class="line"><span class="comment">// 如果当前工作目录为 /home/myself/node，</span></span><br><span class="line"><span class="comment">// 则返回 '/home/myself/node/wwwroot/static_files/gif/image.gif'</span></span><br></pre></td></tr></table></figure>
-<p>fs.stat(filepath, (err, stats) =&gt; {stats.isDerectory()})</p>
-<pre><code>* fs.stat是异步的,不能保证已执行完再去执行后面的，所以要放在回调中。
-</code></pre><p>fs.statSync(filepath).isDerectory()     </p>
-<pre><code>* fs.statSync是同步的，可以直接进行后面的操作
-</code></pre><h3 id="inquirer"><a href="#inquirer" class="headerlink" title="inquirer"></a>inquirer</h3><p>用来在终端与用户交互答案</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> inquirer  = <span class="built_in">require</span>(<span class="string">'inquirer'</span>);</span><br><span class="line"></span><br><span class="line">inquirer.prompt([</span><br><span class="line">    &#123;</span><br><span class="line">        name: <span class="string">'yourName'</span>,</span><br><span class="line">        message: <span class="string">'who are you?'</span>,</span><br><span class="line">        <span class="keyword">default</span>: <span class="string">'chengxiaocheng'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        name: <span class="string">'yourAge'</span>,</span><br><span class="line">        message: <span class="string">'how old are you?'</span>,</span><br><span class="line">        <span class="keyword">default</span>: <span class="string">'17'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        name: <span class="string">'yourAdreess'</span>,</span><br><span class="line">        message: <span class="string">'where are you from?'</span>,</span><br><span class="line">        <span class="keyword">default</span>: <span class="string">'shanghai'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">]).then(<span class="function"><span class="params">answers</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'1...'</span>,answers);</span><br><span class="line">    inquirer.prompt([</span><br><span class="line">        &#123;</span><br><span class="line">            name: <span class="string">'niceGirl'</span>,</span><br><span class="line">            message: <span class="string">'are you a nice girl?'</span>,</span><br><span class="line">            type: <span class="string">'confirm'</span>,</span><br><span class="line">            <span class="keyword">default</span>: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]).then(<span class="function"><span class="params">answers</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'2...'</span>,answers)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>默认type为input，设置成confirm则确认y／n</p>
-<p><img src="media/15300065098836/15300823345173.jpg" alt=""></p>
-<h3 id="metalsmith"><a href="#metalsmith" class="headerlink" title="metalsmith"></a>metalsmith</h3><p>一个简单的静态站点生成器,用来批量处理模板</p>
-<h3 id="handlebars"><a href="#handlebars" class="headerlink" title="handlebars"></a>handlebars</h3><p>模板引擎</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Handlebars = <span class="built_in">require</span>(<span class="string">'handlebars'</span>);</span><br><span class="line"><span class="keyword">var</span> source = <span class="string">"&lt;p&gt;Hello, my name is &#123;&#123;name&#125;&#125;. I am from &#123;&#123;hometown&#125;&#125;. I have "</span> +</span><br><span class="line">                <span class="string">"&#123;&#123;kids.length&#125;&#125; kids:&lt;/p&gt;"</span> +</span><br><span class="line">                <span class="string">"&lt;ul&gt;&#123;&#123;#kids&#125;&#125;&lt;li&gt;&#123;&#123;name&#125;&#125; is &#123;&#123;age&#125;&#125;&lt;/li&gt;&#123;&#123;/kids&#125;&#125;&lt;/ul&gt;"</span>;</span><br><span class="line"><span class="keyword">var</span> template = Handlebars.compile(source);</span><br><span class="line">    </span><br><span class="line"><span class="keyword">var</span> data = &#123; <span class="string">"name"</span>: <span class="string">"Alan"</span>, <span class="string">"hometown"</span>: <span class="string">"Somewhere, TX"</span>,</span><br><span class="line">                <span class="string">"kids"</span>: [&#123;<span class="string">"name"</span>: <span class="string">"Jimmy"</span>, <span class="string">"age"</span>: <span class="string">"12"</span>&#125;, &#123;<span class="string">"name"</span>: <span class="string">"Sally"</span>, <span class="string">"age"</span>: <span class="string">"4"</span>&#125;]&#125;;</span><br><span class="line"><span class="keyword">var</span> result = template(data);</span><br><span class="line"><span class="built_in">console</span>.log(result);</span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">![](media/15300065098836/15300847850369.jpg)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">使用handlebars模板引擎的插值方式&#123;&#123;xxx&#125;&#125;，把输入的内容插入到模板中对应的变量。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">修改`</span><span class="string">`creat-koa-app`</span><span class="string">`中的`</span><span class="string">`packge.json`</span><span class="string">`,这里的变量名`</span><span class="string">`projectName`</span><span class="string">`，`</span><span class="string">`projectVersion`</span><span class="string">`，`</span><span class="string">`projectDescription`</span><span class="string">`与`</span><span class="string">`creat-koa-app-cli`</span><span class="string">`中的与用户在终端交互的值对应。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span> javascript</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"&#123;&#123;projectName&#125;&#125;"</span>,</span><br><span class="line">    <span class="string">"version"</span>: <span class="string">"&#123;&#123;projectVersion&#125;&#125;"</span>,</span><br><span class="line">    <span class="string">"description"</span>: <span class="string">"&#123;&#123;projectDescription&#125;&#125;"</span>,</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="rimraf"><a href="#rimraf" class="headerlink" title="rimraf"></a>rimraf</h3><p><code>node</code>中的<code>rimraf</code>等同于终端中的<code>rm -rf</code></p>
-<h3 id="log-symbols"><a href="#log-symbols" class="headerlink" title="log-symbols"></a>log-symbols</h3><p>用来在终端打印出好看的标示。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> logSymbols = <span class="built_in">require</span>(<span class="string">'log-symbols'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(logSymbols.success, <span class="string">'Finished successfully!'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(logSymbols.info, <span class="string">'Finished info!'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(logSymbols.warning, <span class="string">'Finished warning!'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(logSymbols.error, <span class="string">'Finished error!'</span>);</span><br></pre></td></tr></table></figure>
-<p><img src="media/15300065098836/15300886750173.jpg" alt=""></p>
-<h3 id="chalk"><a href="#chalk" class="headerlink" title="chalk"></a>chalk</h3><p>在终端打印出自定义颜色，粗细，bgcolor</p>
-<pre><code class="javascript"><span class="keyword">const</span> logSymbols = <span class="built_in">require</span>(<span class="string">'log-symbols'</span>);
-<span class="keyword">const</span> chalk = <span class="built_in">require</span>(<span class="string">'chalk'</span>);
-<span class="built_in">console</span>.log(logSymbols.success, chalk.green(<span class="string">'Finished successfully!'</span>));
-<span class="built_in">console</span>.log(logSymbols.info, chalk.rgb(<span class="number">255</span>,<span class="number">255</span>,<span class="number">0</span>).inverse(<span class="string">'Finished info!'</span>));
-<span class="built_in">console</span>.log(logSymbols.warning, <span class="string">'Finished warning!'</span>);
-<span class="built_in">console</span>.log(logSymbols.error, chalk.red.bold(<span class="string">'Finished error!'</span>));    
-</code></pre>
-<p><img src="media/15300065098836/15300890284308.jpg" alt=""></p>
-<h3 id="command"><a href="#command" class="headerlink" title="command"></a>command</h3><p>支持git风格的子命令处理</p>
-<p>可以根据子命令自动引导到以特定格式命名的命令执行文件，文件名的格式是<code>[command]-[subcommand]</code>，例如：</p>
-<p>macaw hello =&gt; macaw-hello</p>
-<p>macaw init =&gt; macaw-init</p>
-
-          
+          <h2 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h2><img src="/2018/07/19/react-cli/1.jpg" title="This is an example image">
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/19/react-cli/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -891,7 +842,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-08-20 17:29:28" itemprop="dateModified" datetime="2018-08-20T17:29:28+08:00">2018-08-20</time>
+                <time title="Modified: 2018-08-20 17:49:56" itemprop="dateModified" datetime="2018-08-20T17:49:56+08:00">2018-08-20</time>
               
             
           </span>
@@ -943,46 +894,15 @@
 
       
         
-          
-            <h2 id="是什么东西？"><a href="#是什么东西？" class="headerlink" title="是什么东西？"></a>是什么东西？</h2><p>是一个脚本。<br>是创建了一个新镜像的脚本。<br>是基于基础镜像创建一个新镜像的脚本。</p>
-<h2 id="干啥用的？"><a href="#干啥用的？" class="headerlink" title="干啥用的？"></a>干啥用的？</h2><p>创建新的镜像。在公司内部环境，需要基于公司内部的node镜像，指定公司内部的sass源和npm源，在指定的生产环境中运行项目。</p>
-<h2 id="为啥要用？一定要用吗？"><a href="#为啥要用？一定要用吗？" class="headerlink" title="为啥要用？一定要用吗？"></a>为啥要用？一定要用吗？</h2><p>不用的话，无法在公司内部的测试机中运行项目。本地环境就不需要。</p>
-<h2 id="怎么用？"><a href="#怎么用？" class="headerlink" title="怎么用？"></a>怎么用？</h2><p>以下是某项目的的Dockfile文件示例(<a href="http://npm.xxx.com是公司内部源" target="_blank" rel="noopener">http://npm.xxx.com是公司内部源</a>)</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">FROM registry.xxx.com/env/node:<span class="number">6.10</span><span class="number">.1</span>-nginx</span><br><span class="line"></span><br><span class="line">COPY package.json /app/package.json</span><br><span class="line">WORKDIR /app</span><br><span class="line"></span><br><span class="line">RUN npm uninstall</span><br><span class="line">ENV SASS_BINARY_SITE http:<span class="comment">//npm.xxx.com/node-mirrors/node-sass/</span></span><br><span class="line">ENV NODE_ENV production</span><br><span class="line">RUN npm --registry http:<span class="comment">//npm.xxx.com install</span></span><br><span class="line"></span><br><span class="line">COPY ./ <span class="regexp">/app/</span></span><br><span class="line"></span><br><span class="line">RUN npm run product</span><br><span class="line"></span><br><span class="line">EXPOSE <span class="number">8080</span></span><br><span class="line"></span><br><span class="line">CMD [<span class="string">"node"</span>, <span class="string">"server.js"</span>]</span><br></pre></td></tr></table></figure>
-<h3 id="FROM"><a href="#FROM" class="headerlink" title="FROM"></a>FROM</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FROM registry.xxx.com/env/node:<span class="number">6.10</span><span class="number">.1</span>-nginx</span><br><span class="line"></span><br><span class="line">* FROM 指定创建新镜像的基础镜像；如果没有，则去Docker的公共库拉取下来。</span><br><span class="line">* FROM 要在文件的第一行。</span><br><span class="line">* 一个文件可以有多个From，如果要创建多个镜像的话。</span><br></pre></td></tr></table></figure>
-<h3 id="COPY"><a href="#COPY" class="headerlink" title="COPY"></a>COPY</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">COPY package.json /app/package.json</span><br></pre></td></tr></table></figure>
-<ul>
-<li>COPY 复制package.json到制定的文件中去/app/package.json</li>
-</ul>
-<h3 id="ADD"><a href="#ADD" class="headerlink" title="ADD"></a>ADD</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ADD package.json /app/package.json</span><br></pre></td></tr></table></figure>
-<ul>
-<li>ADD 复制package.json到制定的文件中去/app/package.json</li>
-<li>用法与COPY相同，但是可以复制url作为源到指定的文件中。比COPY强大。</li>
-</ul>
-<h3 id="WORKDIR"><a href="#WORKDIR" class="headerlink" title="WORKDIR"></a>WORKDIR</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WORKDIR /app</span><br></pre></td></tr></table></figure>
-<ul>
-<li>切换目录到app,，相当于cd。</li>
-</ul>
-<h3 id="RUN"><a href="#RUN" class="headerlink" title="RUN"></a>RUN</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RUN npm uninstall</span><br><span class="line">RUN npm --registry http:<span class="comment">//npm.xxx.com install</span></span><br><span class="line">RUN npm run product</span><br></pre></td></tr></table></figure>
-<ul>
-<li>在当前镜像的基础上执行指定命令，并提交为新的镜像。</li>
-<li>后续RUN的命令在上一个RUN之后的镜像作为基础。</li>
-</ul>
-<h3 id="ENV"><a href="#ENV" class="headerlink" title="ENV"></a>ENV</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ENV SASS_BINARY_SITE http:<span class="comment">//npm.xxx.com/node-mirrors/node-sass/</span></span><br><span class="line">ENV NODE_ENV production</span><br></pre></td></tr></table></figure>
-<ul>
-<li>ENV key value 指定一个环境变量，为后续的RUN指令使用。</li>
-</ul>
-<h3 id="EXPOSE"><a href="#EXPOSE" class="headerlink" title="EXPOSE"></a>EXPOSE</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPOSE <span class="number">8080</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>指定要暴露哪个接口</li>
-</ul>
-<h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CMD [<span class="string">"node"</span>, <span class="string">"server.js"</span>]</span><br></pre></td></tr></table></figure>
-<ul>
-<li>启动容器的时候执行。构建的时候不执行</li>
-<li>一个容器只有一个CMD。如果有多个，只有最后一个生效。</li>
-</ul>
-
-          
+          <h2 id="是什么东西？"><a href="#是什么东西？" class="headerlink" title="是什么东西？"></a>是什么东西？</h2><p>是一个脚本。<br>是创建了一个新镜像的脚本。<br>是基于基础镜像创建一个新镜像的脚本。</p>
+<h2 id="干啥用的？"><a href="#干啥用的？" class="headerlink" title="干啥用的？"></a>干啥用的？</h2><p>创建新的docker镜像。在公司内部环境，需要基于公司内部的node镜像，指定公司内部的sass源和npm源，在指定的生产环境中运行项目。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/18/docker/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
