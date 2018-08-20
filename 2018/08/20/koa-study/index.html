@@ -108,19 +108,19 @@
 
 
 
-  <meta name="description" content="Koa是干啥的 一个基于node.js平台的web开发框架。 由Express原班人马打造。 没有捆绑任何中间件，更小。  api一个无作用的Koa程序被绑定到3000端口1234const Koa = require(&apos;koa&apos;);const app = new koa();app.listen(3000); app.contextapp.context是ctx的原型。可给app.context">
+  <meta name="description" content="Koa是干啥的 一个基于node.js平台的web开发框架。 由Express原班人马打造。 没有捆绑任何中间件，更小。  api一个无作用的Koa程序被绑定到3000端口1234const Koa = require(&apos;koa&apos;);const app = new koa();app.listen(3000);">
 <meta name="keywords" content="koa,nodejs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Koa学习笔记">
 <meta property="og:url" content="https://fechengxiaocheng.github.io/2018/08/20/koa-study/index.html">
 <meta property="og:site_name" content="前端程小程">
-<meta property="og:description" content="Koa是干啥的 一个基于node.js平台的web开发框架。 由Express原班人马打造。 没有捆绑任何中间件，更小。  api一个无作用的Koa程序被绑定到3000端口1234const Koa = require(&apos;koa&apos;);const app = new koa();app.listen(3000); app.contextapp.context是ctx的原型。可给app.context">
+<meta property="og:description" content="Koa是干啥的 一个基于node.js平台的web开发框架。 由Express原班人马打造。 没有捆绑任何中间件，更小。  api一个无作用的Koa程序被绑定到3000端口1234const Koa = require(&apos;koa&apos;);const app = new koa();app.listen(3000);">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fechengxiaocheng.github.io/2018/08/20/koa-study/1.jpg">
-<meta property="og:updated_time" content="2018-08-20T09:35:50.000Z">
+<meta property="og:updated_time" content="2018-08-20T09:47:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Koa学习笔记">
-<meta name="twitter:description" content="Koa是干啥的 一个基于node.js平台的web开发框架。 由Express原班人马打造。 没有捆绑任何中间件，更小。  api一个无作用的Koa程序被绑定到3000端口1234const Koa = require(&apos;koa&apos;);const app = new koa();app.listen(3000); app.contextapp.context是ctx的原型。可给app.context">
+<meta name="twitter:description" content="Koa是干啥的 一个基于node.js平台的web开发框架。 由Express原班人马打造。 没有捆绑任何中间件，更小。  api一个无作用的Koa程序被绑定到3000端口1234const Koa = require(&apos;koa&apos;);const app = new koa();app.listen(3000);">
 <meta name="twitter:image" content="https://fechengxiaocheng.github.io/2018/08/20/koa-study/1.jpg">
 
 
@@ -325,7 +325,7 @@
                 
               
 
-              <time title="Created: 2018-08-20 17:15:14 / Modified: 17:35:50" itemprop="dateCreated datePublished" datetime="2018-08-20T17:15:14+08:00">2018-08-20</time>
+              <time title="Created: 2018-08-20 17:15:14 / Modified: 17:47:42" itemprop="dateCreated datePublished" datetime="2018-08-20T17:15:14+08:00">2018-08-20</time>
             
 
             
@@ -397,6 +397,7 @@
 <li>没有捆绑任何中间件，更小。</li>
 </ul>
 <h2 id="api"><a href="#api" class="headerlink" title="api"></a>api</h2><h3 id="一个无作用的Koa程序被绑定到3000端口"><a href="#一个无作用的Koa程序被绑定到3000端口" class="headerlink" title="一个无作用的Koa程序被绑定到3000端口"></a>一个无作用的Koa程序被绑定到3000端口</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> koa();</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h3 id="app-context"><a href="#app-context" class="headerlink" title="app.context"></a>app.context</h3><p>app.context是ctx的原型。可给app.context添加其他属性。<br>ctx上的许多属性都适用getter，setter和object.defineProperty()定义的。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> main = <span class="function"><span class="params">ctx</span> =&gt;</span> &#123;</span><br><span class="line">  ctx.response.body = <span class="string">'Hello World'</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">app.use(main)</span><br></pre></td></tr></table></figure>
 <p>ctx的属性：</p>
