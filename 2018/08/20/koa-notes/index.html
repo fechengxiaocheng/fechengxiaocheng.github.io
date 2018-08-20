@@ -112,23 +112,23 @@
 <meta name="keywords" content="koa,nodejs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Koa学习笔记">
-<meta property="og:url" content="https://fechengxiaocheng.github.io/2018/08/20/koa-study/index.html">
+<meta property="og:url" content="https://fechengxiaocheng.github.io/2018/08/20/koa-notes/index.html">
 <meta property="og:site_name" content="前端程小程">
 <meta property="og:description" content="Koa是干啥的 一个基于node.js平台的web开发框架。 由Express原班人马打造。 没有捆绑任何中间件，更小。  api一个无作用的Koa程序被绑定到3000端口1234const Koa = require(&apos;koa&apos;);const app = new koa();app.listen(3000);">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://fechengxiaocheng.github.io/2018/08/20/koa-study/1.jpg">
-<meta property="og:updated_time" content="2018-08-20T09:55:54.000Z">
+<meta property="og:image" content="https://fechengxiaocheng.github.io/2018/08/20/koa-notes/1.jpg">
+<meta property="og:updated_time" content="2018-08-20T10:03:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Koa学习笔记">
 <meta name="twitter:description" content="Koa是干啥的 一个基于node.js平台的web开发框架。 由Express原班人马打造。 没有捆绑任何中间件，更小。  api一个无作用的Koa程序被绑定到3000端口1234const Koa = require(&apos;koa&apos;);const app = new koa();app.listen(3000);">
-<meta name="twitter:image" content="https://fechengxiaocheng.github.io/2018/08/20/koa-study/1.jpg">
+<meta name="twitter:image" content="https://fechengxiaocheng.github.io/2018/08/20/koa-notes/1.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="https://fechengxiaocheng.github.io/2018/08/20/koa-study/"/>
+  <link rel="canonical" href="https://fechengxiaocheng.github.io/2018/08/20/koa-notes/"/>
 
 
 
@@ -283,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://fechengxiaocheng.github.io/2018/08/20/koa-study/">
+    <link itemprop="mainEntityOfPage" href="https://fechengxiaocheng.github.io/2018/08/20/koa-notes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="一只程小程">
@@ -325,7 +325,7 @@
                 
               
 
-              <time title="Created: 2018-08-20 17:15:14 / Modified: 17:55:54" itemprop="dateCreated datePublished" datetime="2018-08-20T17:15:14+08:00">2018-08-20</time>
+              <time title="Created: 2018-08-20 17:15:14 / Modified: 18:03:42" itemprop="dateCreated datePublished" datetime="2018-08-20T17:15:14+08:00">2018-08-20</time>
             
 
             
@@ -362,8 +362,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/08/20/koa-study/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2018/08/20/koa-study/" itemprop="commentsCount"></span>
+                <a href="/2018/08/20/koa-notes/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2018/08/20/koa-notes/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -424,7 +424,7 @@
 <h3 id="koa-basic-auth"><a href="#koa-basic-auth" class="headerlink" title="koa-basic-auth"></a>koa-basic-auth</h3><p>用于用户登录认证。弹出提示框用户名密码，输入正确返回正确对应的body内容。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> auth = <span class="built_in">require</span>(<span class="string">'koa-basic-auth'</span>);</span><br><span class="line">app.use(auth(&#123;<span class="attr">name</span>: <span class="string">'xlj'</span>, <span class="attr">pass</span>: <span class="string">'xljpass'</span>&#125;));</span><br></pre></td></tr></table></figure>
 <p>在请求体中设置<code>Authorization: Basic + base64转换之后的用户名密码</code></p>
-<img src="/2018/08/20/koa-study/1.jpg" title="This is an example image">
+<img src="/2018/08/20/koa-notes/1.jpg" title="This is an example image">
 <h3 id="koa-views"><a href="#koa-views" class="headerlink" title="koa-views"></a>koa-views</h3><p>views(要渲染的文件path，配置obj)<br>map: 匹配每一个.html结尾的文件都要用nunjucks模板引擎去渲染。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> views = <span class="built_in">require</span>(<span class="string">'koa-views'</span>);</span><br><span class="line"></span><br><span class="line">app.use(views(__dirname, &#123; <span class="attr">map</span>: &#123;<span class="attr">html</span>: <span class="string">'nunjucks'</span> &#125;&#125;))</span><br><span class="line"> </span><br><span class="line"><span class="comment">// render `user.html` with nunjucks</span></span><br><span class="line">app.use(<span class="keyword">async</span> <span class="function"><span class="keyword">function</span> (<span class="params">ctx</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">await</span> ctx.render(<span class="string">'user.html'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <h3 id="koa-session"><a href="#koa-session" class="headerlink" title="koa-session"></a>koa-session</h3><p>koa-session中间件默认是基于cookie实现的，并且可以通过传入options.store使用扩展的存储方式(redis,mongoDB)</p>
@@ -472,8 +472,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/26/introduce-mydelf/" rel="next" title="introduce-mydelf">
-                <i class="fa fa-chevron-left"></i> introduce-mydelf
+              <a href="/2018/07/26/introduce-mydelf/" rel="next" title="关于我">
+                <i class="fa fa-chevron-left"></i> 关于我
               </a>
             
           </div>
@@ -573,6 +573,8 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
+                    
+                      
                     
                       
                     
