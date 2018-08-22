@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="封装构造函数模式demo1 缺点: 原型对象中定义相同的属性或者方法时，每次新建实例都会生成一次，多占用内存。 思考: 能否将共有的方法只在内存中生成一次呢？ 答案: 能。用原型模式 prototype模式demo2 每个构造函数都有一个prototype属性，它指向一个对象，这个对象上面所有的属性和方法都会被实例继承。 prototype模式的验证 isPrototypeOf: 某原型是否某对象">
+  <meta name="description" content="最近开始重新梳理js基础知识，边学习、边思考、边练手、边记录。github源码地址 封装构造函数模式在构造函数中封装对象的属性和方法。 demo1 缺点: 原型对象中定义相同的属性或者方法时，每次新建实例都会生成一次，多占用内存。 思考: 能否将共有的方法只在内存中生成一次呢？ 答案: 能。用原型模式">
 <meta name="keywords" content="javascript,js,css,html,node,react,eslint,jest,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面向对象编程(封装&amp;继承)">
 <meta property="og:url" content="https://fechengxiaocheng.github.io/2018/08/22/object-orianted-pramram-study/index.html">
 <meta property="og:site_name" content="前端程小程">
-<meta property="og:description" content="封装构造函数模式demo1 缺点: 原型对象中定义相同的属性或者方法时，每次新建实例都会生成一次，多占用内存。 思考: 能否将共有的方法只在内存中生成一次呢？ 答案: 能。用原型模式 prototype模式demo2 每个构造函数都有一个prototype属性，它指向一个对象，这个对象上面所有的属性和方法都会被实例继承。 prototype模式的验证 isPrototypeOf: 某原型是否某对象">
+<meta property="og:description" content="最近开始重新梳理js基础知识，边学习、边思考、边练手、边记录。github源码地址 封装构造函数模式在构造函数中封装对象的属性和方法。 demo1 缺点: 原型对象中定义相同的属性或者方法时，每次新建实例都会生成一次，多占用内存。 思考: 能否将共有的方法只在内存中生成一次呢？ 答案: 能。用原型模式">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-22T07:25:13.000Z">
+<meta property="og:updated_time" content="2018-08-22T07:48:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面向对象编程(封装&amp;继承)">
-<meta name="twitter:description" content="封装构造函数模式demo1 缺点: 原型对象中定义相同的属性或者方法时，每次新建实例都会生成一次，多占用内存。 思考: 能否将共有的方法只在内存中生成一次呢？ 答案: 能。用原型模式 prototype模式demo2 每个构造函数都有一个prototype属性，它指向一个对象，这个对象上面所有的属性和方法都会被实例继承。 prototype模式的验证 isPrototypeOf: 某原型是否某对象">
+<meta name="twitter:description" content="最近开始重新梳理js基础知识，边学习、边思考、边练手、边记录。github源码地址 封装构造函数模式在构造函数中封装对象的属性和方法。 demo1 缺点: 原型对象中定义相同的属性或者方法时，每次新建实例都会生成一次，多占用内存。 思考: 能否将共有的方法只在内存中生成一次呢？ 答案: 能。用原型模式">
 
 
 
@@ -323,7 +323,7 @@
                 
               
 
-              <time title="Created: 2018-08-22 15:23:16 / Modified: 15:25:13" itemprop="dateCreated datePublished" datetime="2018-08-22T15:23:16+08:00">2018-08-22</time>
+              <time title="Created: 2018-08-22 15:23:16 / Modified: 15:48:58" itemprop="dateCreated datePublished" datetime="2018-08-22T15:23:16+08:00">2018-08-22</time>
             
 
             
@@ -389,25 +389,28 @@
       
 
       
-        <h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><h3 id="构造函数模式"><a href="#构造函数模式" class="headerlink" title="构造函数模式"></a>构造函数模式</h3><p>demo1</p>
+        <p>最近开始重新梳理js基础知识，边学习、边思考、边练手、边记录。<a href="https://github.com/fechengxiaocheng/object-orianted-program-demo" target="_blank" rel="noopener">github源码地址</a></p>
+<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><h3 id="构造函数模式"><a href="#构造函数模式" class="headerlink" title="构造函数模式"></a>构造函数模式</h3><p>在构造函数中封装对象的属性和方法。</p>
+<p><a href="https://github.com/fechengxiaocheng/object-orianted-program-demo/blob/master/demo1.js" target="_blank" rel="noopener">demo1</a></p>
 <p>缺点: 原型对象中定义相同的属性或者方法时，每次新建实例都会生成一次，多占用内存。</p>
 <p>思考: 能否将共有的方法只在内存中生成一次呢？</p>
 <p>答案: 能。用原型模式</p>
-<h3 id="prototype模式"><a href="#prototype模式" class="headerlink" title="prototype模式"></a>prototype模式</h3><p>demo2</p>
+<a id="more"></a>
+<h3 id="prototype模式"><a href="#prototype模式" class="headerlink" title="prototype模式"></a>prototype模式</h3><p><a href="https://github.com/fechengxiaocheng/object-orianted-program-demo/blob/master/demo2.js" target="_blank" rel="noopener">demo2</a></p>
 <p>每个构造函数都有一个prototype属性，它指向一个对象，这个对象上面所有的属性和方法都会被实例继承。</p>
 <h4 id="prototype模式的验证"><a href="#prototype模式的验证" class="headerlink" title="prototype模式的验证"></a>prototype模式的验证</h4><ul>
 <li>isPrototypeOf: 某原型是否某对象的原型<br>  Cat.prototype.isPrototypeOf(cat1)</li>
 <li>hasOwnProperty: 某实例是否有自己的属性xx<br>  cat1.hasOwnProperty(‘name’)</li>
 <li>in: 某实例是否拥有某属性<br>  ‘type’ in cat2</li>
 </ul>
-<h2 id="继承-构造函数继承"><a href="#继承-构造函数继承" class="headerlink" title="继承-构造函数继承"></a>继承-构造函数继承</h2><h3 id="构造函数绑定"><a href="#构造函数绑定" class="headerlink" title="构造函数绑定"></a>构造函数绑定</h3><p>demo3</p>
+<h2 id="继承-构造函数继承"><a href="#继承-构造函数继承" class="headerlink" title="继承-构造函数继承"></a>继承-构造函数继承</h2><h3 id="构造函数绑定"><a href="#构造函数绑定" class="headerlink" title="构造函数绑定"></a>构造函数绑定</h3><p><a href="https://github.com/fechengxiaocheng/object-orianted-program-demo/blob/master/demo3.js" target="_blank" rel="noopener">demo3</a></p>
 <p>在子类构造函数中，把父类构造函数绑定倒子类上。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Animal.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br></pre></td></tr></table></figure>
-<h3 id="prototype模式-1"><a href="#prototype模式-1" class="headerlink" title="prototype模式"></a>prototype模式</h3><p>demo4</p>
+<h3 id="prototype模式-1"><a href="#prototype模式-1" class="headerlink" title="prototype模式"></a>prototype模式</h3><p><a href="https://github.com/fechengxiaocheng/object-orianted-program-demo/blob/master/demo4.js" target="_blank" rel="noopener">demo4</a></p>
 <p>子类的构造函数链接倒父类的实例</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Cat.prototype = <span class="keyword">new</span> Animal();</span><br><span class="line">Cat.prototype.constructor = Cat;</span><br></pre></td></tr></table></figure>
 <p>类的prototype被重新赋值之后，他的constructor也会被覆盖，导致继承链混乱(cat1明明是Cat构造的，却显示成了Animal)。所以要给constructor重新赋值下。</p>
-<h3 id="prototype直接继承"><a href="#prototype直接继承" class="headerlink" title="prototype直接继承"></a>prototype直接继承</h3><p>demo5</p>
+<h3 id="prototype直接继承"><a href="#prototype直接继承" class="headerlink" title="prototype直接继承"></a>prototype直接继承</h3><p><a href="https://github.com/fechengxiaocheng/object-orianted-program-demo/blob/master/demo5.js" target="_blank" rel="noopener">demo5</a></p>
 <p>只继承父类的公共属性和方法。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Cat.prototype = Aminal.prototype;</span><br><span class="line">Cat.prototype.constructor = Cat;</span><br></pre></td></tr></table></figure>
 <ul>
@@ -415,17 +418,18 @@
 <li>缺点：1、只能继承公有属性和方法。2、直接把父类原型赋值给子类原型，那么子类原型变动，也会引起父类原型改动。(子类原型上的constructor变成Cat, 父类原型的constructor也变成了Cat)</li>
 </ul>
 <p>解决：利用空构造函数的实例</p>
-<h3 id="空对象中介"><a href="#空对象中介" class="headerlink" title="空对象中介"></a>空对象中介</h3><p>demo6</p>
+<h3 id="空对象中介"><a href="#空对象中介" class="headerlink" title="空对象中介"></a>空对象中介</h3><p><a href="https://github.com/fechengxiaocheng/object-orianted-program-demo/blob/master/demo6.js" target="_blank" rel="noopener">demo6</a></p>
 <p>把空构造函数的原型链接到父类的原型；<br>把子类的实例链接倒空构造函数的实例；</p>
 <p>把空对象作为中介，这样子类的原型改动不会牵连到父类，且空对象几乎不占用内存。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">F.prototype = Animal.prototype;</span><br><span class="line">Cat.prototype = <span class="keyword">new</span> F();</span><br></pre></td></tr></table></figure>
-<h2 id="拷贝继承"><a href="#拷贝继承" class="headerlink" title="拷贝继承"></a>拷贝继承</h2><p>demo7</p>
+<h2 id="拷贝继承"><a href="#拷贝继承" class="headerlink" title="拷贝继承"></a>拷贝继承</h2><p><a href="https://github.com/fechengxiaocheng/object-orianted-program-demo/blob/master/demo7.js" target="_blank" rel="noopener">demo7</a></p>
 <p>循环父类原型中所有的属性和方法，赋值到子类原型中。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> Parent.prototype) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">    Sub.prototype[i] = Parent.prototype[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="继承-非构造函数继承"><a href="#继承-非构造函数继承" class="headerlink" title="继承-非构造函数继承"></a>继承-非构造函数继承</h2><p>所谓非构造函数继承，就是a对象直接要继承b对象，而a、b对象不是构造函数，不能通过构造函数的方式继承。</p>
-<h3 id="prototype链"><a href="#prototype链" class="headerlink" title="prototype链"></a>prototype链</h3><p>空构造函数原型链接到父对象，子对象链接到空构造函数的实例；即继承了空对象的所有属性和方法，而空对象原型是链接到父对象的，所以继承了父对象。</p>
+<h3 id="prototype链"><a href="#prototype链" class="headerlink" title="prototype链"></a>prototype链</h3><p><a href="https://github.com/fechengxiaocheng/object-orianted-program-demo/blob/master/demo8.js" target="_blank" rel="noopener">demo8</a></p>
+<p>创建空构造函数，把空构造函数的原型链接到父对象，返回这个空构造函数的实例赋值给子对象。即继承了空对象的所有属性和方法，而空对象原型是链接到父对象的，所以继承了父对象。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">F.prototype = ParentObj;</span><br><span class="line">SubObj = <span class="keyword">new</span> F();</span><br></pre></td></tr></table></figure>
-<h3 id="深拷贝-amp-浅拷贝"><a href="#深拷贝-amp-浅拷贝" class="headerlink" title="深拷贝&amp;浅拷贝"></a>深拷贝&amp;浅拷贝</h3><p>demo9、demo10</p>
+<h3 id="深拷贝-amp-浅拷贝"><a href="#深拷贝-amp-浅拷贝" class="headerlink" title="深拷贝&amp;浅拷贝"></a>深拷贝&amp;浅拷贝</h3><p><a href="https://github.com/fechengxiaocheng/object-orianted-program-demo/blob/master/demo9.js" target="_blank" rel="noopener">demo9</a><br><a href="https://github.com/fechengxiaocheng/object-orianted-program-demo/blob/master/demo10.js" target="_blank" rel="noopener">demo10</a></p>
 <p>字符串的拷贝是拷贝值，对象的拷贝是拷贝内存地址。<br>浅拷贝只拷贝了对象的内存地址，而没有开辟新的栈。所以当子对象变，会影响父对象，因为都指向的是同一块内存地址。</p>
 <p>浅拷贝思路：</p>
 <p>循环父对象，把父对象所有的属性赋值给子对象。</p>
