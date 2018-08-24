@@ -281,6 +281,169 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fechengxiaocheng.github.io/2018/08/24/react-redux-study/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一只程小程">
+      <meta itemprop="description" content="你说开心就拍手~">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/8545983?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端程小程">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/24/react-redux-study/" itemprop="url">
+                  react-redux深入探究
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-24 10:11:49 / Modified: 10:17:08" itemprop="dateCreated datePublished" datetime="2018-08-24T10:11:49+08:00">2018-08-24</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/study/" itemprop="url" rel="index"><span itemprop="name">深入探究</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="redux和react-redux区别"><a href="#redux和react-redux区别" class="headerlink" title="redux和react-redux区别"></a>redux和react-redux区别</h2><p>待搞，先占坑。</p>
+<h2 id="理解redux中间件"><a href="#理解redux中间件" class="headerlink" title="理解redux中间件"></a>理解redux中间件</h2><h3 id="什么是redux中间件"><a href="#什么是redux中间件" class="headerlink" title="什么是redux中间件"></a>什么是redux中间件</h3><p>待搞，先占坑。</p>
+<h3 id="自己实现一个redux中间件"><a href="#自己实现一个redux中间件" class="headerlink" title="自己实现一个redux中间件"></a>自己实现一个redux中间件</h3><p>redux中间件的本质就是重写dispatch方法:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一个简单的logger中间件实现原理</span></span><br><span class="line">store.dispatch = <span class="function"><span class="keyword">function</span> <span class="title">dispatchLogger</span>(<span class="params">action</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'before action....'</span>);</span><br><span class="line">    next(action);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'after action....'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过redux-promise来实现<code>异步中间件</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 一个promise异步中间件使用方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1、返回一个action，action本身是promise</span></span><br><span class="line"><span class="keyword">const</span> actionCreatorA = <span class="function">(<span class="params">dispatch, title</span>) =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> fetch(<span class="string">'xx/xx/xx'</span>).then(<span class="function"><span class="params">res</span>=&gt;</span> &#123;<span class="attr">type</span>: <span class="string">'addTodo'</span>, <span class="attr">payload</span>: res.value&#125;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2、返回一个action，action.payload是promise(需要从redux-actions模块引入createAction方法)</span></span><br><span class="line">dispatch(createAction(</span><br><span class="line">    <span class="string">'addTodo'</span>,</span><br><span class="line">    fetch(<span class="string">'xx/xx/xx'</span>).then(<span class="function"><span class="params">res</span>=&gt;</span> res.value);</span><br><span class="line">))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 一个promise异步中间件实现原理</span></span><br><span class="line">store.dispatch = <span class="function"><span class="keyword">function</span> <span class="title">dispatchPromise</span>(<span class="params">action</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 如果action本身是promise，执行then，传入dispatch方法, 把异步请求到的action作为传入dispatch的入参。</span></span><br><span class="line">    <span class="keyword">return</span> isPromise(action) ? action.then(dispatch) : next(action); </span><br><span class="line">    <span class="comment">// 如果返回的payload是promise，执行action.payload.then, </span></span><br><span class="line">    <span class="keyword">return</span> isPromise(action.payload) ? </span><br><span class="line">        action.payload.then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">            dispatch(&#123;...action, <span class="attr">payload</span>: res&#125;)</span><br><span class="line">        &#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error)</span><br><span class="line">        &#125;) : </span><br><span class="line">        next(action)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://fechengxiaocheng.github.io/2018/08/22/object-orianted-pramram-study/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -327,7 +490,7 @@
                 
               
 
-              <time title="Created: 2018-08-22 15:23:16 / Modified: 15:52:46" itemprop="dateCreated datePublished" datetime="2018-08-22T15:23:16+08:00">2018-08-22</time>
+              <time title="Created: 2018-08-22 15:23:16 / Modified: 15:56:30" itemprop="dateCreated datePublished" datetime="2018-08-22T15:23:16+08:00">2018-08-22</time>
             
 
             
@@ -1165,7 +1328,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
