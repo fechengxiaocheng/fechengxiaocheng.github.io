@@ -108,16 +108,18 @@
 
 
 
-  <meta name="description" content="深入理解Source Map背景我们的项目源码通常通过一系列转换才能投入生产。但是，这也意味着，最终生成的代码已经改头换面了，不方便调试。 常见的源码转换，主要是以下三种情况  压缩，减小体积 多个文件合并，减少http请求数 通过loader编译语言，例如TypeScript转换到js  Source Map为我们解决了这一问题。Source Map能将打包后文件映射到源文件中的原位置，方便开发">
+  <meta name="description" content="img {  margin-left: 0;} 深入理解Source Map背景我们的项目源码通常通过一系列转换才能投入生产。但是，这也意味着，最终生成的代码已经改头换面了，不方便调试。 常见的源码转换，主要是以下三种情况  压缩，减小体积 多个文件合并，减少http请求数 通过loader编译语言，例如TypeScript转换到js  Source Map为我们解决了这一问题。Source Ma">
 <meta name="keywords" content="javascript,js,css,html,node,react,eslint,jest,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站">
 <meta property="og:type" content="article">
 <meta property="og:title" content="source-map">
 <meta property="og:url" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/index.html">
 <meta property="og:site_name" content="前端程小程">
-<meta property="og:description" content="深入理解Source Map背景我们的项目源码通常通过一系列转换才能投入生产。但是，这也意味着，最终生成的代码已经改头换面了，不方便调试。 常见的源码转换，主要是以下三种情况  压缩，减小体积 多个文件合并，减少http请求数 通过loader编译语言，例如TypeScript转换到js  Source Map为我们解决了这一问题。Source Map能将打包后文件映射到源文件中的原位置，方便开发">
+<meta property="og:description" content="img {  margin-left: 0;} 深入理解Source Map背景我们的项目源码通常通过一系列转换才能投入生产。但是，这也意味着，最终生成的代码已经改头换面了，不方便调试。 常见的源码转换，主要是以下三种情况  压缩，减小体积 多个文件合并，减少http请求数 通过loader编译语言，例如TypeScript转换到js  Source Map为我们解决了这一问题。Source Ma">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/15362018507952.jpg">
 <meta property="og:image" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/15361374592457.jpg">
+<meta property="og:image" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/15362048566562.jpg">
+<meta property="og:image" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/15362049381625.jpg">
 <meta property="og:image" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/15361297824898.jpg">
 <meta property="og:image" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/15361290231211.jpg">
 <meta property="og:image" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/15362045957806.jpg">
@@ -130,10 +132,10 @@
 <meta property="og:image" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/15361305741911.jpg">
 <meta property="og:image" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/15361307862136.jpg">
 <meta property="og:image" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/15361308360533.jpg">
-<meta property="og:updated_time" content="2018-09-06T09:57:28.000Z">
+<meta property="og:updated_time" content="2018-09-06T10:49:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="source-map">
-<meta name="twitter:description" content="深入理解Source Map背景我们的项目源码通常通过一系列转换才能投入生产。但是，这也意味着，最终生成的代码已经改头换面了，不方便调试。 常见的源码转换，主要是以下三种情况  压缩，减小体积 多个文件合并，减少http请求数 通过loader编译语言，例如TypeScript转换到js  Source Map为我们解决了这一问题。Source Map能将打包后文件映射到源文件中的原位置，方便开发">
+<meta name="twitter:description" content="img {  margin-left: 0;} 深入理解Source Map背景我们的项目源码通常通过一系列转换才能投入生产。但是，这也意味着，最终生成的代码已经改头换面了，不方便调试。 常见的源码转换，主要是以下三种情况  压缩，减小体积 多个文件合并，减少http请求数 通过loader编译语言，例如TypeScript转换到js  Source Map为我们解决了这一问题。Source Ma">
 <meta name="twitter:image" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/15362018507952.jpg">
 
 
@@ -338,7 +340,7 @@
                 
               
 
-              <time title="Created: 2018-09-06 17:49:44 / Modified: 17:57:28" itemprop="dateCreated datePublished" datetime="2018-09-06T17:49:44+08:00">2018-09-06</time>
+              <time title="Created: 2018-09-06 17:49:44 / Modified: 18:49:18" itemprop="dateCreated datePublished" datetime="2018-09-06T17:49:44+08:00">2018-09-06</time>
             
 
             
@@ -404,7 +406,8 @@
       
 
       
-        <h1 id="深入理解Source-Map"><a href="#深入理解Source-Map" class="headerlink" title="深入理解Source Map"></a>深入理解Source Map</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我们的项目源码通常通过一系列转换才能投入生产。但是，这也意味着，最终生成的代码已经改头换面了，不方便调试。</p>
+        <p><style><br>img {<br>  margin-left: 0;<br>}<br></style></p>
+<h1 id="深入理解Source-Map"><a href="#深入理解Source-Map" class="headerlink" title="深入理解Source Map"></a>深入理解Source Map</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我们的项目源码通常通过一系列转换才能投入生产。但是，这也意味着，最终生成的代码已经改头换面了，不方便调试。</p>
 <p>常见的源码转换，主要是以下三种情况</p>
 <ul>
 <li>压缩，减小体积</li>
@@ -470,14 +473,14 @@
   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 源代码</span></span><br><span class="line"><span class="keyword">import</span> &#123;test&#125; <span class="keyword">from</span> <span class="string">"module"</span>; test();</span><br><span class="line"><span class="comment">// generated code</span></span><br><span class="line"><span class="keyword">var</span> module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(<span class="number">42</span>); module__WEBPACK_IMPORTED_MODULE_1__.a();.</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<pre><code>{% asset_img 15362048566562.jpg This is an example image %}
-</code></pre><ul>
+<img src="/2018/09/06/source-map/15362048566562.jpg" title="This is an example image">
+<ul>
 <li><p>transformed code：各个模块彼此分离，并用模块名注释。看到的模块是loaders处理之后，webpack处理之前的代码</p>
   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 源代码</span></span><br><span class="line"><span class="keyword">import</span> &#123;test&#125; <span class="keyword">from</span> <span class="string">"module"</span>; </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">extends</span> <span class="title">test</span> </span>&#123;&#125;</span><br><span class="line"><span class="comment">// transformed code</span></span><br><span class="line"><span class="keyword">import</span> &#123;test&#125; <span class="keyword">from</span> <span class="string">"module"</span>; </span><br><span class="line"><span class="keyword">var</span> A = <span class="function"><span class="keyword">function</span>(<span class="params">_test</span>) </span>&#123; ... &#125;(test);</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<pre><code>{% asset_img 15362049381625.jpg This is an example image %}
-</code></pre><ul>
+<img src="/2018/09/06/source-map/15362049381625.jpg" title="This is an example image">
+<ul>
 <li><p>original source: 每个模块彼此分离，并用模块名注释。可以看到模块是转换前的，和源码一致。但是，这个需要loader支持，如果某个模块经过某个loader没有正确处理Source Map,那生成的代码是无法映射到源码上的。</p>
    <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 源代码</span></span><br><span class="line"><span class="keyword">import</span> &#123;test&#125; <span class="keyword">from</span> <span class="string">"module"</span>; </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">extends</span> <span class="title">test</span> </span>&#123;&#125;</span><br><span class="line"><span class="comment">// original source</span></span><br><span class="line"><span class="keyword">import</span> &#123;test&#125; <span class="keyword">from</span> <span class="string">"module"</span>; </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">extends</span> <span class="title">test</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
 </li>
