@@ -108,18 +108,16 @@
 
 
 
-  <meta name="description" content="img {  margin-left: 0;} 深入理解Source Map背景我们的项目源码通常通过一系列转换才能投入生产。但是，这也意味着，最终生成的代码已经改头换面了，不方便调试。 常见的源码转换，主要是以下三种情况  压缩，减小体积 多个文件合并，减少http请求数 通过loader编译语言，例如TypeScript转换到js  Source Map为我们解决了这一问题。Source Ma">
+  <meta name="description" content="背景我们的项目源码通常通过一系列转换才能投入生产。但是，这也意味着，最终生成的代码已经改头换面了，不方便调试。 常见的源码转换，主要是以下三种情况  压缩，减小体积 多个文件合并，减少http请求数 通过loader编译语言，例如TypeScript转换到js  Source Map为我们解决了这一问题。Source Map能将打包后文件映射到源文件中的原位置，方便开发者debug。 什么是Sou">
 <meta name="keywords" content="javascript,js,css,html,node,react,eslint,jest,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站">
 <meta property="og:type" content="article">
-<meta property="og:title" content="source-map">
+<meta property="og:title" content="深入理解Source Map">
 <meta property="og:url" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/index.html">
 <meta property="og:site_name" content="前端程小程">
-<meta property="og:description" content="img {  margin-left: 0;} 深入理解Source Map背景我们的项目源码通常通过一系列转换才能投入生产。但是，这也意味着，最终生成的代码已经改头换面了，不方便调试。 常见的源码转换，主要是以下三种情况  压缩，减小体积 多个文件合并，减少http请求数 通过loader编译语言，例如TypeScript转换到js  Source Map为我们解决了这一问题。Source Ma">
+<meta property="og:description" content="背景我们的项目源码通常通过一系列转换才能投入生产。但是，这也意味着，最终生成的代码已经改头换面了，不方便调试。 常见的源码转换，主要是以下三种情况  压缩，减小体积 多个文件合并，减少http请求数 通过loader编译语言，例如TypeScript转换到js  Source Map为我们解决了这一问题。Source Map能将打包后文件映射到源文件中的原位置，方便开发者debug。 什么是Sou">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/15362018507952.jpg">
 <meta property="og:image" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/15361374592457.jpg">
-<meta property="og:image" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/15362048566562.jpg">
-<meta property="og:image" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/15362049381625.jpg">
 <meta property="og:image" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/15361297824898.jpg">
 <meta property="og:image" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/15361290231211.jpg">
 <meta property="og:image" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/15362045957806.jpg">
@@ -132,10 +130,10 @@
 <meta property="og:image" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/15361305741911.jpg">
 <meta property="og:image" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/15361307862136.jpg">
 <meta property="og:image" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/15361308360533.jpg">
-<meta property="og:updated_time" content="2018-09-06T10:49:18.000Z">
+<meta property="og:updated_time" content="2018-09-07T05:59:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="source-map">
-<meta name="twitter:description" content="img {  margin-left: 0;} 深入理解Source Map背景我们的项目源码通常通过一系列转换才能投入生产。但是，这也意味着，最终生成的代码已经改头换面了，不方便调试。 常见的源码转换，主要是以下三种情况  压缩，减小体积 多个文件合并，减少http请求数 通过loader编译语言，例如TypeScript转换到js  Source Map为我们解决了这一问题。Source Ma">
+<meta name="twitter:title" content="深入理解Source Map">
+<meta name="twitter:description" content="背景我们的项目源码通常通过一系列转换才能投入生产。但是，这也意味着，最终生成的代码已经改头换面了，不方便调试。 常见的源码转换，主要是以下三种情况  压缩，减小体积 多个文件合并，减少http请求数 通过loader编译语言，例如TypeScript转换到js  Source Map为我们解决了这一问题。Source Map能将打包后文件映射到源文件中的原位置，方便开发者debug。 什么是Sou">
 <meta name="twitter:image" content="https://fechengxiaocheng.github.io/2018/09/06/source-map/15362018507952.jpg">
 
 
@@ -153,7 +151,7 @@
   };
 </script>
 
-  <title>source-map | 前端程小程</title>
+  <title>深入理解Source Map | 前端程小程</title>
   
 
 
@@ -315,7 +313,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">source-map
+          <h1 class="post-title" itemprop="name headline">深入理解Source Map
               
             
           </h1>
@@ -340,12 +338,24 @@
                 
               
 
-              <time title="Created: 2018-09-06 17:49:44 / Modified: 18:49:18" itemprop="dateCreated datePublished" datetime="2018-09-06T17:49:44+08:00">2018-09-06</time>
+              <time title="Created: 2018-09-06 17:49:44" itemprop="dateCreated datePublished" datetime="2018-09-06T17:49:44+08:00">2018-09-06</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-09-07 13:59:00" itemprop="dateModified" datetime="2018-09-07T13:59:00+08:00">2018-09-07</time>
               
             
           </span>
@@ -406,8 +416,7 @@
       
 
       
-        <p><style><br>img {<br>  margin-left: 0;<br>}<br></style></p>
-<h1 id="深入理解Source-Map"><a href="#深入理解Source-Map" class="headerlink" title="深入理解Source Map"></a>深入理解Source Map</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我们的项目源码通常通过一系列转换才能投入生产。但是，这也意味着，最终生成的代码已经改头换面了，不方便调试。</p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我们的项目源码通常通过一系列转换才能投入生产。但是，这也意味着，最终生成的代码已经改头换面了，不方便调试。</p>
 <p>常见的源码转换，主要是以下三种情况</p>
 <ul>
 <li>压缩，减小体积</li>
@@ -472,15 +481,9 @@
 <li><p>generated code：各个模块彼此分离，并用模块名注释。看到的模块是通过webpack处理之后的。</p>
   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 源代码</span></span><br><span class="line"><span class="keyword">import</span> &#123;test&#125; <span class="keyword">from</span> <span class="string">"module"</span>; test();</span><br><span class="line"><span class="comment">// generated code</span></span><br><span class="line"><span class="keyword">var</span> module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(<span class="number">42</span>); module__WEBPACK_IMPORTED_MODULE_1__.a();.</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<img src="/2018/09/06/source-map/15362048566562.jpg" title="This is an example image">
-<ul>
 <li><p>transformed code：各个模块彼此分离，并用模块名注释。看到的模块是loaders处理之后，webpack处理之前的代码</p>
   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 源代码</span></span><br><span class="line"><span class="keyword">import</span> &#123;test&#125; <span class="keyword">from</span> <span class="string">"module"</span>; </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">extends</span> <span class="title">test</span> </span>&#123;&#125;</span><br><span class="line"><span class="comment">// transformed code</span></span><br><span class="line"><span class="keyword">import</span> &#123;test&#125; <span class="keyword">from</span> <span class="string">"module"</span>; </span><br><span class="line"><span class="keyword">var</span> A = <span class="function"><span class="keyword">function</span>(<span class="params">_test</span>) </span>&#123; ... &#125;(test);</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<img src="/2018/09/06/source-map/15362049381625.jpg" title="This is an example image">
-<ul>
 <li><p>original source: 每个模块彼此分离，并用模块名注释。可以看到模块是转换前的，和源码一致。但是，这个需要loader支持，如果某个模块经过某个loader没有正确处理Source Map,那生成的代码是无法映射到源码上的。</p>
    <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 源代码</span></span><br><span class="line"><span class="keyword">import</span> &#123;test&#125; <span class="keyword">from</span> <span class="string">"module"</span>; </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">extends</span> <span class="title">test</span> </span>&#123;&#125;</span><br><span class="line"><span class="comment">// original source</span></span><br><span class="line"><span class="keyword">import</span> &#123;test&#125; <span class="keyword">from</span> <span class="string">"module"</span>; </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">extends</span> <span class="title">test</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
 </li>
@@ -583,8 +586,10 @@
 </tr>
 </tbody>
 </table>
-<h2 id="结合实践来验证Source-Map类型的使用"><a href="#结合实践来验证Source-Map类型的使用" class="headerlink" title="结合实践来验证Source Map类型的使用"></a>结合实践来验证Source Map类型的使用</h2><h2 id="none"><a href="#none" class="headerlink" title="none"></a>none</h2><p>没有展示报错代码所在的源文件。<br><img src="/2018/09/06/source-map/15361297824898.jpg" title="This is an example image"></p>
-<h2 id="eval"><a href="#eval" class="headerlink" title="eval"></a>eval</h2><ul>
+<h2 id="结合实践来验证Source-Map类型的使用"><a href="#结合实践来验证Source-Map类型的使用" class="headerlink" title="结合实践来验证Source Map类型的使用"></a>结合实践来验证Source Map类型的使用</h2><p>可<a href="https://github.com/fechengxiaocheng/my-source-map-demo" target="_blank" rel="noopener">参考源码</a>，在本地修改webpack.prod.js中的devtool的属性，执行npm run build来验证打包之后的Source Map(打包后的文件在dist文件夹中)。在浏览器中click按钮，看console中的报错信息。</p>
+<p>以下则是不同Source Map类型的调试信息。</p>
+<h3 id="none"><a href="#none" class="headerlink" title="none"></a>none</h3><p>没有展示报错代码所在的源文件。<br><img src="/2018/09/06/source-map/15361297824898.jpg" title="This is an example image"></p>
+<h3 id="eval"><a href="#eval" class="headerlink" title="eval"></a>eval</h3><ul>
 <li>每个源文件都用eval包裹</li>
 <li>在每个文件的末尾加上//# souceURL源码路径</li>
 <li>不产生souce-map文件</li>
@@ -592,25 +597,25 @@
 <img src="/2018/09/06/source-map/15361290231211.jpg" title="This is an example image">
 <img src="/2018/09/06/source-map/15362045957806.jpg" title="This is an example image">
 <p>包含eval关键字的配置项并不单独产生.map文件（eval模式有点特殊，它和其他模式不一样的地方是它依靠sourceURL来定位原始代码，而其他所有选项都使用.map文件的方式来定位）</p>
-<h2 id="source-map"><a href="#source-map" class="headerlink" title="source-map"></a>source-map</h2><ul>
+<h3 id="source-map"><a href="#source-map" class="headerlink" title="source-map"></a>source-map</h3><ul>
 <li>产生map文件</li>
 <li>每个bundle文件末尾都会跟上sourceMappingURL对应源文件的信息</li>
 </ul>
 <p>点击click之后，直接显示报错的源文件print.js<br><img src="/2018/09/06/source-map/15361296678332.jpg" title="This is an example image"></p>
-<h2 id="hidden-source-map"><a href="#hidden-source-map" class="headerlink" title="hidden-source-map"></a>hidden-source-map</h2><p>打包后的app.js与source-map的相比，少了结尾处指向.map文件的注释。但是output目录中的index.js的app.js.map没有少</p>
+<h3 id="hidden-source-map"><a href="#hidden-source-map" class="headerlink" title="hidden-source-map"></a>hidden-source-map</h3><p>打包后的app.js与source-map的相比，少了结尾处指向.map文件的注释。但是output目录中的index.js的app.js.map没有少</p>
 <p>因此指向的非报错的实际源文件，而是打包之后的大bundle文件。<br><img src="/2018/09/06/source-map/15361297172789.jpg" title="This is an example image"></p>
-<h2 id="cheap"><a href="#cheap" class="headerlink" title="cheap"></a>cheap</h2><ul>
+<h3 id="cheap"><a href="#cheap" class="headerlink" title="cheap"></a>cheap</h3><ul>
 <li>有.map文件</li>
 <li>.map文件不包含列信息。</li>
 </ul>
 <p>不加cheap：<br><img src="/2018/09/06/source-map/15354435655251.jpg" title="This is an example image"><br>加cheap可以看到无列信息，鼠标没有自动定位到：<br><img src="/2018/09/06/source-map/15354442606431.jpg" title="This is an example image"></p>
-<h2 id="eval-source-map"><a href="#eval-source-map" class="headerlink" title="eval-source-map"></a>eval-source-map</h2><ul>
+<h3 id="eval-source-map"><a href="#eval-source-map" class="headerlink" title="eval-source-map"></a>eval-source-map</h3><ul>
 <li>有eval包裹代码</li>
 <li>把sourcemap当成datauURL引入（会导致bundle文件加大）</li>
 </ul>
 <img src="/2018/09/06/source-map/15361302940330.jpg" title="This is an example image">
 <img src="/2018/09/06/source-map/15361301710207.jpg" title="This is an example image">
-<h2 id="cheap-source-map"><a href="#cheap-source-map" class="headerlink" title="cheap-source-map"></a>cheap-source-map</h2><p>和source-map生成结果差不多。但是cheap-source-map比source-map生成的.map文件少了列信息。</p>
+<h3 id="cheap-source-map"><a href="#cheap-source-map" class="headerlink" title="cheap-source-map"></a>cheap-source-map</h3><p>和source-map生成结果差不多。但是cheap-source-map比source-map生成的.map文件少了列信息。</p>
 <ul>
 <li>有map文件</li>
 <li>bundle文件末尾有sourceMappingURL</li>
@@ -626,12 +631,12 @@
 <pre><code>&quot;mappings&quot;:&quot;AAAA&quot;
 </code></pre><p>不包含loader的sourcemap是指，例如使用了loader转化，debug到就是定位到编译后的代码，而不是源码。</p>
 <img src="/2018/09/06/source-map/15361305741911.jpg" title="This is an example image">
-<h2 id="cheap-module-source-map"><a href="#cheap-module-source-map" class="headerlink" title="cheap-module-source-map"></a>cheap-module-source-map</h2><ul>
+<h3 id="cheap-module-source-map"><a href="#cheap-module-source-map" class="headerlink" title="cheap-module-source-map"></a>cheap-module-source-map</h3><ul>
 <li>包含loader的sourcemap</li>
 </ul>
 <img src="/2018/09/06/source-map/15361307862136.jpg" title="This is an example image">
 <p>带cheap的可以提高打包速度，但是在浏览器中只能对应到具体的行，而不能对应到具体的列，对调试带来不便</p>
-<h2 id="cheap-module-eval-source-map"><a href="#cheap-module-eval-source-map" class="headerlink" title="cheap-module-eval-source-map"></a>cheap-module-eval-source-map</h2><p>最优</p>
+<h3 id="cheap-module-eval-source-map"><a href="#cheap-module-eval-source-map" class="headerlink" title="cheap-module-eval-source-map"></a>cheap-module-eval-source-map</h3><p>最优</p>
 <p>5467ms</p>
 <img src="/2018/09/06/source-map/15361308360533.jpg" title="This is an example image">
 <p>既能加快打包速度(cheap),又能对应到具体的源文件(eval-source-map),又能包含loader(module)</p>
@@ -832,7 +837,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#深入理解Source-Map"><span class="nav-number">1.</span> <span class="nav-text">深入理解Source Map</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Source-Map"><span class="nav-number">1.2.</span> <span class="nav-text">什么是Source Map</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Source-Map文件构成"><span class="nav-number">1.2.1.</span> <span class="nav-text">Source Map文件构成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mappings属性"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">mappings属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作原理"><span class="nav-number">1.2.2.</span> <span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何生成Source-Map"><span class="nav-number">1.2.3.</span> <span class="nav-text">如何生成Source Map</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Source-Map类型"><span class="nav-number">1.3.</span> <span class="nav-text">Source Map类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#quality"><span class="nav-number">1.3.1.</span> <span class="nav-text">quality</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发环境"><span class="nav-number">1.3.2.</span> <span class="nav-text">开发环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊场景"><span class="nav-number">1.3.3.</span> <span class="nav-text">特殊场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生产环境"><span class="nav-number">1.3.4.</span> <span class="nav-text">生产环境</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结合实践来验证Source-Map类型的使用"><span class="nav-number">1.4.</span> <span class="nav-text">结合实践来验证Source Map类型的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#none"><span class="nav-number">1.5.</span> <span class="nav-text">none</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eval"><span class="nav-number">1.6.</span> <span class="nav-text">eval</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#source-map"><span class="nav-number">1.7.</span> <span class="nav-text">source-map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hidden-source-map"><span class="nav-number">1.8.</span> <span class="nav-text">hidden-source-map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cheap"><span class="nav-number">1.9.</span> <span class="nav-text">cheap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eval-source-map"><span class="nav-number">1.10.</span> <span class="nav-text">eval-source-map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cheap-source-map"><span class="nav-number">1.11.</span> <span class="nav-text">cheap-source-map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cheap-module-source-map"><span class="nav-number">1.12.</span> <span class="nav-text">cheap-module-source-map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cheap-module-eval-source-map"><span class="nav-number">1.13.</span> <span class="nav-text">cheap-module-eval-source-map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文档"><span class="nav-number">1.14.</span> <span class="nav-text">参考文档</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Source-Map"><span class="nav-number">2.</span> <span class="nav-text">什么是Source Map</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Source-Map文件构成"><span class="nav-number">2.1.</span> <span class="nav-text">Source Map文件构成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mappings属性"><span class="nav-number">2.1.1.</span> <span class="nav-text">mappings属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作原理"><span class="nav-number">2.2.</span> <span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何生成Source-Map"><span class="nav-number">2.3.</span> <span class="nav-text">如何生成Source Map</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Source-Map类型"><span class="nav-number">3.</span> <span class="nav-text">Source Map类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#quality"><span class="nav-number">3.1.</span> <span class="nav-text">quality</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发环境"><span class="nav-number">3.2.</span> <span class="nav-text">开发环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊场景"><span class="nav-number">3.3.</span> <span class="nav-text">特殊场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生产环境"><span class="nav-number">3.4.</span> <span class="nav-text">生产环境</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结合实践来验证Source-Map类型的使用"><span class="nav-number">4.</span> <span class="nav-text">结合实践来验证Source Map类型的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#none"><span class="nav-number">4.1.</span> <span class="nav-text">none</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eval"><span class="nav-number">4.2.</span> <span class="nav-text">eval</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#source-map"><span class="nav-number">4.3.</span> <span class="nav-text">source-map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hidden-source-map"><span class="nav-number">4.4.</span> <span class="nav-text">hidden-source-map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cheap"><span class="nav-number">4.5.</span> <span class="nav-text">cheap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eval-source-map"><span class="nav-number">4.6.</span> <span class="nav-text">eval-source-map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cheap-source-map"><span class="nav-number">4.7.</span> <span class="nav-text">cheap-source-map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cheap-module-source-map"><span class="nav-number">4.8.</span> <span class="nav-text">cheap-module-source-map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cheap-module-eval-source-map"><span class="nav-number">4.9.</span> <span class="nav-text">cheap-module-eval-source-map</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文档"><span class="nav-number">5.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
             
 
           </div>
