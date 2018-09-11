@@ -108,25 +108,25 @@
 
 
 
-  <meta name="description" content="关于我">
+  <meta name="description" content="判断数组中是否含有某个值，返回true/false 用法arr.includes(searchElement)arr.includes(searchElement, fromIndex)  searchElement：需要查找的元素值 fromIndex: 从某个索引开始查找(可选)。如果为负，从array.length + formIndex处开始查，并跟0比取最大值。默认为0.  思路 for">
 <meta name="keywords" content="javascript,js,css,html,node,react,eslint,jest,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于我">
-<meta property="og:url" content="https://fechengxiaocheng.github.io/2018/07/26/introduce-mydelf/index.html">
+<meta property="og:title" content="【解读源码系列】Array.prototype.includes">
+<meta property="og:url" content="https://fechengxiaocheng.github.io/2018/09/11/Array-prototype-includes/index.html">
 <meta property="og:site_name" content="前端程小程">
-<meta property="og:description" content="关于我">
+<meta property="og:description" content="判断数组中是否含有某个值，返回true/false 用法arr.includes(searchElement)arr.includes(searchElement, fromIndex)  searchElement：需要查找的元素值 fromIndex: 从某个索引开始查找(可选)。如果为负，从array.length + formIndex处开始查，并跟0比取最大值。默认为0.  思路 for">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-20T10:06:59.000Z">
+<meta property="og:updated_time" content="2018-09-11T10:23:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于我">
-<meta name="twitter:description" content="关于我">
+<meta name="twitter:title" content="【解读源码系列】Array.prototype.includes">
+<meta name="twitter:description" content="判断数组中是否含有某个值，返回true/false 用法arr.includes(searchElement)arr.includes(searchElement, fromIndex)  searchElement：需要查找的元素值 fromIndex: 从某个索引开始查找(可选)。如果为负，从array.length + formIndex处开始查，并跟0比取最大值。默认为0.  思路 for">
 
 
 
 
 
 
-  <link rel="canonical" href="https://fechengxiaocheng.github.io/2018/07/26/introduce-mydelf/"/>
+  <link rel="canonical" href="https://fechengxiaocheng.github.io/2018/09/11/Array-prototype-includes/"/>
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>关于我 | 前端程小程</title>
+  <title>【解读源码系列】Array.prototype.includes | 前端程小程</title>
   
 
 
@@ -281,7 +281,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://fechengxiaocheng.github.io/2018/07/26/introduce-mydelf/">
+    <link itemprop="mainEntityOfPage" href="https://fechengxiaocheng.github.io/2018/09/11/Array-prototype-includes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="一只程小程">
@@ -298,7 +298,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">关于我
+          <h1 class="post-title" itemprop="name headline">【解读源码系列】Array.prototype.includes
               
             
           </h1>
@@ -323,24 +323,12 @@
                 
               
 
-              <time title="Created: 2018-07-26 15:06:10" itemprop="dateCreated datePublished" datetime="2018-07-26T15:06:10+08:00">2018-07-26</time>
+              <time title="Created: 2018-09-11 18:21:27 / Modified: 18:23:16" itemprop="dateCreated datePublished" datetime="2018-09-11T18:21:27+08:00">2018-09-11</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-08-20 18:06:59" itemprop="dateModified" datetime="2018-08-20T18:06:59+08:00">2018-08-20</time>
               
             
           </span>
@@ -357,7 +345,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/life/" itemprop="url" rel="index"><span itemprop="name">生活点滴</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/original-code/" itemprop="url" rel="index"><span itemprop="name">源码系列</span></a></span>
 
                 
                 
@@ -372,8 +360,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/07/26/introduce-mydelf/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2018/07/26/introduce-mydelf/" itemprop="commentsCount"></span>
+                <a href="/2018/09/11/Array-prototype-includes/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2018/09/11/Array-prototype-includes/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -401,7 +389,21 @@
       
 
       
-        <h1 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h1>
+        <p>判断数组中是否含有某个值，返回true/false</p>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>arr.includes(searchElement)<br>arr.includes(searchElement, fromIndex)</p>
+<ul>
+<li>searchElement：需要查找的元素值</li>
+<li>fromIndex: 从某个索引开始查找(可选)。如果为负，从array.length + formIndex处开始查，并跟0比取最大值。默认为0.</li>
+</ul>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
+<li>formIndex如果大于等于数组长度Array.length, 不查下去，return false。</li>
+<li>数组长度AArray.length为0, 不查下去，return false。</li>
+<li>设置开始循环判断的k值，默认为k为formIndex || 0，若formIndex小于0，k取formItem+Array.length和0相比的较大值。</li>
+<li>从k处循环，直到k &gt;= length跳出循环。判断如果数组中有值和searchElement相等，return true。</li>
+</ul>
+<h2 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.defineProperty(<span class="built_in">Array</span>.prototype, <span class="string">'includes'</span>, &#123;</span><br><span class="line">    value: <span class="function"><span class="keyword">function</span>(<span class="params">searchElement, fromIndex</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> === <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> typeError(<span class="string">'"this" is null or undefined'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">const</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>(<span class="keyword">this</span>);</span><br><span class="line">        <span class="keyword">const</span> length = o.length;</span><br><span class="line">        fromIndex = fromIndex || <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (fromIndex &gt;= length) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (length === <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> k = fromIndex;</span><br><span class="line">        <span class="keyword">if</span> (fromIndex &lt; <span class="number">0</span> ) &#123;</span><br><span class="line">            k = <span class="built_in">Math</span>.max(fromIndex + length, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(k &lt; length) &#123;</span><br><span class="line">            <span class="keyword">if</span> (o[k] === searchElement) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            k++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> includes = <span class="built_in">require</span>(<span class="string">'./index'</span>);</span><br><span class="line">test(<span class="string">'if formIndex greater than length , return false'</span>, () =&gt; &#123;</span><br><span class="line">    expect([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].includes(<span class="number">1</span>, <span class="number">100</span>)).toBeFalsy();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">test(<span class="string">'if length of array === 0, return false'</span>, () =&gt; &#123;</span><br><span class="line">    expect([].includes(<span class="number">1</span>)).toBeFalsy();</span><br><span class="line">&#125;) </span><br><span class="line"></span><br><span class="line">test(<span class="string">'formIndex &lt; 0'</span>, () =&gt; &#123;</span><br><span class="line">    expect([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].includes(<span class="number">1</span>, <span class="number">-100</span>)).toBeTruthy();</span><br><span class="line">    expect([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].includes(<span class="number">3</span>, <span class="number">-2</span>)).toBeTruthy();</span><br><span class="line">    expect([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].includes(<span class="number">1</span>, <span class="number">-2</span>)).toBeFalsy();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">test(<span class="string">'[1,2,3] includes 1'</span>, () =&gt; &#123;</span><br><span class="line">  expect([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].includes(<span class="number">2</span>, <span class="number">1</span>)).toBeTruthy();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -428,8 +430,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/19/react-cli-study/" rel="next" title="react-koa-app-cli命令行工具">
-                <i class="fa fa-chevron-left"></i> react-koa-app-cli命令行工具
+              <a href="/2018/09/11/closure-currying/" rel="next" title="【从一道面试题说起】闭包&函数柯里化">
+                <i class="fa fa-chevron-left"></i> 【从一道面试题说起】闭包&函数柯里化
               </a>
             
           </div>
@@ -437,10 +439,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/20/koa-notes/" rel="prev" title="Koa学习笔记">
-                Koa学习笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -605,7 +603,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关于我"><span class="nav-number">1.</span> <span class="nav-text">关于我</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现代码"><span class="nav-number">3.</span> <span class="nav-text">实现代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试代码"><span class="nav-number">4.</span> <span class="nav-text">测试代码</span></a></li></ol></div>
             
 
           </div>
