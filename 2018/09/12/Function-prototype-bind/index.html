@@ -108,25 +108,25 @@
 
 
 
-  <meta name="description" content="redux和react-redux区别待搞，先占坑。 理解redux中间件什么是redux中间件待搞，先占坑。 自己实现一个redux中间件redux中间件的本质就是重写dispatch方法: 123456// 一个简单的logger中间件实现原理store.dispatch = function dispatchLogger(action) &amp;#123;    console.log(&apos;befo">
+  <meta name="description" content="bind用来绑定函数内部的this指向。在某些浏览器不支持的情况下，需要polyfill自行去实现。 思路先把调用bind的函数保存起来，在调用func()的时候执行bind中的闭包函数，返回func函数调用后return的值。 代码实现123456789101112131415Function.prototype.bind = function(context) &amp;#123;    var se">
 <meta name="keywords" content="javascript,js,css,html,node,react,eslint,jest,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深入理解react-redux">
-<meta property="og:url" content="https://fechengxiaocheng.github.io/2018/08/24/react-redux-study/index.html">
+<meta property="og:title" content="【解读源码系列】Function.prototype.bind">
+<meta property="og:url" content="https://fechengxiaocheng.github.io/2018/09/12/Function-prototype-bind/index.html">
 <meta property="og:site_name" content="前端程小程">
-<meta property="og:description" content="redux和react-redux区别待搞，先占坑。 理解redux中间件什么是redux中间件待搞，先占坑。 自己实现一个redux中间件redux中间件的本质就是重写dispatch方法: 123456// 一个简单的logger中间件实现原理store.dispatch = function dispatchLogger(action) &amp;#123;    console.log(&apos;befo">
+<meta property="og:description" content="bind用来绑定函数内部的this指向。在某些浏览器不支持的情况下，需要polyfill自行去实现。 思路先把调用bind的函数保存起来，在调用func()的时候执行bind中的闭包函数，返回func函数调用后return的值。 代码实现123456789101112131415Function.prototype.bind = function(context) &amp;#123;    var se">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-24T02:21:19.000Z">
+<meta property="og:updated_time" content="2018-09-12T02:38:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深入理解react-redux">
-<meta name="twitter:description" content="redux和react-redux区别待搞，先占坑。 理解redux中间件什么是redux中间件待搞，先占坑。 自己实现一个redux中间件redux中间件的本质就是重写dispatch方法: 123456// 一个简单的logger中间件实现原理store.dispatch = function dispatchLogger(action) &amp;#123;    console.log(&apos;befo">
+<meta name="twitter:title" content="【解读源码系列】Function.prototype.bind">
+<meta name="twitter:description" content="bind用来绑定函数内部的this指向。在某些浏览器不支持的情况下，需要polyfill自行去实现。 思路先把调用bind的函数保存起来，在调用func()的时候执行bind中的闭包函数，返回func函数调用后return的值。 代码实现123456789101112131415Function.prototype.bind = function(context) &amp;#123;    var se">
 
 
 
 
 
 
-  <link rel="canonical" href="https://fechengxiaocheng.github.io/2018/08/24/react-redux-study/"/>
+  <link rel="canonical" href="https://fechengxiaocheng.github.io/2018/09/12/Function-prototype-bind/"/>
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>深入理解react-redux | 前端程小程</title>
+  <title>【解读源码系列】Function.prototype.bind | 前端程小程</title>
   
 
 
@@ -281,7 +281,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://fechengxiaocheng.github.io/2018/08/24/react-redux-study/">
+    <link itemprop="mainEntityOfPage" href="https://fechengxiaocheng.github.io/2018/09/12/Function-prototype-bind/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="一只程小程">
@@ -298,7 +298,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">深入理解react-redux
+          <h1 class="post-title" itemprop="name headline">【解读源码系列】Function.prototype.bind
               
             
           </h1>
@@ -323,7 +323,7 @@
                 
               
 
-              <time title="Created: 2018-08-24 10:11:49 / Modified: 10:21:19" itemprop="dateCreated datePublished" datetime="2018-08-24T10:11:49+08:00">2018-08-24</time>
+              <time title="Created: 2018-09-12 10:36:48 / Modified: 10:38:35" itemprop="dateCreated datePublished" datetime="2018-09-12T10:36:48+08:00">2018-09-12</time>
             
 
             
@@ -345,7 +345,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/study/" itemprop="url" rel="index"><span itemprop="name">深入探究</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/original-code/" itemprop="url" rel="index"><span itemprop="name">源码系列</span></a></span>
 
                 
                 
@@ -360,8 +360,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/08/24/react-redux-study/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2018/08/24/react-redux-study/" itemprop="commentsCount"></span>
+                <a href="/2018/09/12/Function-prototype-bind/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2018/09/12/Function-prototype-bind/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -389,12 +389,11 @@
       
 
       
-        <h2 id="redux和react-redux区别"><a href="#redux和react-redux区别" class="headerlink" title="redux和react-redux区别"></a>redux和react-redux区别</h2><p>待搞，先占坑。</p>
-<h2 id="理解redux中间件"><a href="#理解redux中间件" class="headerlink" title="理解redux中间件"></a>理解redux中间件</h2><h3 id="什么是redux中间件"><a href="#什么是redux中间件" class="headerlink" title="什么是redux中间件"></a>什么是redux中间件</h3><p>待搞，先占坑。</p>
-<h3 id="自己实现一个redux中间件"><a href="#自己实现一个redux中间件" class="headerlink" title="自己实现一个redux中间件"></a>自己实现一个redux中间件</h3><p>redux中间件的本质就是重写dispatch方法:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一个简单的logger中间件实现原理</span></span><br><span class="line">store.dispatch = <span class="function"><span class="keyword">function</span> <span class="title">dispatchLogger</span>(<span class="params">action</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'before action....'</span>);</span><br><span class="line">    next(action);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'after action....'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>通过redux-promise来实现<code>异步中间件</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 一个promise异步中间件使用方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1、返回一个action，action本身是promise</span></span><br><span class="line"><span class="keyword">const</span> actionCreatorA = <span class="function">(<span class="params">dispatch, title</span>) =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> fetch(<span class="string">'xx/xx/xx'</span>).then(<span class="function"><span class="params">res</span>=&gt;</span> &#123;<span class="attr">type</span>: <span class="string">'addTodo'</span>, <span class="attr">payload</span>: res.value&#125;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2、返回一个action，action.payload是promise(需要从redux-actions模块引入createAction方法)</span></span><br><span class="line">dispatch(createAction(</span><br><span class="line">    <span class="string">'addTodo'</span>,</span><br><span class="line">    fetch(<span class="string">'xx/xx/xx'</span>).then(<span class="function"><span class="params">res</span>=&gt;</span> res.value);</span><br><span class="line">))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 一个promise异步中间件实现原理</span></span><br><span class="line">store.dispatch = <span class="function"><span class="keyword">function</span> <span class="title">dispatchPromise</span>(<span class="params">action</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 如果action本身是promise，执行then，传入dispatch方法, 把异步请求到的action作为传入dispatch的入参。</span></span><br><span class="line">    <span class="keyword">return</span> isPromise(action) ? action.then(dispatch) : next(action); </span><br><span class="line">    <span class="comment">// 如果返回的payload是promise，执行action.payload.then, </span></span><br><span class="line">    <span class="keyword">return</span> isPromise(action.payload) ? </span><br><span class="line">        action.payload.then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">            dispatch(&#123;...action, <span class="attr">payload</span>: res&#125;)</span><br><span class="line">        &#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error)</span><br><span class="line">        &#125;) : </span><br><span class="line">        next(action)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>bind用来绑定函数内部的this指向。在某些浏览器不支持的情况下，需要polyfill自行去实现。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>先把调用bind的函数保存起来，在调用func()的时候执行bind中的闭包函数，返回func函数调用后return的值。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.bind = <span class="function"><span class="keyword">function</span>(<span class="params">context</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> self.call(context, <span class="built_in">arguments</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">     name: <span class="string">'xlj'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">&#125;.bind(obj);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(func());</span><br></pre></td></tr></table></figure>
+<p>下面实现的难一点，在bind和func中都传入参数，bind(obj, 1, 2)，func(3,4)，要求输出[1,2,3,4].</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.bind = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">var</span> context = [].shift.call(<span class="built_in">arguments</span>);</span><br><span class="line">    <span class="keyword">var</span> args = [].slice.call(<span class="built_in">arguments</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> self.call(context, [].concat.call(args, [].slice.call(<span class="built_in">arguments</span>)));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">     name: <span class="string">'xlj'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>[<span class="number">0</span>]);</span><br><span class="line">&#125;.bind(obj,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">func(<span class="number">3</span>,<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -422,8 +421,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/22/object-orianted-pramram-study/" rel="next" title="面向对象编程(封装&继承)">
-                <i class="fa fa-chevron-left"></i> 面向对象编程(封装&继承)
+              <a href="/2018/09/11/Array-prototype-includes/" rel="next" title="【解读源码系列】Array.prototype.includes">
+                <i class="fa fa-chevron-left"></i> 【解读源码系列】Array.prototype.includes
               </a>
             
           </div>
@@ -432,8 +431,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/06/source-map/" rel="prev" title="深入理解Source Map">
-                深入理解Source Map <i class="fa fa-chevron-right"></i>
+              <a href="/2018/09/12/aop/" rel="prev" title="【从一道面试题说起】用原生js实现AOP（面向切面编程）">
+                【从一道面试题说起】用原生js实现AOP（面向切面编程） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -599,7 +598,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#redux和react-redux区别"><span class="nav-number">1.</span> <span class="nav-text">redux和react-redux区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#理解redux中间件"><span class="nav-number">2.</span> <span class="nav-text">理解redux中间件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是redux中间件"><span class="nav-number">2.1.</span> <span class="nav-text">什么是redux中间件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自己实现一个redux中间件"><span class="nav-number">2.2.</span> <span class="nav-text">自己实现一个redux中间件</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">2.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
             
 
           </div>
