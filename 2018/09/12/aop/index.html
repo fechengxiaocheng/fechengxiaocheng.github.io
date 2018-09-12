@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="题目考查内容在具体项目中，经常会碰到需要把主业务逻辑和无关功能分开(无关业务逻辑的如日志、处理异常)，这个叫做AOP（面向切面编程)。通过把一个函数动态织入另一个函数来实现。这样的好处是：1、提高了业务代码的纯度，2、非业务代码的高度复用和维护。这种AOP的方式给函数添加职责，也是一种巧妙的装饰者模式实现。 具体描述实现一个func函数：  主业务逻辑 console.log(2);  与业务无关">
+  <meta name="description" content="题目考查内容在具体项目中，经常会碰到需要把主业务逻辑和无关功能分开(无关业务逻辑的如日志、处理异常)，这个叫做AOP（面向切面编程)。通过把一个函数动态织入另一个函数来实现。这样的好处是：1、提高了业务代码的纯度，2、非业务代码的高度复用和维护。这种AOP的方式给函数添加职责，也是一种巧妙的装饰者模式实现。 题目描述实现一个func函数：  主业务逻辑 console.log(2);  与业务无关">
 <meta name="keywords" content="javascript,js,css,html,node,react,eslint,jest,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【从一道面试题说起】用原生js实现AOP（面向切面编程）">
 <meta property="og:url" content="https://fechengxiaocheng.github.io/2018/09/12/aop/index.html">
 <meta property="og:site_name" content="前端程小程">
-<meta property="og:description" content="题目考查内容在具体项目中，经常会碰到需要把主业务逻辑和无关功能分开(无关业务逻辑的如日志、处理异常)，这个叫做AOP（面向切面编程)。通过把一个函数动态织入另一个函数来实现。这样的好处是：1、提高了业务代码的纯度，2、非业务代码的高度复用和维护。这种AOP的方式给函数添加职责，也是一种巧妙的装饰者模式实现。 具体描述实现一个func函数：  主业务逻辑 console.log(2);  与业务无关">
+<meta property="og:description" content="题目考查内容在具体项目中，经常会碰到需要把主业务逻辑和无关功能分开(无关业务逻辑的如日志、处理异常)，这个叫做AOP（面向切面编程)。通过把一个函数动态织入另一个函数来实现。这样的好处是：1、提高了业务代码的纯度，2、非业务代码的高度复用和维护。这种AOP的方式给函数添加职责，也是一种巧妙的装饰者模式实现。 题目描述实现一个func函数：  主业务逻辑 console.log(2);  与业务无关">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-12T02:39:33.000Z">
+<meta property="og:updated_time" content="2018-09-12T02:46:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【从一道面试题说起】用原生js实现AOP（面向切面编程）">
-<meta name="twitter:description" content="题目考查内容在具体项目中，经常会碰到需要把主业务逻辑和无关功能分开(无关业务逻辑的如日志、处理异常)，这个叫做AOP（面向切面编程)。通过把一个函数动态织入另一个函数来实现。这样的好处是：1、提高了业务代码的纯度，2、非业务代码的高度复用和维护。这种AOP的方式给函数添加职责，也是一种巧妙的装饰者模式实现。 具体描述实现一个func函数：  主业务逻辑 console.log(2);  与业务无关">
+<meta name="twitter:description" content="题目考查内容在具体项目中，经常会碰到需要把主业务逻辑和无关功能分开(无关业务逻辑的如日志、处理异常)，这个叫做AOP（面向切面编程)。通过把一个函数动态织入另一个函数来实现。这样的好处是：1、提高了业务代码的纯度，2、非业务代码的高度复用和维护。这种AOP的方式给函数添加职责，也是一种巧妙的装饰者模式实现。 题目描述实现一个func函数：  主业务逻辑 console.log(2);  与业务无关">
 
 
 
@@ -323,7 +323,7 @@
                 
               
 
-              <time title="Created: 2018-09-12 10:39:04 / Modified: 10:39:33" itemprop="dateCreated datePublished" datetime="2018-09-12T10:39:04+08:00">2018-09-12</time>
+              <time title="Created: 2018-09-12 10:39:04 / Modified: 10:46:14" itemprop="dateCreated datePublished" datetime="2018-09-12T10:39:04+08:00">2018-09-12</time>
             
 
             
@@ -390,7 +390,7 @@
 
       
         <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="考查内容"><a href="#考查内容" class="headerlink" title="考查内容"></a>考查内容</h3><p>在具体项目中，经常会碰到需要把主业务逻辑和无关功能分开(无关业务逻辑的如日志、处理异常)，这个叫做AOP（面向切面编程)。通过把一个函数动态织入另一个函数来实现。这样的好处是：1、提高了业务代码的纯度，2、非业务代码的高度复用和维护。这种AOP的方式给函数添加职责，也是一种巧妙的装饰者模式实现。</p>
-<h3 id="具体描述"><a href="#具体描述" class="headerlink" title="具体描述"></a>具体描述</h3><p>实现一个func函数：</p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>实现一个func函数：</p>
 <ul>
 <li>主业务逻辑 console.log(2); </li>
 <li>与业务无关逻辑：在主业务逻辑之前console.log(1)；在主业务逻辑之后输出console.log(3)。</li>
@@ -598,7 +598,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#考查内容"><span class="nav-number">1.1.</span> <span class="nav-text">考查内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体描述"><span class="nav-number">1.2.</span> <span class="nav-text">具体描述</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#考查内容"><span class="nav-number">1.1.</span> <span class="nav-text">考查内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.2.</span> <span class="nav-text">题目描述</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
             
 
           </div>
