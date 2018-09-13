@@ -301,7 +301,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 <a class="post-title-link" href="/2018/09/13/react-router/" itemprop="url">
-                  react-router
+                  React Router v4 学习笔记
                 </a>
               
             
@@ -327,7 +327,7 @@
                 
               
 
-              <time title="Created: 2018-09-13 14:25:46 / Modified: 14:30:56" itemprop="dateCreated datePublished" datetime="2018-09-13T14:25:46+08:00">2018-09-13</time>
+              <time title="Created: 2018-09-13 14:25:46 / Modified: 14:32:22" itemprop="dateCreated datePublished" datetime="2018-09-13T14:25:46+08:00">2018-09-13</time>
             
 
             
@@ -385,7 +385,13 @@
       
         
           
-            <h1 id="React-Router-v4-学习笔记"><a href="#React-Router-v4-学习笔记" class="headerlink" title="React Router v4 学习笔记"></a>React Router v4 学习笔记</h1>
+            <p>为更加理解和掌握React Router v4，我在<a href="https://github.com/fechengxiaocheng/react-router4.0-example" target="_blank" rel="noopener">github</a>上创建了demo项目用来实践<a href="https://reacttraining.com/react-router/web" target="_blank" rel="noopener">React Router v4</a>。</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><code>React Router v4</code>是一个完全使用<code>react</code>重写的<code>React</code>包，所有的东西都<strong>仅仅是组件</strong>。跟react router之前的版本理念都不一样了。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><code>React Router</code> 现在已经被划分成了3个包：<code>react-router</code>，<code>react-router-dom</code>，<code>react-router-native</code>。</p>
+<p>不应该直接安装react-router包，这个包为<code>React Router</code> 应用提供了核心的路由组件和函数，另外两个包提供了特定环境的组件（浏览器和 react-native 对应的平台），不过他们也是将 <code>react-router</code> 导出的模块再次导出。</p>
+<p>本项目在web中应用，因此使用<code>react-router-dom</code></p>
+<pre><code>npm install --save react-router-dom
+</code></pre>
           
         
       
