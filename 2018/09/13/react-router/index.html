@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="为更加理解和掌握React Router v4，我在github上创建了demo项目用来实践React Router v4。 介绍React Router v4是一个完全使用react重写的React包，所有的东西都仅仅是组件。跟react router之前的版本理念都不一样了。 安装React Router 现在已经被划分成了3个包：react-router，react-router-dom，r">
+  <meta name="description" content="React Router v4 学习笔记为更加理解和掌握React Router v4，我在github上创建了demo项目用来实践React Router v4。 介绍React Router v4是一个完全使用react重写的React包，所有的东西都仅仅是组件。跟react router之前的版本理念都不一样了。 安装React Router 现在已经被划分成了3个包：react-route">
 <meta name="keywords" content="javascript,js,css,html,node,react,eslint,jest,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React Router v4 学习笔记">
 <meta property="og:url" content="https://fechengxiaocheng.github.io/2018/09/13/react-router/index.html">
 <meta property="og:site_name" content="前端程小程">
-<meta property="og:description" content="为更加理解和掌握React Router v4，我在github上创建了demo项目用来实践React Router v4。 介绍React Router v4是一个完全使用react重写的React包，所有的东西都仅仅是组件。跟react router之前的版本理念都不一样了。 安装React Router 现在已经被划分成了3个包：react-router，react-router-dom，r">
+<meta property="og:description" content="React Router v4 学习笔记为更加理解和掌握React Router v4，我在github上创建了demo项目用来实践React Router v4。 介绍React Router v4是一个完全使用react重写的React包，所有的东西都仅仅是组件。跟react router之前的版本理念都不一样了。 安装React Router 现在已经被划分成了3个包：react-route">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-13T06:34:53.000Z">
+<meta property="og:updated_time" content="2018-09-13T06:43:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React Router v4 学习笔记">
-<meta name="twitter:description" content="为更加理解和掌握React Router v4，我在github上创建了demo项目用来实践React Router v4。 介绍React Router v4是一个完全使用react重写的React包，所有的东西都仅仅是组件。跟react router之前的版本理念都不一样了。 安装React Router 现在已经被划分成了3个包：react-router，react-router-dom，r">
+<meta name="twitter:description" content="React Router v4 学习笔记为更加理解和掌握React Router v4，我在github上创建了demo项目用来实践React Router v4。 介绍React Router v4是一个完全使用react重写的React包，所有的东西都仅仅是组件。跟react router之前的版本理念都不一样了。 安装React Router 现在已经被划分成了3个包：react-route">
 
 
 
@@ -323,7 +323,7 @@
                 
               
 
-              <time title="Created: 2018-09-13 14:25:46 / Modified: 14:34:53" itemprop="dateCreated datePublished" datetime="2018-09-13T14:25:46+08:00">2018-09-13</time>
+              <time title="Created: 2018-09-13 14:25:46 / Modified: 14:43:04" itemprop="dateCreated datePublished" datetime="2018-09-13T14:25:46+08:00">2018-09-13</time>
             
 
             
@@ -389,13 +389,13 @@
       
 
       
-        <p>为更加理解和掌握React Router v4，我在<a href="https://github.com/fechengxiaocheng/react-router4.0-example" target="_blank" rel="noopener">github</a>上创建了demo项目用来实践<a href="https://reacttraining.com/react-router/web" target="_blank" rel="noopener">React Router v4</a>。</p>
+        <h1 id="React-Router-v4-学习笔记"><a href="#React-Router-v4-学习笔记" class="headerlink" title="React Router v4 学习笔记"></a>React Router v4 学习笔记</h1><p>为更加理解和掌握React Router v4，我在<a href="https://github.com/fechengxiaocheng/react-router4.0-example" target="_blank" rel="noopener">github</a>上创建了demo项目用来实践<a href="https://reacttraining.com/react-router/web" target="_blank" rel="noopener">React Router v4</a>。</p>
 <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><code>React Router v4</code>是一个完全使用<code>react</code>重写的<code>React</code>包，所有的东西都<strong>仅仅是组件</strong>。跟react router之前的版本理念都不一样了。</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><code>React Router</code> 现在已经被划分成了3个包：<code>react-router</code>，<code>react-router-dom</code>，<code>react-router-native</code>。</p>
 <p>不应该直接安装react-router包，这个包为<code>React Router</code> 应用提供了核心的路由组件和函数，另外两个包提供了特定环境的组件（浏览器和 react-native 对应的平台），不过他们也是将 <code>react-router</code> 导出的模块再次导出。</p>
 <p>本项目在web中应用，因此使用<code>react-router-dom</code></p>
-<pre><code>npm install --save react-router-dom
-</code></pre><h2 id="Router"><a href="#Router" class="headerlink" title="Router"></a>Router</h2><p>开始一个新项目时，决定要使用那种Router。<code>&lt;BrowserRouter&gt;</code> 还是 <code>&lt;HashRouter&gt;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save react-router-dom</span><br></pre></td></tr></table></figure>
+<h2 id="Router"><a href="#Router" class="headerlink" title="Router"></a>Router</h2><p>开始一个新项目时，决定要使用那种Router。<code>&lt;BrowserRouter&gt;</code> 还是 <code>&lt;HashRouter&gt;</code></p>
 <p>这两区别在于：</p>
 <ul>
 <li><p>BrowserRouter: 一般用来处理动态页面, 适合用户互动多的网站。</p>
@@ -410,8 +410,8 @@
 &lt;/BrowserRouter&gt;, document.getElementById(&apos;root&apos;));
 </code></pre><h3 id="history对象"><a href="#history对象" class="headerlink" title="history对象"></a>history对象</h3><p>history对象由Router创建，用来保持对当前位置的追踪还有页面发生变化时候重新渲染页面。</p>
 <h3 id="basename属性"><a href="#basename属性" class="headerlink" title="basename属性"></a>basename属性</h3><p>页面如果部署在二级目录，可加加<code>basename=&#39;/xlj&#39;</code>,</p>
-<pre><code>&lt;BrowserRouter basename=&quot;xlj/&quot;&gt;
-</code></pre><p>打开的地址栏：<a href="http://localhost:3000/xlj/electionic" target="_blank" rel="noopener">http://localhost:3000/xlj/electionic</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;BrowserRouter basename=&quot;xlj/&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>打开的地址栏：<a href="http://localhost:3000/xlj/electionic" target="_blank" rel="noopener">http://localhost:3000/xlj/electionic</a></p>
 <h2 id="Routes"><a href="#Routes" class="headerlink" title="Routes"></a>Routes</h2><p><code>Routes</code>组件是<code>React Router</code>的重要组成部分。用来在路径符合的时候在某个地方渲染某个组件。</p>
 <h3 id="匹配路径"><a href="#匹配路径" class="headerlink" title="匹配路径"></a>匹配路径</h3><p><code>React Router</code>包使用<code>path-to-regexp</code>包来判断当前path是否匹配当前的pathname。它的原理是：将path字符串转换成正则表达式与当前的pathname进行匹配。</p>
 <p>当path与pathname的时候，一个具有以下属性的 match 对象将会被作为 prop 传入：</p>
@@ -422,12 +422,8 @@
 <li>match.params : 一个包含着 pathname 被 path-to-regexp 捕获的对象。</li>
 </ul>
 <h3 id="exact"><a href="#exact" class="headerlink" title="exact"></a>exact</h3><p>这里要加exact，不加exact的话 <a href="http://localhost:3000/clothes、http://localhost:3000/clothes/woman，http://localhost:3000/clothes/man，都会匹配到第一行的path=&quot;/clothes&quot;，即渲染的都是Woman组件。除非换顺序，把path=&#39;/clothes&#39;换到最后面。" target="_blank" rel="noopener">http://localhost:3000/clothes、http://localhost:3000/clothes/woman，http://localhost:3000/clothes/man，都会匹配到第一行的path=&quot;/clothes&quot;，即渲染的都是Woman组件。除非换顺序，把path=&#39;/clothes&#39;换到最后面。</a></p>
-<pre><code>&lt;Switch&gt;
-  &lt;Route path=&quot;/clothes&quot; exact component={Woman} /&gt;
-  &lt;Route path=&quot;/clothes/woman&quot; component={Woman} /&gt;
-  &lt;Route path=&quot;/clothes/man&quot; component={Man} /&gt;
-&lt;/Switch&gt;
-</code></pre><h3 id="Route渲染组件内容"><a href="#Route渲染组件内容" class="headerlink" title="Route渲染组件内容"></a>Route渲染组件内容</h3><h3 id="Route渲染组件内容-1"><a href="#Route渲染组件内容-1" class="headerlink" title="Route渲染组件内容"></a>Route渲染组件内容</h3><p>直接定义component属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Switch&gt;</span><br><span class="line">  &lt;Route path=&quot;/clothes&quot; exact component=&#123;Woman&#125; /&gt;</span><br><span class="line">  &lt;Route path=&quot;/clothes/woman&quot; component=&#123;Woman&#125; /&gt;</span><br><span class="line">  &lt;Route path=&quot;/clothes/man&quot; component=&#123;Man&#125; /&gt;</span><br><span class="line">&lt;/Switch&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Route渲染组件内容"><a href="#Route渲染组件内容" class="headerlink" title="Route渲染组件内容"></a>Route渲染组件内容</h3><p>直接定义component属性</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route path=&quot;/&quot; exact component=&#123;Clothes&#125; /&gt;</span><br></pre></td></tr></table></figure>
 <p>通过render渲染组件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route path=&quot;/&quot; exact render=&#123;(props) =&gt; (&lt;Clothes &#123;...props&#125; data=&#123;&#123;color: &apos;red&apos;&#125;&#125; /&gt;)&#125; /&gt;</span><br></pre></td></tr></table></figure>
@@ -435,77 +431,26 @@
 <p>由routes渲染的组件默认有 <code>props</code>，包含<code>match</code>，<code>location</code>，<code>history</code>(由router创建)</p>
 <h3 id="嵌套路由"><a href="#嵌套路由" class="headerlink" title="嵌套路由"></a>嵌套路由</h3><p>4.0之前定义嵌套组件不是React的风格，是伪组件；4.0之后是一切皆组件。</p>
 <p>4.0之前：</p>
-<pre><code>&lt;Router history={hashHistory}&gt;
-  &lt;Route path=&quot;/&quot; component={App}&gt;
-    &lt;Route path=&quot;/repos&quot; component={Repos}/&gt;
-    &lt;Route path=&quot;/about&quot; component={About}/&gt;
-  &lt;/Route&gt;
-&lt;/Router&gt;
-</code></pre><p>4.0之后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Router history=&#123;hashHistory&#125;&gt;</span><br><span class="line">  &lt;Route path=&quot;/&quot; component=&#123;App&#125;&gt;</span><br><span class="line">    &lt;Route path=&quot;/repos&quot; component=&#123;Repos&#125;/&gt;</span><br><span class="line">    &lt;Route path=&quot;/about&quot; component=&#123;About&#125;/&gt;</span><br><span class="line">  &lt;/Route&gt;</span><br><span class="line">&lt;/Router&gt;</span><br></pre></td></tr></table></figure>
+<p>4.0之后：</p>
 <p>本项目中<code>Clothes.js</code>和<code>Man.js</code>中分别嵌套了二级和三级路由。</p>
 <p>本项目中<code>Fruites.js</code>中用路径参数捕获<code>/fruites</code>后面带的pathname部分。对于<code>/fruites/abc</code>的路径，都能匹配到<code>FruitesTemplate</code>组件。在<code>FruitesTemplate</code>组件中，使用<code>this.props.match.params.type</code>即可获取到对应的<code>abc</code>部分。</p>
-<pre><code>&lt;Route path=&quot;/fruites/:type&quot; component={FruitesTemplate}/&gt;
-</code></pre><h3 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h3><p><code>Clothes.js</code>中，用<code>this.props.match.url</code>代替<code>/clothes</code>，这样就不用写死了。</p>
-<pre><code>&lt;Switch&gt;
-    &lt;Route path=&quot;/clothes&quot; exact component={Woman}/&gt;
-    &lt;Route path=&quot;/clothes/woman&quot; component={Woman}/&gt;
-    &lt;Route path=&quot;/clothes/man&quot; component={Man}/&gt;
-    &lt;Route path=&quot;/clothes/shoe&quot; component={Woman}/&gt;
-    &lt;Route path=&quot;/clothes/bag&quot; component={Woman}/&gt;
-&lt;/Switch&gt;
-
-// 动态路由
-const url = this.props.match.url;
-&lt;Switch&gt;
-    &lt;Route path={`${url}`} exact component={Woman}/&gt;
-    &lt;Route path={`${url}/woman`} component={Woman}/&gt;
-    &lt;Route path={`${url}/man`} component={Man}/&gt;
-    &lt;Route path={`${url}/shoe`} component={Woman}/&gt;
-    &lt;Route path={`${url}/bag`} component={Woman}/&gt;
-&lt;/Switch&gt;
-</code></pre><h3 id="跳转"><a href="#跳转" class="headerlink" title="跳转"></a>跳转</h3><h4 id="lt-Link-gt"><a href="#lt-Link-gt" class="headerlink" title="&lt; Link &gt;"></a>&lt; Link &gt;</h4><pre><code>import { Link } from &apos;react-router-dom&apos;
-&lt;Link to=&quot;clothes/bag&quot;&gt;
-&lt;Link to={{ pathname: 'clothes/bag', search: '?id=1&code=2', hash:'#my-hash', state: {userName: xlj}}}&gt;   
-</code></pre><p>ps: 这里的state只在pathname === match url时才会有</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route path=&quot;/fruites/:type&quot; component=&#123;FruitesTemplate&#125;/&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h3><p><code>Clothes.js</code>中，用<code>this.props.match.url</code>代替<code>/clothes</code>，这样就不用写死了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;Switch&gt;</span><br><span class="line">    &lt;Route path=&quot;/clothes&quot; exact component=&#123;Woman&#125;/&gt;</span><br><span class="line">    &lt;Route path=&quot;/clothes/woman&quot; component=&#123;Woman&#125;/&gt;</span><br><span class="line">    &lt;Route path=&quot;/clothes/man&quot; component=&#123;Man&#125;/&gt;</span><br><span class="line">    &lt;Route path=&quot;/clothes/shoe&quot; component=&#123;Woman&#125;/&gt;</span><br><span class="line">    &lt;Route path=&quot;/clothes/bag&quot; component=&#123;Woman&#125;/&gt;</span><br><span class="line">&lt;/Switch&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 动态路由</span><br><span class="line">const url = this.props.match.url;</span><br><span class="line">&lt;Switch&gt;</span><br><span class="line">    &lt;Route path=&#123;`$&#123;url&#125;`&#125; exact component=&#123;Woman&#125;/&gt;</span><br><span class="line">    &lt;Route path=&#123;`$&#123;url&#125;/woman`&#125; component=&#123;Woman&#125;/&gt;</span><br><span class="line">    &lt;Route path=&#123;`$&#123;url&#125;/man`&#125; component=&#123;Man&#125;/&gt;</span><br><span class="line">    &lt;Route path=&#123;`$&#123;url&#125;/shoe`&#125; component=&#123;Woman&#125;/&gt;</span><br><span class="line">    &lt;Route path=&#123;`$&#123;url&#125;/bag`&#125; component=&#123;Woman&#125;/&gt;</span><br><span class="line">&lt;/Switch&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="跳转"><a href="#跳转" class="headerlink" title="跳转"></a>跳转</h3><h4 id="lt-Link-gt"><a href="#lt-Link-gt" class="headerlink" title="&lt; Link &gt;"></a>&lt; Link &gt;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Link &#125; from &apos;react-router-dom&apos;</span><br><span class="line">&lt;Link to=&quot;clothes/bag&quot;&gt;</span><br><span class="line">&lt;Link to=&#123;&#123; pathname: &apos;clothes/bag&apos;, search: &apos;?id=1&amp;code=2&apos;, hash:&apos;#my-hash&apos;, state: &#123;userName: xlj&#125;&#125;&#125;&gt;</span><br></pre></td></tr></table></figure>
+<p>ps: 这里的state只在pathname === match url时才会有</p>
 <h4 id="lt-NavLink-gt"><a href="#lt-NavLink-gt" class="headerlink" title="&lt; NavLink &gt;"></a>&lt; NavLink &gt;</h4><p><code>NavLink</code>比<code>Link</code>有更丰富的<code>api</code>。可以在当前的<code>NavLink</code>上添加对应选中时候的样式<code>activeClassName</code>。</p>
-<pre><code>import { NavLink } from &apos;react-router-dom&apos;
-&lt;NavLink to=&quot;clothes/bag&quot;&gt;
-&lt;NavLink to={{ pathname: 'clothes/bag', search: '?id=1&code=2', hash:'#my-hash', state: {userName: xlj}}}&gt;
-&lt;NavLink to=&quot;clothes/woman&quot; activeClassName=&quot;selected&quot;&gt; // 参考Electric.js
-</code></pre><h4 id="this-props-history"><a href="#this-props-history" class="headerlink" title="this.props.history"></a>this.props.history</h4><pre><code>this.props.history.push({
-    pathname: &apos;/xlj&apos;,
-    search: &apos;?id=1&amp;code=2&apos;
-});
-</code></pre><h4 id="this-context-router-history"><a href="#this-context-router-history" class="headerlink" title="this.context.router.history"></a>this.context.router.history</h4><p>先当前组件中引入contextTypes属性，才能获取到context下的router。</p>
-<pre><code>import PropTypes from &apos;prop-types&apos;;
-
-clicktest = () =&gt; {
-    this.context.router.history.push({
-        pathname: &apos;/xlj&apos;,
-        search: &apos;?id=1&apos;
-    })
-}
-
-purchasDetails.contextTypes = {
-    router: PropTypes.object
-}
-</code></pre><h2 id="Switch"><a href="#Switch" class="headerlink" title="Switch"></a>Switch</h2><p>如下代码：加上<code>Switch</code>标签，在页面中只渲染出当前匹配的dom，匹配到一个之后就不忘下走了。不加<code>Switch</code>, 在<a href="http://localhost:3000/clothes/woman" target="_blank" rel="noopener">http://localhost:3000/clothes/woman</a> 中会渲染出两个<code>Woman</code>组件。</p>
-<pre><code>&lt;Switch&gt;
-    &lt;Route path=&quot;/clothes&quot; exact component={Woman} /&gt;
-    &lt;Route path=&quot;/clothes/woman&quot; component={Woman} /&gt;
-    &lt;Route path=&quot;/clothes/woman&quot; component={Woman}/&gt;
-&lt;/Switch&gt;
-</code></pre><h2 id="lt-Redirect-gt"><a href="#lt-Redirect-gt" class="headerlink" title="&lt; Redirect &gt;"></a>&lt; Redirect &gt;</h2><p><code>Redict</code>标签一般用于没有匹配到<code>path</code>的时候，默认跳转到的路径。</p>
-<pre><code>&lt;Switch&gt;
-    &lt;Route path={`${url}`} exact component={Woman}/&gt;
-    &lt;Route path={`${url}/woman`} component={Woman}/&gt;
-    &lt;Route path={`${url}/man`} component={Man}/&gt;
-    &lt;Redirect to={`${url}`} /&gt;
-&lt;/Switch&gt;
-</code></pre><h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://juejin.im/post/5a7e9ee7f265da4e7832949c" target="_blank" rel="noopener">[译]简明React Router v4教程
-</a></p>
-<p><a href="http://reacttraining.cn/web/example/basic" target="_blank" rel="noopener">4.0教程</a></p>
-<p><a href="https://juejin.im/post/5a641747518825732d7fb25f" target="_blank" rel="noopener">React Router 4 简介及其背后的路由哲学</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import &#123; NavLink &#125; from &apos;react-router-dom&apos;</span><br><span class="line">&lt;NavLink to=&quot;clothes/bag&quot;&gt;</span><br><span class="line">&lt;NavLink to=&#123;&#123; pathname: &apos;clothes/bag&apos;, search: &apos;?id=1&amp;code=2&apos;, hash:&apos;#my-hash&apos;, state: &#123;userName: xlj&#125;&#125;&#125;&gt;</span><br><span class="line">&lt;NavLink to=&quot;clothes/woman&quot; activeClassName=&quot;selected&quot;&gt; // 参考Electric.js</span><br></pre></td></tr></table></figure>
+<h4 id="this-props-history"><a href="#this-props-history" class="headerlink" title="this.props.history"></a>this.props.history</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">this.props.history.push(&#123;</span><br><span class="line">    pathname: &apos;/xlj&apos;,</span><br><span class="line">    search: &apos;?id=1&amp;code=2&apos;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="this-context-router-history"><a href="#this-context-router-history" class="headerlink" title="this.context.router.history"></a>this.context.router.history</h4><p>先当前组件中引入contextTypes属性，才能获取到context下的router。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import PropTypes from &apos;prop-types&apos;;</span><br><span class="line">    </span><br><span class="line">clicktest = () =&gt; &#123;</span><br><span class="line">    this.context.router.history.push(&#123;</span><br><span class="line">        pathname: &apos;/xlj&apos;,</span><br><span class="line">        search: &apos;?id=1&apos;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">purchasDetails.contextTypes = &#123;</span><br><span class="line">    router: PropTypes.object</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Switch"><a href="#Switch" class="headerlink" title="Switch"></a>Switch</h2><p>如下代码：加上<code>Switch</code>标签，在页面中只渲染出当前匹配的dom，匹配到一个之后就不忘下走了。不加<code>Switch</code>, 在<a href="http://localhost:3000/clothes/woman" target="_blank" rel="noopener">http://localhost:3000/clothes/woman</a> 中会渲染出两个<code>Woman</code>组件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Switch&gt;</span><br><span class="line">    &lt;Route path=&quot;/clothes&quot; exact component=&#123;Woman&#125; /&gt;</span><br><span class="line">    &lt;Route path=&quot;/clothes/woman&quot; component=&#123;Woman&#125; /&gt;</span><br><span class="line">    &lt;Route path=&quot;/clothes/woman&quot; component=&#123;Woman&#125;/&gt;</span><br><span class="line">&lt;/Switch&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="lt-Redirect-gt"><a href="#lt-Redirect-gt" class="headerlink" title="&lt; Redirect &gt;"></a>&lt; Redirect &gt;</h2><p><code>Redict</code>标签一般用于没有匹配到<code>path</code>的时候，默认跳转到的路径。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Switch&gt;</span><br><span class="line">    &lt;Route path=&#123;`$&#123;url&#125;`&#125; exact component=&#123;Woman&#125;/&gt;</span><br><span class="line">    &lt;Route path=&#123;`$&#123;url&#125;/woman`&#125; component=&#123;Woman&#125;/&gt;</span><br><span class="line">    &lt;Route path=&#123;`$&#123;url&#125;/man`&#125; component=&#123;Man&#125;/&gt;</span><br><span class="line">    &lt;Redirect to=&#123;`$&#123;url&#125;`&#125; /&gt;</span><br><span class="line">&lt;/Switch&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://juejin.im/post/5a7e9ee7f265da4e7832949c" target="_blank" rel="noopener">[译]简明React Router v4教程</a><br><a href="http://reacttraining.cn/web/example/basic" target="_blank" rel="noopener">4.0教程</a><br><a href="https://juejin.im/post/5a641747518825732d7fb25f" target="_blank" rel="noopener">React Router 4 简介及其背后的路由哲学</a></p>
 
       
     </div>
@@ -708,7 +653,7 @@ purchasDetails.contextTypes = {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Router"><span class="nav-number">3.</span> <span class="nav-text">Router</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#history对象"><span class="nav-number">3.1.</span> <span class="nav-text">history对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#basename属性"><span class="nav-number">3.2.</span> <span class="nav-text">basename属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Routes"><span class="nav-number">4.</span> <span class="nav-text">Routes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#匹配路径"><span class="nav-number">4.1.</span> <span class="nav-text">匹配路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exact"><span class="nav-number">4.2.</span> <span class="nav-text">exact</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Route渲染组件内容"><span class="nav-number">4.3.</span> <span class="nav-text">Route渲染组件内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Route渲染组件内容-1"><span class="nav-number">4.4.</span> <span class="nav-text">Route渲染组件内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌套路由"><span class="nav-number">4.5.</span> <span class="nav-text">嵌套路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态路由"><span class="nav-number">4.6.</span> <span class="nav-text">动态路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跳转"><span class="nav-number">4.7.</span> <span class="nav-text">跳转</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-Link-gt"><span class="nav-number">4.7.1.</span> <span class="nav-text">&lt; Link &gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-NavLink-gt"><span class="nav-number">4.7.2.</span> <span class="nav-text">&lt; NavLink &gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#this-props-history"><span class="nav-number">4.7.3.</span> <span class="nav-text">this.props.history</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#this-context-router-history"><span class="nav-number">4.7.4.</span> <span class="nav-text">this.context.router.history</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Switch"><span class="nav-number">5.</span> <span class="nav-text">Switch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lt-Redirect-gt"><span class="nav-number">6.</span> <span class="nav-text">&lt; Redirect &gt;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文档"><span class="nav-number">7.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React-Router-v4-学习笔记"><span class="nav-number">1.</span> <span class="nav-text">React Router v4 学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Router"><span class="nav-number">1.3.</span> <span class="nav-text">Router</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#history对象"><span class="nav-number">1.3.1.</span> <span class="nav-text">history对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#basename属性"><span class="nav-number">1.3.2.</span> <span class="nav-text">basename属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Routes"><span class="nav-number">1.4.</span> <span class="nav-text">Routes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#匹配路径"><span class="nav-number">1.4.1.</span> <span class="nav-text">匹配路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exact"><span class="nav-number">1.4.2.</span> <span class="nav-text">exact</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Route渲染组件内容"><span class="nav-number">1.4.3.</span> <span class="nav-text">Route渲染组件内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌套路由"><span class="nav-number">1.4.4.</span> <span class="nav-text">嵌套路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态路由"><span class="nav-number">1.4.5.</span> <span class="nav-text">动态路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跳转"><span class="nav-number">1.4.6.</span> <span class="nav-text">跳转</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-Link-gt"><span class="nav-number">1.4.6.1.</span> <span class="nav-text">&lt; Link &gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-NavLink-gt"><span class="nav-number">1.4.6.2.</span> <span class="nav-text">&lt; NavLink &gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#this-props-history"><span class="nav-number">1.4.6.3.</span> <span class="nav-text">this.props.history</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#this-context-router-history"><span class="nav-number">1.4.6.4.</span> <span class="nav-text">this.context.router.history</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Switch"><span class="nav-number">1.5.</span> <span class="nav-text">Switch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lt-Redirect-gt"><span class="nav-number">1.6.</span> <span class="nav-text">&lt; Redirect &gt;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文档"><span class="nav-number">1.7.</span> <span class="nav-text">参考文档</span></a></li></ol></li></ol></div>
             
 
           </div>
