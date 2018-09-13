@@ -327,7 +327,7 @@
                 
               
 
-              <time title="Created: 2018-09-13 14:25:46 / Modified: 14:32:22" itemprop="dateCreated datePublished" datetime="2018-09-13T14:25:46+08:00">2018-09-13</time>
+              <time title="Created: 2018-09-13 14:25:46 / Modified: 14:32:44" itemprop="dateCreated datePublished" datetime="2018-09-13T14:25:46+08:00">2018-09-13</time>
             
 
             
@@ -391,7 +391,25 @@
 <p>不应该直接安装react-router包，这个包为<code>React Router</code> 应用提供了核心的路由组件和函数，另外两个包提供了特定环境的组件（浏览器和 react-native 对应的平台），不过他们也是将 <code>react-router</code> 导出的模块再次导出。</p>
 <p>本项目在web中应用，因此使用<code>react-router-dom</code></p>
 <pre><code>npm install --save react-router-dom
-</code></pre>
+</code></pre><h2 id="Router"><a href="#Router" class="headerlink" title="Router"></a>Router</h2><p>开始一个新项目时，决定要使用那种Router。<code>&lt;BrowserRouter&gt;</code> 还是 <code>&lt;HashRouter&gt;</code></p>
+<p>这两区别在于：</p>
+<ul>
+<li><p>BrowserRouter: 一般用来处理动态页面, 适合用户互动多的网站。</p>
+</li>
+<li><p>HashRouter：一般用来处理静态页面，适合用于展示型的网站，seo的时候一般建议静态网页。地址栏中会多一个#。<a href="http://localhost:3000/#/electionic" target="_blank" rel="noopener">http://localhost:3000/#/electionic</a></p>
+</li>
+</ul>
+<p>我们的项目页面都是服务器动态生成的，因此我们的<code>router</code>使用<code>&lt;BrowserRouter&gt;</code>，在index.js中使用。</p>
+<pre><code>import { BrowserRouter } from &apos;react-router-dom&apos;;
+&lt;BrowserRouter&gt;
+    &lt;App /&gt;
+&lt;/BrowserRouter&gt;, document.getElementById(&apos;root&apos;));
+</code></pre><h3 id="history对象"><a href="#history对象" class="headerlink" title="history对象"></a>history对象</h3><p>history对象由Router创建，用来保持对当前位置的追踪还有页面发生变化时候重新渲染页面。</p>
+<h3 id="basename属性"><a href="#basename属性" class="headerlink" title="basename属性"></a>basename属性</h3><p>页面如果部署在二级目录，可加加<code>basename=&#39;/xlj&#39;</code>,</p>
+<pre><code>&lt;BrowserRouter basename=&quot;xlj/&quot;&gt;
+</code></pre><p>打开的地址栏：<a href="http://localhost:3000/xlj/electionic" target="_blank" rel="noopener">http://localhost:3000/xlj/electionic</a></p>
+<h2 id="Routes"><a href="#Routes" class="headerlink" title="Routes"></a>Routes</h2><p><code>Routes</code>组件是<code>React Router</code>的重要组成部分。用来在路径符合的时候在某个地方渲染某个组件。</p>
+
           
         
       
