@@ -327,7 +327,7 @@
                 
               
 
-              <time title="Created: 2018-09-13 14:25:46 / Modified: 14:32:44" itemprop="dateCreated datePublished" datetime="2018-09-13T14:25:46+08:00">2018-09-13</time>
+              <time title="Created: 2018-09-13 14:25:46 / Modified: 14:33:42" itemprop="dateCreated datePublished" datetime="2018-09-13T14:25:46+08:00">2018-09-13</time>
             
 
             
@@ -409,6 +409,93 @@
 <pre><code>&lt;BrowserRouter basename=&quot;xlj/&quot;&gt;
 </code></pre><p>打开的地址栏：<a href="http://localhost:3000/xlj/electionic" target="_blank" rel="noopener">http://localhost:3000/xlj/electionic</a></p>
 <h2 id="Routes"><a href="#Routes" class="headerlink" title="Routes"></a>Routes</h2><p><code>Routes</code>组件是<code>React Router</code>的重要组成部分。用来在路径符合的时候在某个地方渲染某个组件。</p>
+<h3 id="匹配路径"><a href="#匹配路径" class="headerlink" title="匹配路径"></a>匹配路径</h3><p><code>React Router</code>包使用<code>path-to-regexp</code>包来判断当前path是否匹配当前的pathname。它的原理是：将path字符串转换成正则表达式与当前的pathname进行匹配。</p>
+<p>当path与pathname的时候，一个具有以下属性的 match 对象将会被作为 prop 传入：</p>
+<ul>
+<li>match.url : 当前的path与pathname相匹配的部分。Clothes.js中的path就是/clothes，pathname是/clothes/woman的时候，匹配的部分就是/clothes。</li>
+<li>match.path : 路由path。</li>
+<li>match.isExact : path === pathname。</li>
+<li>match.params : 一个包含着 pathname 被 path-to-regexp 捕获的对象。</li>
+</ul>
+<h3 id="exact"><a href="#exact" class="headerlink" title="exact"></a>exact</h3><p>这里要加exact，不加exact的话 <a href="http://localhost:3000/clothes、http://localhost:3000/clothes/woman，http://localhost:3000/clothes/man，都会匹配到第一行的path=&quot;/clothes&quot;，即渲染的都是Woman组件。除非换顺序，把path=&#39;/clothes&#39;换到最后面。" target="_blank" rel="noopener">http://localhost:3000/clothes、http://localhost:3000/clothes/woman，http://localhost:3000/clothes/man，都会匹配到第一行的path=&quot;/clothes&quot;，即渲染的都是Woman组件。除非换顺序，把path=&#39;/clothes&#39;换到最后面。</a></p>
+<pre><code>&lt;Switch&gt;
+  &lt;Route path=&quot;/clothes&quot; exact component={Woman} /&gt;
+  &lt;Route path=&quot;/clothes/woman&quot; component={Woman} /&gt;
+  &lt;Route path=&quot;/clothes/man&quot; component={Man} /&gt;
+&lt;/Switch&gt;
+</code></pre><h3 id="嵌套路由"><a href="#嵌套路由" class="headerlink" title="嵌套路由"></a>嵌套路由</h3><p>4.0之前定义嵌套组件不是React的风格，是伪组件；4.0之后是一切皆组件。</p>
+<p>4.0之前：</p>
+<pre><code>&lt;Router history={hashHistory}&gt;
+  &lt;Route path=&quot;/&quot; component={App}&gt;
+    &lt;Route path=&quot;/repos&quot; component={Repos}/&gt;
+    &lt;Route path=&quot;/about&quot; component={About}/&gt;
+  &lt;/Route&gt;
+&lt;/Router&gt;
+</code></pre><p>4.0之后：</p>
+<p>本项目中<code>Clothes.js</code>和<code>Man.js</code>中分别嵌套了二级和三级路由。</p>
+<p>本项目中<code>Fruites.js</code>中用路径参数捕获<code>/fruites</code>后面带的pathname部分。对于<code>/fruites/abc</code>的路径，都能匹配到<code>FruitesTemplate</code>组件。在<code>FruitesTemplate</code>组件中，使用<code>this.props.match.params.type</code>即可获取到对应的<code>abc</code>部分。</p>
+<pre><code>&lt;Route path=&quot;/fruites/:type&quot; component={FruitesTemplate}/&gt;
+</code></pre><h3 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h3><p><code>Clothes.js</code>中，用<code>this.props.match.url</code>代替<code>/clothes</code>，这样就不用写死了。</p>
+<pre><code>&lt;Switch&gt;
+    &lt;Route path=&quot;/clothes&quot; exact component={Woman}/&gt;
+    &lt;Route path=&quot;/clothes/woman&quot; component={Woman}/&gt;
+    &lt;Route path=&quot;/clothes/man&quot; component={Man}/&gt;
+    &lt;Route path=&quot;/clothes/shoe&quot; component={Woman}/&gt;
+    &lt;Route path=&quot;/clothes/bag&quot; component={Woman}/&gt;
+&lt;/Switch&gt;
+
+// 动态路由
+const url = this.props.match.url;
+&lt;Switch&gt;
+    &lt;Route path={`${url}`} exact component={Woman}/&gt;
+    &lt;Route path={`${url}/woman`} component={Woman}/&gt;
+    &lt;Route path={`${url}/man`} component={Man}/&gt;
+    &lt;Route path={`${url}/shoe`} component={Woman}/&gt;
+    &lt;Route path={`${url}/bag`} component={Woman}/&gt;
+&lt;/Switch&gt;
+</code></pre><h3 id="跳转"><a href="#跳转" class="headerlink" title="跳转"></a>跳转</h3><h4 id="lt-Link-gt"><a href="#lt-Link-gt" class="headerlink" title="&lt; Link &gt;"></a>&lt; Link &gt;</h4><pre><code>import { Link } from &apos;react-router-dom&apos;
+&lt;Link to=&quot;clothes/bag&quot;&gt;
+&lt;Link to={{ pathname: 'clothes/bag', search: '?id=1&code=2', hash:'#my-hash', state: {userName: xlj}}}&gt;   
+</code></pre><p>ps: 这里的state只在pathname === match url时才会有</p>
+<h4 id="lt-NavLink-gt"><a href="#lt-NavLink-gt" class="headerlink" title="&lt; NavLink &gt;"></a>&lt; NavLink &gt;</h4><p><code>NavLink</code>比<code>Link</code>有更丰富的<code>api</code>。可以在当前的<code>NavLink</code>上添加对应选中时候的样式<code>activeClassName</code>。</p>
+<pre><code>import { NavLink } from &apos;react-router-dom&apos;
+&lt;NavLink to=&quot;clothes/bag&quot;&gt;
+&lt;NavLink to={{ pathname: 'clothes/bag', search: '?id=1&code=2', hash:'#my-hash', state: {userName: xlj}}}&gt;
+&lt;NavLink to=&quot;clothes/woman&quot; activeClassName=&quot;selected&quot;&gt; // 参考Electric.js
+</code></pre><h4 id="this-props-history"><a href="#this-props-history" class="headerlink" title="this.props.history"></a>this.props.history</h4><pre><code>this.props.history.push({
+    pathname: &apos;/xlj&apos;,
+    search: &apos;?id=1&amp;code=2&apos;
+});
+</code></pre><h4 id="this-context-router-history"><a href="#this-context-router-history" class="headerlink" title="this.context.router.history"></a>this.context.router.history</h4><p>先当前组件中引入contextTypes属性，才能获取到context下的router。</p>
+<pre><code>import PropTypes from &apos;prop-types&apos;;
+
+clicktest = () =&gt; {
+    this.context.router.history.push({
+        pathname: &apos;/xlj&apos;,
+        search: &apos;?id=1&apos;
+    })
+}
+
+purchasDetails.contextTypes = {
+    router: PropTypes.object
+}
+</code></pre><h2 id="Switch"><a href="#Switch" class="headerlink" title="Switch"></a>Switch</h2><p>如下代码：加上<code>Switch</code>标签，在页面中只渲染出当前匹配的dom，匹配到一个之后就不忘下走了。不加<code>Switch</code>, 在<a href="http://localhost:3000/clothes/woman" target="_blank" rel="noopener">http://localhost:3000/clothes/woman</a> 中会渲染出两个<code>Woman</code>组件。</p>
+<pre><code>&lt;Switch&gt;
+    &lt;Route path=&quot;/clothes&quot; exact component={Woman} /&gt;
+    &lt;Route path=&quot;/clothes/woman&quot; component={Woman} /&gt;
+    &lt;Route path=&quot;/clothes/woman&quot; component={Woman}/&gt;
+&lt;/Switch&gt;
+</code></pre><h2 id="lt-Redirect-gt"><a href="#lt-Redirect-gt" class="headerlink" title="&lt; Redirect &gt;"></a>&lt; Redirect &gt;</h2><p><code>Redict</code>标签一般用于没有匹配到<code>path</code>的时候，默认跳转到的路径。</p>
+<pre><code>&lt;Switch&gt;
+    &lt;Route path={`${url}`} exact component={Woman}/&gt;
+    &lt;Route path={`${url}/woman`} component={Woman}/&gt;
+    &lt;Route path={`${url}/man`} component={Man}/&gt;
+    &lt;Redirect to={`${url}`} /&gt;
+&lt;/Switch&gt;
+</code></pre><h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://juejin.im/post/5a7e9ee7f265da4e7832949c" target="_blank" rel="noopener">[译]简明React Router v4教程
+</a></p>
+<p><a href="http://reacttraining.cn/web/example/basic" target="_blank" rel="noopener">4.0教程</a></p>
+<p><a href="https://juejin.im/post/5a641747518825732d7fb25f" target="_blank" rel="noopener">React Router 4 简介及其背后的路由哲学</a></p>
 
           
         
