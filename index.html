@@ -281,6 +281,177 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fechengxiaocheng.github.io/2018/09/14/throttle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一只程小程">
+      <meta itemprop="description" content="你说开心就拍手~">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/8545983?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端程小程">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/14/throttle/" itemprop="url">
+                  【从一道面试题说起】函数节流
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-09-14 10:26:18 / Modified: 10:30:19" itemprop="dateCreated datePublished" datetime="2018-09-14T10:26:18+08:00">2018-09-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/interview/" itemprop="url" rel="index"><span itemprop="name">一道面试题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>某些情况下，函数调用并非是用户自身能控制的，可能会造成性能浪费。</p>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><h3 id="window-onresize"><a href="#window-onresize" class="headerlink" title="window.onresize"></a>window.onresize</h3><p>监听window的resize事件时，随着浏览器窗口的大小改变，触发的频率非常高。如果在window.resize函数中进行了dom操作，这会对性能造成非常大的浪费，会造成浏览器卡顿。</p>
+<h3 id="mousemove"><a href="#mousemove" class="headerlink" title="mousemove"></a>mousemove</h3><p>给一个div绑定mousemove事件，那么在鼠标滑动的时候，会频繁触动拖曳事件。</p>
+<h2 id="函数节流原理"><a href="#函数节流原理" class="headerlink" title="函数节流原理"></a>函数节流原理</h2><p>设置每多少秒才触发一次事件。比如window.resize事件，在1s内会触发10次，实际上我们只需要2-3次，所以我们可以设置每500ms才触发一次。可以借助setTimeout来实现。</p>
+<p>把下面的代码放浏览器console中，并拖动浏览器窗口。</p>
+<p>var throttle = function(fn, interval) {<br>    var timer = null;<br>    var self = fn;<br>    var isFirstTime = true;<br>    return function() {<br>        var me = this;<br>        // 第一次调用，不用节流<br>        if (isFirstTime) {<br>            self.apply(me, arguments);<br>            return isFirstTime = false;<br>        }<br>        // 如果上次计时器还在，节流<br>        if (timer) {<br>            return false;<br>        } </p>
+<pre><code>    timer = setInterval(function() {
+        clearTimeout(timer);
+        self.apply(me, arguments);
+        timer = null;
+    }, interval); 
+}
+</code></pre><p>}</p>
+<p>window.onresize = throttle(function() {<br>    console.log(1);<br>}, 500);</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://fechengxiaocheng.github.io/2018/09/13/react-router/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -327,7 +498,7 @@
                 
               
 
-              <time title="Created: 2018-09-13 14:25:46 / Modified: 15:00:53" itemprop="dateCreated datePublished" datetime="2018-09-13T14:25:46+08:00">2018-09-13</time>
+              <time title="Created: 2018-09-13 14:25:46 / Modified: 15:01:13" itemprop="dateCreated datePublished" datetime="2018-09-13T14:25:46+08:00">2018-09-13</time>
             
 
             
@@ -1790,175 +1961,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://fechengxiaocheng.github.io/2018/07/26/introduce-mydelf/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一只程小程">
-      <meta itemprop="description" content="你说开心就拍手~">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/8545983?s=460&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="前端程小程">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/26/introduce-mydelf/" itemprop="url">
-                  关于我
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-07-26 15:06:10" itemprop="dateCreated datePublished" datetime="2018-07-26T15:06:10+08:00">2018-07-26</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-08-20 18:06:59" itemprop="dateModified" datetime="2018-08-20T18:06:59+08:00">2018-08-20</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/life/" itemprop="url" rel="index"><span itemprop="name">生活点滴</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h1>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2010,7 +2012,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2022,8 +2024,6 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
-                    
-                      
                     
                       
                     

@@ -108,25 +108,25 @@
 
 
 
-  <meta name="description" content="你说开心就拍手~">
+  <meta name="description" content="某些情况下，函数调用并非是用户自身能控制的，可能会造成性能浪费。 使用场景window.onresize监听window的resize事件时，随着浏览器窗口的大小改变，触发的频率非常高。如果在window.resize函数中进行了dom操作，这会对性能造成非常大的浪费，会造成浏览器卡顿。 mousemove给一个div绑定mousemove事件，那么在鼠标滑动的时候，会频繁触动拖曳事件。 函数节流">
 <meta name="keywords" content="javascript,js,css,html,node,react,eslint,jest,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="https://fechengxiaocheng.github.io/categories/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【从一道面试题说起】函数节流">
+<meta property="og:url" content="https://fechengxiaocheng.github.io/2018/09/14/throttle/index.html">
 <meta property="og:site_name" content="前端程小程">
-<meta property="og:description" content="你说开心就拍手~">
+<meta property="og:description" content="某些情况下，函数调用并非是用户自身能控制的，可能会造成性能浪费。 使用场景window.onresize监听window的resize事件时，随着浏览器窗口的大小改变，触发的频率非常高。如果在window.resize函数中进行了dom操作，这会对性能造成非常大的浪费，会造成浏览器卡顿。 mousemove给一个div绑定mousemove事件，那么在鼠标滑动的时候，会频繁触动拖曳事件。 函数节流">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-26T06:59:12.000Z">
+<meta property="og:updated_time" content="2018-09-14T02:30:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
-<meta name="twitter:description" content="你说开心就拍手~">
+<meta name="twitter:title" content="【从一道面试题说起】函数节流">
+<meta name="twitter:description" content="某些情况下，函数调用并非是用户自身能控制的，可能会造成性能浪费。 使用场景window.onresize监听window的resize事件时，随着浏览器窗口的大小改变，触发的频率非常高。如果在window.resize函数中进行了dom操作，这会对性能造成非常大的浪费，会造成浏览器卡顿。 mousemove给一个div绑定mousemove事件，那么在鼠标滑动的时候，会频繁触动拖曳事件。 函数节流">
 
 
 
 
 
 
-  <link rel="canonical" href="https://fechengxiaocheng.github.io/categories/"/>
+  <link rel="canonical" href="https://fechengxiaocheng.github.io/2018/09/14/throttle/"/>
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>分类 | 前端程小程</title>
+  <title>【从一道面试题说起】函数节流 | 前端程小程</title>
   
 
 
@@ -261,95 +261,199 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fechengxiaocheng.github.io/2018/09/14/throttle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一只程小程">
+      <meta itemprop="description" content="你说开心就拍手~">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/8545983?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端程小程">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">分类</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
-                
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                6 categories in total
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/interview/">一道面试题</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">学习笔记</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/study/">深入探究</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/深入研究/">深入研究</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/original-code/">源码系列</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">生活点滴</a><span class="category-list-count">1</span></li></ul>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">【从一道面试题说起】函数节流
+              
+            
+          </h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-09-14 10:26:18 / Modified: 10:30:19" itemprop="dateCreated datePublished" datetime="2018-09-14T10:26:18+08:00">2018-09-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/interview/" itemprop="url" rel="index"><span itemprop="name">一道面试题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/14/throttle/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2018/09/14/throttle/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>某些情况下，函数调用并非是用户自身能控制的，可能会造成性能浪费。</p>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><h3 id="window-onresize"><a href="#window-onresize" class="headerlink" title="window.onresize"></a>window.onresize</h3><p>监听window的resize事件时，随着浏览器窗口的大小改变，触发的频率非常高。如果在window.resize函数中进行了dom操作，这会对性能造成非常大的浪费，会造成浏览器卡顿。</p>
+<h3 id="mousemove"><a href="#mousemove" class="headerlink" title="mousemove"></a>mousemove</h3><p>给一个div绑定mousemove事件，那么在鼠标滑动的时候，会频繁触动拖曳事件。</p>
+<h2 id="函数节流原理"><a href="#函数节流原理" class="headerlink" title="函数节流原理"></a>函数节流原理</h2><p>设置每多少秒才触发一次事件。比如window.resize事件，在1s内会触发10次，实际上我们只需要2-3次，所以我们可以设置每500ms才触发一次。可以借助setTimeout来实现。</p>
+<p>把下面的代码放浏览器console中，并拖动浏览器窗口。</p>
+<p>var throttle = function(fn, interval) {<br>    var timer = null;<br>    var self = fn;<br>    var isFirstTime = true;<br>    return function() {<br>        var me = this;<br>        // 第一次调用，不用节流<br>        if (isFirstTime) {<br>            self.apply(me, arguments);<br>            return isFirstTime = false;<br>        }<br>        // 如果上次计时器还在，节流<br>        if (timer) {<br>            return false;<br>        } </p>
+<pre><code>    timer = setInterval(function() {
+        clearTimeout(timer);
+        self.apply(me, arguments);
+        timer = null;
+    }, interval); 
+}
+</code></pre><p>}</p>
+<p>window.onresize = throttle(function() {<br>    console.log(1);<br>}, 500);</p>
+
       
     </div>
-    
-
-
 
     
+
     
     
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/13/react-router/" rel="next" title="React Router v4 学习笔记">
+                <i class="fa fa-chevron-left"></i> React Router v4 学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
@@ -386,8 +490,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -480,6 +593,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用场景"><span class="nav-number">1.</span> <span class="nav-text">使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#window-onresize"><span class="nav-number">1.1.</span> <span class="nav-text">window.onresize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mousemove"><span class="nav-number">1.2.</span> <span class="nav-text">mousemove</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数节流原理"><span class="nav-number">2.</span> <span class="nav-text">函数节流原理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
