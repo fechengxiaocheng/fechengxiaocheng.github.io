@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="前端程小程">
 <meta property="og:description" content="Array.from可通过1、类数组(argumentg)2、可迭代对象(set,map)来创建新数组。 12// 后面两个参数可选Array.from(arrayLike, mapFn, thisArg)  arrayLike：必选，1、类数组(argumentg)2、可迭代对象(set,map)。 mapFn: 可选，相当于Array.from(arrayLike).map(mapFn, th">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-20T06:38:57.000Z">
+<meta property="og:updated_time" content="2018-09-20T08:54:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【解读源码系列】Array.from">
 <meta name="twitter:description" content="Array.from可通过1、类数组(argumentg)2、可迭代对象(set,map)来创建新数组。 12// 后面两个参数可选Array.from(arrayLike, mapFn, thisArg)  arrayLike：必选，1、类数组(argumentg)2、可迭代对象(set,map)。 mapFn: 可选，相当于Array.from(arrayLike).map(mapFn, th">
@@ -323,7 +323,7 @@
                 
               
 
-              <time title="Created: 2018-09-20 14:37:48 / Modified: 14:38:57" itemprop="dateCreated datePublished" datetime="2018-09-20T14:37:48+08:00">2018-09-20</time>
+              <time title="Created: 2018-09-20 14:37:48 / Modified: 16:54:03" itemprop="dateCreated datePublished" datetime="2018-09-20T14:37:48+08:00">2018-09-20</time>
             
 
             
@@ -396,6 +396,7 @@
 <li>mapFn: 可选，相当于Array.from(arrayLike).map(mapFn, thisArg)。</li>
 <li>thisArg: 可选，执行回调函数mapFn时候的this对象。非常有用，利于解耦。可以把被处理的数据和对象分离，thisArg中定义处理函数handle，用来在mapFn中返回调用handle之后的结果。</li>
 </ul>
+<a id="more"></a>
 <h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="built_in">Array</span>.from(<span class="string">'abc'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// [ 'a', 'b', 'c' ]</span></span><br></pre></td></tr></table></figure>
 <h3 id="new-Set"><a href="#new-Set" class="headerlink" title="new Set()"></a>new Set()</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> b = <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]));</span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// [ 1, 2, 3 ]</span></span><br></pre></td></tr></table></figure>
 <h3 id="new-Map"><a href="#new-Map" class="headerlink" title="new Map()"></a>new Map()</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> c = <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Map</span>([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]]));</span><br><span class="line"><span class="built_in">console</span>.log(c); <span class="comment">// [ [ 1, 2 ], [ 3, 4 ] ]</span></span><br></pre></td></tr></table></figure>
@@ -444,8 +445,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/14/uncurrying/" rel="next" title="uncurrying">
-                <i class="fa fa-chevron-left"></i> uncurrying
+              <a href="/2018/09/14/uncurrying/" rel="next" title="函数反柯里化uncurrying">
+                <i class="fa fa-chevron-left"></i> 函数反柯里化uncurrying
               </a>
             
           </div>
