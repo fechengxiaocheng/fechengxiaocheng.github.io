@@ -516,6 +516,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-09-20 16:52:15" itemprop="dateModified" datetime="2018-09-20T16:52:15+08:00">2018-09-20</time>
+              
+            
           </span>
 
           
@@ -566,7 +582,22 @@
       
         
           
-            
+            <h1 id="函数反柯里化"><a href="#函数反柯里化" class="headerlink" title="函数反柯里化"></a>函数反柯里化</h1><p>我们在<a href="http://goddess.joeray61.com/2018/09/11/closure-currying/" target="_blank" rel="noopener">【从一道面试题说起】闭包&amp;函数柯里化】</a>认识了函数科里化，本文我们来了解下函数反柯里化。</p>
+<p>函数反柯里化就是把this泛化的过程。</p>
+<p>在认识它之前，首先思考一个问题，如何让类数组借用数组的push方法，应该很容易想到,可以借助Array.prototype.push方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">Array</span>.prototype.push.call(<span class="built_in">arguments</span>, <span class="number">4</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>)); <span class="comment">// [ 1, 2, 3, 4 ]</span></span><br><span class="line">&#125;)(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+<p>继续思考，如何实现一个push函数，使得调用push([1,2,3], 4)之后，a数组变为[1, 2, 3, 4]。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">push(a, <span class="number">4</span>);</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// [1, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
+<p>其实要做的无非就是封装一个方法，返回一个函数赋值给push，这个函数接收两个参数,arr和value，执行Array.prototype.push，把第一个参数arr作为this对象，value作为要push的值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uncurrying</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">arr, value</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.push.call(arr, value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> push = uncurrying();</span><br><span class="line">push(a, <span class="number">4</span>);</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// [1, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
+<p>再思考，这样封装真的达到可变和不变的分离了么？并没有。如果再要实现一个slice(a,1)呢？那不得再写一个新的uncurrying函数？所以，对于uncurrying函数至少还有两点可以改进：</p>
+<ul>
+<li>返回的闭包函数中Array.prototype.push抽离到uncurrying函数外面</li>
+<li>闭包函数中的不用实参，arguments[0]为指定的this值，此外都是传入方法中的实际参数。</li>
+</ul>
+<p>这样一来，方法中的this，不仅仅局限于定义时候的对象，而是加以泛化。这个就是函数反柯里化方法。也就是说uncurrying就是 <strong>把this泛化的过程提取出来</strong> 的方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="comment">// 把uncurrying作为Function.prototype的一个原型方法，供Array.prototype.push等方法调用。</span></span><br><span class="line"><span class="built_in">Function</span>.prototype.uncurrying = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> self = <span class="keyword">this</span>; <span class="comment">// 把Array.prototype.push保存起来</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">arr, value</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> obj = <span class="built_in">Array</span>.prototype.shift.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="comment">// 这里才是真正调用Array.prototype.push方法</span></span><br><span class="line">        <span class="keyword">return</span> self.call(obj, <span class="built_in">arguments</span>[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> push = <span class="built_in">Array</span>.prototype.push.uncurrying();</span><br><span class="line"><span class="keyword">var</span> slice = <span class="built_in">Array</span>.prototype.slice.uncurrying();</span><br><span class="line"><span class="keyword">var</span> includes = <span class="built_in">Array</span>.prototype.includes.uncurrying();</span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    push(<span class="built_in">arguments</span>, <span class="number">4</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'a'</span>, <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>));</span><br><span class="line">&#125;)(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'b'</span>, slice(a, <span class="number">1</span>));</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'c'</span>, includes(a, <span class="number">2</span>));</span><br><span class="line"><span class="comment">// a [ 1, 2, 3, 4 ]</span></span><br><span class="line"><span class="comment">// b [ 2, 3 ]</span></span><br><span class="line"><span class="comment">// c true</span></span><br></pre></td></tr></table></figure>
+
           
         
       
