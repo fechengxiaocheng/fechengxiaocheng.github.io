@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Array.from可通过1、类数组(argumentg)2、可迭代对象(set,map)来创建新数组。 12// 后面两个参数可选Array.from(arrayLike, mapFn, thisArg)  arrayLike：必选，1、类数组(argumentg)2、可迭代对象(set,map)。 mapFn: 可选，相当于Array.from(arrayLike).map(mapFn, th">
+<meta name="keywords" content="javascript,js,css,html,node,react,eslint,jest,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【解读源码系列】Array.from">
+<meta property="og:url" content="https://fechengxiaocheng.github.io/2018/09/20/Array-from/index.html">
+<meta property="og:site_name" content="前端程小程">
+<meta property="og:description" content="Array.from可通过1、类数组(argumentg)2、可迭代对象(set,map)来创建新数组。 12// 后面两个参数可选Array.from(arrayLike, mapFn, thisArg)  arrayLike：必选，1、类数组(argumentg)2、可迭代对象(set,map)。 mapFn: 可选，相当于Array.from(arrayLike).map(mapFn, th">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-20T06:38:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【解读源码系列】Array.from">
+<meta name="twitter:description" content="Array.from可通过1、类数组(argumentg)2、可迭代对象(set,map)来创建新数组。 12// 后面两个参数可选Array.from(arrayLike, mapFn, thisArg)  arrayLike：必选，1、类数组(argumentg)2、可迭代对象(set,map)。 mapFn: 可选，相当于Array.from(arrayLike).map(mapFn, th">
+
+
+
+
+
+
+  <link rel="canonical" href="https://fechengxiaocheng.github.io/2018/09/20/Array-from/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>【解读源码系列】Array.from | 前端程小程</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">前端程小程</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fechengxiaocheng.github.io/2018/09/20/Array-from/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一只程小程">
+      <meta itemprop="description" content="你说开心就拍手~">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/8545983?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端程小程">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【解读源码系列】Array.from
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-09-20 14:37:48 / Modified: 14:38:57" itemprop="dateCreated datePublished" datetime="2018-09-20T14:37:48+08:00">2018-09-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/original-code/" itemprop="url" rel="index"><span itemprop="name">源码系列</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/20/Array-from/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2018/09/20/Array-from/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Array.from可通过1、类数组(argumentg)2、可迭代对象(set,map)来创建新数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 后面两个参数可选</span></span><br><span class="line"><span class="built_in">Array</span>.from(arrayLike, mapFn, thisArg)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>arrayLike：必选，1、类数组(argumentg)2、可迭代对象(set,map)。</li>
+<li>mapFn: 可选，相当于Array.from(arrayLike).map(mapFn, thisArg)。</li>
+<li>thisArg: 可选，执行回调函数mapFn时候的this对象。非常有用，利于解耦。可以把被处理的数据和对象分离，thisArg中定义处理函数handle，用来在mapFn中返回调用handle之后的结果。</li>
+</ul>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="built_in">Array</span>.from(<span class="string">'abc'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// [ 'a', 'b', 'c' ]</span></span><br></pre></td></tr></table></figure>
+<h3 id="new-Set"><a href="#new-Set" class="headerlink" title="new Set()"></a>new Set()</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> b = <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]));</span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// [ 1, 2, 3 ]</span></span><br></pre></td></tr></table></figure>
+<h3 id="new-Map"><a href="#new-Map" class="headerlink" title="new Map()"></a>new Map()</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> c = <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Map</span>([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]]));</span><br><span class="line"><span class="built_in">console</span>.log(c); <span class="comment">// [ [ 1, 2 ], [ 3, 4 ] ]</span></span><br></pre></td></tr></table></figure>
+<h3 id="类数组"><a href="#类数组" class="headerlink" title="类数组"></a>类数组</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> d = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> d1 = <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(d1);</span><br><span class="line">&#125;)(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>); <span class="comment">// [ 1, 2, 3 ]</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用第二个参数func返回新函数"><a href="#使用第二个参数func返回新函数" class="headerlink" title="使用第二个参数func返回新函数"></a>使用第二个参数func返回新函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> e = <span class="built_in">Array</span>.from([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], x =&gt; x*<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(e); <span class="comment">// [ 2, 4, 6 ]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> f = <span class="built_in">Array</span>.from(&#123;<span class="attr">length</span>: <span class="number">5</span>&#125;, (v, i) =&gt; i + <span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(f); <span class="comment">// [ 1, 2, 3, 4, 5 ]</span></span><br></pre></td></tr></table></figure>
+<h3 id="数组去重合并"><a href="#数组去重合并" class="headerlink" title="数组去重合并"></a>数组去重合并</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> g1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line"><span class="keyword">const</span> g2 = [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>];</span><br><span class="line"><span class="keyword">const</span> g3 = [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>];</span><br><span class="line"><span class="keyword">const</span> g = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> _g = [].concat.apply([], <span class="built_in">arguments</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(_g)));</span><br><span class="line">&#125;)(g1, g2, g3); <span class="comment">// [ 1, 2, 3, 4, 5, 6, 7, 8 ]</span></span><br></pre></td></tr></table></figure>
+<h3 id="充分利用第三个参数thisArg"><a href="#充分利用第三个参数thisArg" class="headerlink" title="充分利用第三个参数thisArg"></a>充分利用第三个参数thisArg</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">    handle: <span class="function"><span class="params">x</span> =&gt;</span> x * <span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.from([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123; <span class="keyword">return</span> <span class="keyword">this</span>.handle(x) &#125;, obj))</span><br><span class="line"><span class="comment">// [3, 6, 9]</span></span><br></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
+<li><p>判断如果第一个参数arrayLike为空，throw new TypeError(“Array.from requires an array-like object - not null or undefined”);</p>
+</li>
+<li><p>循环arrayLike，判断如果有第二个参数mapFn，则返回arr[i] = mapFn(arrayLike[i], i); 否则直接返回arrayLike[i]</p>
+</li>
+<li><p>判断如果有第三个参数，mapFn调用的时候mapFn.apply(this, arrayLike[i], i)</p>
+</li>
+<li><p>返回arr</p>
+</li>
+</ul>
+<p>ps: polyfill的代码和底层实现的未必是完全一致的。比如这里使用new Set[1,2,3]和new Map[[a,1],[b,1]]返回的值都是[]。因为能支持es6代码的浏览器基本都不需要polyfill实现Array.from。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.from = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> isCallable = <span class="function"><span class="keyword">function</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">typeof</span> fn === <span class="string">'function'</span> &amp;&amp; <span class="built_in">Object</span>.prototype.toString.call(fn) === <span class="string">'[object Function]'</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// 返回一个value的整数</span></span><br><span class="line">    <span class="keyword">const</span> toInteger = <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> v = <span class="built_in">Number</span>(value);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">isNaN</span>(v)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 0或者无穷大的数，直接返回</span></span><br><span class="line">        <span class="keyword">if</span> (v === <span class="number">0</span> || !<span class="built_in">isFinite</span>(v)) &#123;</span><br><span class="line">            <span class="keyword">return</span> v;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ( v &gt; <span class="number">0</span> ? <span class="number">1</span> : <span class="number">-1</span> ) * <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.abs(v));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> maxSafeInteger = <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">const</span> toLength = <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> len = toInteger(value);</span><br><span class="line">        <span class="comment">// len的最小值不能比0小。最大值不能比maxSafeInteger大。</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.min(<span class="built_in">Math</span>.max(len, <span class="number">0</span>), maxSafeInteger);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">arrayLike<span class="regexp">/*, mapFn, thisArg*/</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> C = <span class="keyword">this</span>;</span><br><span class="line">        <span class="comment">// 如果没有第一个参数，throw error。</span></span><br><span class="line">        <span class="keyword">if</span> (arrayLike == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">"Array.from requires an array-like object - not null or undefined"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">const</span> items = <span class="built_in">Object</span>(arrayLike);</span><br><span class="line">        <span class="keyword">let</span> thisArg = <span class="string">''</span>;</span><br><span class="line">        <span class="keyword">const</span> mapFn = <span class="built_in">arguments</span>.length &gt; <span class="number">1</span> ? <span class="built_in">arguments</span>[<span class="number">1</span>] : <span class="keyword">void</span> <span class="literal">undefined</span>; </span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> mapFn !== <span class="string">'undefined'</span>) &#123;</span><br><span class="line">            <span class="comment">// 如果有第二个参数，判断是第二个参数类型如果不是构造函数，throw error</span></span><br><span class="line">            <span class="keyword">if</span> (!isCallable(mapFn)) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">"Array.from when provided mapFn must be a function"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">arguments</span>.length &gt; <span class="number">2</span>) &#123;</span><br><span class="line">                thisArg = <span class="built_in">arguments</span>[<span class="number">2</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">const</span> len = toLength(items.length);</span><br><span class="line">        <span class="keyword">const</span> arr = isCallable(C) ? <span class="built_in">Object</span>(<span class="keyword">new</span> C(len)) : <span class="keyword">new</span> <span class="built_in">Array</span>(len);</span><br><span class="line">        <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(i &lt; len) &#123;</span><br><span class="line">            iValue = items[i];</span><br><span class="line">            <span class="keyword">if</span> (mapFn) &#123;</span><br><span class="line">                arr[i] = <span class="keyword">typeof</span> thisArg === <span class="string">'undefined'</span> ? mapFn(iValue, i) : mapFn.call(thisArg, iValue, i);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                arr[i] = iValue;</span><br><span class="line">            &#125;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="built_in">Array</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">Array</span> = <span class="built_in">require</span>(<span class="string">'./index'</span>);</span><br><span class="line"></span><br><span class="line">describe(<span class="string">'Array.from'</span>, () =&gt; &#123;</span><br><span class="line"></span><br><span class="line">    describe(<span class="string">'about first arguments'</span>, () =&gt; &#123;</span><br><span class="line">        test(<span class="string">'if first arguments is string return this arr'</span>, () =&gt; &#123;</span><br><span class="line">            expect(<span class="built_in">Array</span>.from(<span class="string">'123'</span>)).toEqual([<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>])</span><br><span class="line">        &#125;)</span><br><span class="line">        test(<span class="string">'if first arguments is null throw error'</span>, () =&gt; &#123;</span><br><span class="line">            expect(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">Array</span>.from()).toThrow();</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    describe(<span class="string">'about second arguments'</span>, () =&gt; &#123;</span><br><span class="line">        test(<span class="string">'if has second arguments and it is not function throw error'</span>, () =&gt; &#123;</span><br><span class="line">            expect(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">Array</span>.from([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], <span class="number">123</span>)).toThrow();</span><br><span class="line">        &#125;)</span><br><span class="line">        </span><br><span class="line">        test(<span class="string">'return the double arr'</span>, () =&gt; &#123;</span><br><span class="line">            expect(<span class="built_in">Array</span>.from([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], x =&gt; x*<span class="number">2</span>)).toEqual([<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>]);</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        test(<span class="string">'return the arr 1,2,3,4,5'</span>, () =&gt; &#123;</span><br><span class="line">            expect(<span class="built_in">Array</span>.from(&#123;<span class="attr">length</span>: <span class="number">5</span>&#125;, (v, i) =&gt; i+<span class="number">1</span>)).toEqual([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    describe(<span class="string">'about this third arguments'</span>, () =&gt; &#123;</span><br><span class="line">        test(<span class="string">'if has third arguments bind it into mapFn'</span>, () =&gt; &#123;</span><br><span class="line">            <span class="keyword">const</span> obj = &#123;</span><br><span class="line">                handle: <span class="function"><span class="params">x</span> =&gt;</span> x * <span class="number">3</span></span><br><span class="line">            &#125;</span><br><span class="line">            expect(<span class="built_in">Array</span>.from([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123; <span class="keyword">return</span> <span class="keyword">this</span>.handle(x) &#125;, obj)).toEqual([<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>]);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/14/uncurrying/" rel="next" title="uncurrying">
+                <i class="fa fa-chevron-left"></i> uncurrying
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://avatars1.githubusercontent.com/u/8545983?s=460&v=4"
+                alt="一只程小程" />
+            
+              <p class="site-author-name" itemprop="name">一只程小程</p>
+              <p class="site-description motion-element" itemprop="description">你说开心就拍手~</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">1.</span> <span class="nav-text">用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#string"><span class="nav-number">1.1.</span> <span class="nav-text">string</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#new-Set"><span class="nav-number">1.2.</span> <span class="nav-text">new Set()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#new-Map"><span class="nav-number">1.3.</span> <span class="nav-text">new Map()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类数组"><span class="nav-number">1.4.</span> <span class="nav-text">类数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用第二个参数func返回新函数"><span class="nav-number">1.5.</span> <span class="nav-text">使用第二个参数func返回新函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组去重合并"><span class="nav-number">1.6.</span> <span class="nav-text">数组去重合并</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#充分利用第三个参数thisArg"><span class="nav-number">1.7.</span> <span class="nav-text">充分利用第三个参数thisArg</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试代码"><span class="nav-number">4.</span> <span class="nav-text">测试代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一只程小程</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Pisces</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'fechengxiaocheng',
+            repo: 'gitment-comments',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                proxy_gateway: 'https://github.com/fechengxiaocheng',
+            
+                client_id: '7bbe209bfb504b980bb5'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

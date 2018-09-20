@@ -281,6 +281,344 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fechengxiaocheng.github.io/2018/09/20/Array-from/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一只程小程">
+      <meta itemprop="description" content="你说开心就拍手~">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/8545983?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端程小程">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/20/Array-from/" itemprop="url">
+                  【解读源码系列】Array.from
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-09-20 14:37:48 / Modified: 14:38:57" itemprop="dateCreated datePublished" datetime="2018-09-20T14:37:48+08:00">2018-09-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/original-code/" itemprop="url" rel="index"><span itemprop="name">源码系列</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Array.from可通过1、类数组(argumentg)2、可迭代对象(set,map)来创建新数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 后面两个参数可选</span></span><br><span class="line"><span class="built_in">Array</span>.from(arrayLike, mapFn, thisArg)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>arrayLike：必选，1、类数组(argumentg)2、可迭代对象(set,map)。</li>
+<li>mapFn: 可选，相当于Array.from(arrayLike).map(mapFn, thisArg)。</li>
+<li>thisArg: 可选，执行回调函数mapFn时候的this对象。非常有用，利于解耦。可以把被处理的数据和对象分离，thisArg中定义处理函数handle，用来在mapFn中返回调用handle之后的结果。</li>
+</ul>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="built_in">Array</span>.from(<span class="string">'abc'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// [ 'a', 'b', 'c' ]</span></span><br></pre></td></tr></table></figure>
+<h3 id="new-Set"><a href="#new-Set" class="headerlink" title="new Set()"></a>new Set()</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> b = <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]));</span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// [ 1, 2, 3 ]</span></span><br></pre></td></tr></table></figure>
+<h3 id="new-Map"><a href="#new-Map" class="headerlink" title="new Map()"></a>new Map()</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> c = <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Map</span>([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]]));</span><br><span class="line"><span class="built_in">console</span>.log(c); <span class="comment">// [ [ 1, 2 ], [ 3, 4 ] ]</span></span><br></pre></td></tr></table></figure>
+<h3 id="类数组"><a href="#类数组" class="headerlink" title="类数组"></a>类数组</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> d = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> d1 = <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(d1);</span><br><span class="line">&#125;)(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>); <span class="comment">// [ 1, 2, 3 ]</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用第二个参数func返回新函数"><a href="#使用第二个参数func返回新函数" class="headerlink" title="使用第二个参数func返回新函数"></a>使用第二个参数func返回新函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> e = <span class="built_in">Array</span>.from([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], x =&gt; x*<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(e); <span class="comment">// [ 2, 4, 6 ]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> f = <span class="built_in">Array</span>.from(&#123;<span class="attr">length</span>: <span class="number">5</span>&#125;, (v, i) =&gt; i + <span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(f); <span class="comment">// [ 1, 2, 3, 4, 5 ]</span></span><br></pre></td></tr></table></figure>
+<h3 id="数组去重合并"><a href="#数组去重合并" class="headerlink" title="数组去重合并"></a>数组去重合并</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> g1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line"><span class="keyword">const</span> g2 = [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>];</span><br><span class="line"><span class="keyword">const</span> g3 = [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>];</span><br><span class="line"><span class="keyword">const</span> g = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> _g = [].concat.apply([], <span class="built_in">arguments</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(_g)));</span><br><span class="line">&#125;)(g1, g2, g3); <span class="comment">// [ 1, 2, 3, 4, 5, 6, 7, 8 ]</span></span><br></pre></td></tr></table></figure>
+<h3 id="充分利用第三个参数thisArg"><a href="#充分利用第三个参数thisArg" class="headerlink" title="充分利用第三个参数thisArg"></a>充分利用第三个参数thisArg</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">    handle: <span class="function"><span class="params">x</span> =&gt;</span> x * <span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.from([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123; <span class="keyword">return</span> <span class="keyword">this</span>.handle(x) &#125;, obj))</span><br><span class="line"><span class="comment">// [3, 6, 9]</span></span><br></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
+<li><p>判断如果第一个参数arrayLike为空，throw new TypeError(“Array.from requires an array-like object - not null or undefined”);</p>
+</li>
+<li><p>循环arrayLike，判断如果有第二个参数mapFn，则返回arr[i] = mapFn(arrayLike[i], i); 否则直接返回arrayLike[i]</p>
+</li>
+<li><p>判断如果有第三个参数，mapFn调用的时候mapFn.apply(this, arrayLike[i], i)</p>
+</li>
+<li><p>返回arr</p>
+</li>
+</ul>
+<p>ps: polyfill的代码和底层实现的未必是完全一致的。比如这里使用new Set[1,2,3]和new Map[[a,1],[b,1]]返回的值都是[]。因为能支持es6代码的浏览器基本都不需要polyfill实现Array.from。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.from = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> isCallable = <span class="function"><span class="keyword">function</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">typeof</span> fn === <span class="string">'function'</span> &amp;&amp; <span class="built_in">Object</span>.prototype.toString.call(fn) === <span class="string">'[object Function]'</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// 返回一个value的整数</span></span><br><span class="line">    <span class="keyword">const</span> toInteger = <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> v = <span class="built_in">Number</span>(value);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">isNaN</span>(v)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 0或者无穷大的数，直接返回</span></span><br><span class="line">        <span class="keyword">if</span> (v === <span class="number">0</span> || !<span class="built_in">isFinite</span>(v)) &#123;</span><br><span class="line">            <span class="keyword">return</span> v;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ( v &gt; <span class="number">0</span> ? <span class="number">1</span> : <span class="number">-1</span> ) * <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.abs(v));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> maxSafeInteger = <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">const</span> toLength = <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> len = toInteger(value);</span><br><span class="line">        <span class="comment">// len的最小值不能比0小。最大值不能比maxSafeInteger大。</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.min(<span class="built_in">Math</span>.max(len, <span class="number">0</span>), maxSafeInteger);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">arrayLike<span class="regexp">/*, mapFn, thisArg*/</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> C = <span class="keyword">this</span>;</span><br><span class="line">        <span class="comment">// 如果没有第一个参数，throw error。</span></span><br><span class="line">        <span class="keyword">if</span> (arrayLike == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">"Array.from requires an array-like object - not null or undefined"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">const</span> items = <span class="built_in">Object</span>(arrayLike);</span><br><span class="line">        <span class="keyword">let</span> thisArg = <span class="string">''</span>;</span><br><span class="line">        <span class="keyword">const</span> mapFn = <span class="built_in">arguments</span>.length &gt; <span class="number">1</span> ? <span class="built_in">arguments</span>[<span class="number">1</span>] : <span class="keyword">void</span> <span class="literal">undefined</span>; </span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> mapFn !== <span class="string">'undefined'</span>) &#123;</span><br><span class="line">            <span class="comment">// 如果有第二个参数，判断是第二个参数类型如果不是构造函数，throw error</span></span><br><span class="line">            <span class="keyword">if</span> (!isCallable(mapFn)) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">"Array.from when provided mapFn must be a function"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">arguments</span>.length &gt; <span class="number">2</span>) &#123;</span><br><span class="line">                thisArg = <span class="built_in">arguments</span>[<span class="number">2</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">const</span> len = toLength(items.length);</span><br><span class="line">        <span class="keyword">const</span> arr = isCallable(C) ? <span class="built_in">Object</span>(<span class="keyword">new</span> C(len)) : <span class="keyword">new</span> <span class="built_in">Array</span>(len);</span><br><span class="line">        <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(i &lt; len) &#123;</span><br><span class="line">            iValue = items[i];</span><br><span class="line">            <span class="keyword">if</span> (mapFn) &#123;</span><br><span class="line">                arr[i] = <span class="keyword">typeof</span> thisArg === <span class="string">'undefined'</span> ? mapFn(iValue, i) : mapFn.call(thisArg, iValue, i);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                arr[i] = iValue;</span><br><span class="line">            &#125;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="built_in">Array</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">Array</span> = <span class="built_in">require</span>(<span class="string">'./index'</span>);</span><br><span class="line"></span><br><span class="line">describe(<span class="string">'Array.from'</span>, () =&gt; &#123;</span><br><span class="line"></span><br><span class="line">    describe(<span class="string">'about first arguments'</span>, () =&gt; &#123;</span><br><span class="line">        test(<span class="string">'if first arguments is string return this arr'</span>, () =&gt; &#123;</span><br><span class="line">            expect(<span class="built_in">Array</span>.from(<span class="string">'123'</span>)).toEqual([<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>])</span><br><span class="line">        &#125;)</span><br><span class="line">        test(<span class="string">'if first arguments is null throw error'</span>, () =&gt; &#123;</span><br><span class="line">            expect(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">Array</span>.from()).toThrow();</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    describe(<span class="string">'about second arguments'</span>, () =&gt; &#123;</span><br><span class="line">        test(<span class="string">'if has second arguments and it is not function throw error'</span>, () =&gt; &#123;</span><br><span class="line">            expect(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">Array</span>.from([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], <span class="number">123</span>)).toThrow();</span><br><span class="line">        &#125;)</span><br><span class="line">        </span><br><span class="line">        test(<span class="string">'return the double arr'</span>, () =&gt; &#123;</span><br><span class="line">            expect(<span class="built_in">Array</span>.from([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], x =&gt; x*<span class="number">2</span>)).toEqual([<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>]);</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        test(<span class="string">'return the arr 1,2,3,4,5'</span>, () =&gt; &#123;</span><br><span class="line">            expect(<span class="built_in">Array</span>.from(&#123;<span class="attr">length</span>: <span class="number">5</span>&#125;, (v, i) =&gt; i+<span class="number">1</span>)).toEqual([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    describe(<span class="string">'about this third arguments'</span>, () =&gt; &#123;</span><br><span class="line">        test(<span class="string">'if has third arguments bind it into mapFn'</span>, () =&gt; &#123;</span><br><span class="line">            <span class="keyword">const</span> obj = &#123;</span><br><span class="line">                handle: <span class="function"><span class="params">x</span> =&gt;</span> x * <span class="number">3</span></span><br><span class="line">            &#125;</span><br><span class="line">            expect(<span class="built_in">Array</span>.from([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123; <span class="keyword">return</span> <span class="keyword">this</span>.handle(x) &#125;, obj)).toEqual([<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>]);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fechengxiaocheng.github.io/2018/09/14/uncurrying/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一只程小程">
+      <meta itemprop="description" content="你说开心就拍手~">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/8545983?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端程小程">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/14/uncurrying/" itemprop="url">
+                  uncurrying
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-09-14 10:41:17" itemprop="dateCreated datePublished" datetime="2018-09-14T10:41:17+08:00">2018-09-14</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/notes/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://fechengxiaocheng.github.io/2018/09/14/throttle/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1619,340 +1957,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://fechengxiaocheng.github.io/2018/08/22/object-orianted-pramram-study/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一只程小程">
-      <meta itemprop="description" content="你说开心就拍手~">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/8545983?s=460&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="前端程小程">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/22/object-orianted-pramram-study/" itemprop="url">
-                  面向对象编程(封装&继承)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-22 15:23:16 / Modified: 15:56:30" itemprop="dateCreated datePublished" datetime="2018-08-22T15:23:16+08:00">2018-08-22</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/深入研究/" itemprop="url" rel="index"><span itemprop="name">深入研究</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>最近开始重新梳理js基础知识，边学习、边思考、边练手、边记录。<a href="https://github.com/fechengxiaocheng/object-orianted-program-demo" target="_blank" rel="noopener">github源码地址</a></p>
-<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><h3 id="构造函数模式"><a href="#构造函数模式" class="headerlink" title="构造函数模式"></a>构造函数模式</h3><p>在构造函数中封装对象的属性和方法。</p>
-<p><a href="https://github.com/fechengxiaocheng/object-orianted-program-demo/blob/master/demo1.js" target="_blank" rel="noopener">demo1</a></p>
-<p>缺点: 原型对象中定义相同的属性或者方法时，每次新建实例都会生成一次，多占用内存。</p>
-<p>思考: 能否将共有的方法只在内存中生成一次呢？</p>
-<p>答案: 能。用原型模式</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/22/object-orianted-pramram-study/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://fechengxiaocheng.github.io/2018/08/20/koa-notes/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一只程小程">
-      <meta itemprop="description" content="你说开心就拍手~">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/8545983?s=460&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="前端程小程">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/20/koa-notes/" itemprop="url">
-                  Koa学习笔记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-20 17:15:14 / Modified: 18:03:42" itemprop="dateCreated datePublished" datetime="2018-08-20T17:15:14+08:00">2018-08-20</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/notes/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Koa是干啥的"><a href="#Koa是干啥的" class="headerlink" title="Koa是干啥的"></a>Koa是干啥的</h2><ul>
-<li>一个基于node.js平台的web开发框架。</li>
-<li>由Express原班人马打造。</li>
-<li>没有捆绑任何中间件，更小。</li>
-</ul>
-<h2 id="api"><a href="#api" class="headerlink" title="api"></a>api</h2><h3 id="一个无作用的Koa程序被绑定到3000端口"><a href="#一个无作用的Koa程序被绑定到3000端口" class="headerlink" title="一个无作用的Koa程序被绑定到3000端口"></a>一个无作用的Koa程序被绑定到3000端口</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> koa();</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/20/koa-notes/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2004,7 +2008,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
