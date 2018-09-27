@@ -512,7 +512,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-09-27 14:23:35" itemprop="dateModified" datetime="2018-09-27T14:23:35+08:00">2018-09-27</time>
+                <time title="Modified: 2018-09-27 14:51:52" itemprop="dateModified" datetime="2018-09-27T14:51:52+08:00">2018-09-27</time>
               
             
           </span>
@@ -565,7 +565,7 @@
       
         
           <p>我们在<a href="http://goddess.joeray61.com/2018/09/11/closure-currying/" target="_blank" rel="noopener">【从一道面试题说起】闭包&amp;函数柯里化】</a>认识了函数科里化，本文我们来了解下函数反柯里化。</p>
-<p>函数反柯里化就是把this泛化的过程。</p>
+<p>函数反柯里化其实就是把this泛化的过程。</p>
 <p>在认识它之前，首先思考一个问题，如何让类数组借用数组的push方法，应该很容易想到,可以借助Array.prototype.push方法。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">Array</span>.prototype.push.call(<span class="built_in">arguments</span>, <span class="number">4</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>)); <span class="comment">// [ 1, 2, 3, 4 ]</span></span><br><span class="line">&#125;)(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
           <!--noindex-->
