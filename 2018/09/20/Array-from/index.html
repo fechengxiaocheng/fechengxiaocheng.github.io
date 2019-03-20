@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="Array.from可通过1、类数组(argumentg)2、可迭代对象(set,map)来创建新数组。 12// 后面两个参数可选Array.from(arrayLike, mapFn, thisArg)  arrayLike：必选，1、类数组(argumentg)2、可迭代对象(set,map)。 mapFn: 可选，相当于Array.from(arrayLike).map(mapFn, th">
+  <meta name="description" content="Array.from可通过1、类数组(arguments)2、可迭代对象(set,map)来创建新数组。 12// 后面两个参数可选Array.from(arrayLike, mapFn, thisArg)  arrayLike: 必选，1、类数组(argumentg)2、可迭代对象(set,map)。 mapFn: 可选，相当于Array.from(arrayLike).map(mapFn, t">
 <meta name="keywords" content="javascript,js,css,html,node,react,eslint,jest,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【解读源码系列】Array.from">
 <meta property="og:url" content="https://fechengxiaocheng.github.io/2018/09/20/Array-from/index.html">
 <meta property="og:site_name" content="前端程小程">
-<meta property="og:description" content="Array.from可通过1、类数组(argumentg)2、可迭代对象(set,map)来创建新数组。 12// 后面两个参数可选Array.from(arrayLike, mapFn, thisArg)  arrayLike：必选，1、类数组(argumentg)2、可迭代对象(set,map)。 mapFn: 可选，相当于Array.from(arrayLike).map(mapFn, th">
+<meta property="og:description" content="Array.from可通过1、类数组(arguments)2、可迭代对象(set,map)来创建新数组。 12// 后面两个参数可选Array.from(arrayLike, mapFn, thisArg)  arrayLike: 必选，1、类数组(argumentg)2、可迭代对象(set,map)。 mapFn: 可选，相当于Array.from(arrayLike).map(mapFn, t">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-20T08:54:03.000Z">
+<meta property="og:updated_time" content="2018-10-09T07:48:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【解读源码系列】Array.from">
-<meta name="twitter:description" content="Array.from可通过1、类数组(argumentg)2、可迭代对象(set,map)来创建新数组。 12// 后面两个参数可选Array.from(arrayLike, mapFn, thisArg)  arrayLike：必选，1、类数组(argumentg)2、可迭代对象(set,map)。 mapFn: 可选，相当于Array.from(arrayLike).map(mapFn, th">
+<meta name="twitter:description" content="Array.from可通过1、类数组(arguments)2、可迭代对象(set,map)来创建新数组。 12// 后面两个参数可选Array.from(arrayLike, mapFn, thisArg)  arrayLike: 必选，1、类数组(argumentg)2、可迭代对象(set,map)。 mapFn: 可选，相当于Array.from(arrayLike).map(mapFn, t">
 
 
 
@@ -323,12 +323,24 @@
                 
               
 
-              <time title="Created: 2018-09-20 14:37:48 / Modified: 16:54:03" itemprop="dateCreated datePublished" datetime="2018-09-20T14:37:48+08:00">2018-09-20</time>
+              <time title="Created: 2018-09-20 14:37:48" itemprop="dateCreated datePublished" datetime="2018-09-20T14:37:48+08:00">2018-09-20</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-10-09 15:48:35" itemprop="dateModified" datetime="2018-10-09T15:48:35+08:00">2018-10-09</time>
               
             
           </span>
@@ -389,10 +401,10 @@
       
 
       
-        <p>Array.from可通过1、类数组(argumentg)2、可迭代对象(set,map)来创建新数组。</p>
+        <p>Array.from可通过1、类数组(arguments)2、可迭代对象(set,map)来创建新数组。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 后面两个参数可选</span></span><br><span class="line"><span class="built_in">Array</span>.from(arrayLike, mapFn, thisArg)</span><br></pre></td></tr></table></figure>
 <ul>
-<li>arrayLike：必选，1、类数组(argumentg)2、可迭代对象(set,map)。</li>
+<li>arrayLike: 必选，1、类数组(argumentg)2、可迭代对象(set,map)。</li>
 <li>mapFn: 可选，相当于Array.from(arrayLike).map(mapFn, thisArg)。</li>
 <li>thisArg: 可选，执行回调函数mapFn时候的this对象。非常有用，利于解耦。可以把被处理的数据和对象分离，thisArg中定义处理函数handle，用来在mapFn中返回调用handle之后的结果。</li>
 </ul>
@@ -454,6 +466,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/20/review-think/" rel="prev" title="review-think.md">
+                review-think.md <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -534,7 +550,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -559,7 +575,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -638,7 +656,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
